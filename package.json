@@ -1,0 +1,18 @@
+{
+  "name": "spirit-island-renderer",
+  "version": "0.0.1",
+  "description": "Renders images of spirits for spirit island",
+  "scripts": {
+    "render": "npx ts-node render.ts"
+  },
+  "keywords": [
+    "spirit-island"
+  ],
+  "author": "Patrick Kranz",
+  "license": "MIT",
+  "dependencies": {
+    "node-html-to-image": "^3.1.0",
+    "ts-node": "^9.1.0",
+    "typescript": "^4.1.2"
+  }
+}
