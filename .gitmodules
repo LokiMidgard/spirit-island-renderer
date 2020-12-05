@@ -1,0 +1,3 @@
+[submodule "dependencys/spirit-island-template"]
+	path = dependencys/spirit-island-template
+	url = https://github.com/Gudradain/spirit-island-template.git
