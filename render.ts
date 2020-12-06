@@ -431,6 +431,44 @@ async function main() {
         <style>
         body {
           width: 976px;
+          justify-content: start;
+        }
+        .or, or{
+            mix-blend-mode: multiply;
+        }
+        rules,
+        threshold-title {
+            background-color: transparent;
+        }
+        threshold {
+            background-color: rgb(255 246 84 / 60%);
+        }
+
+        threshold-line {
+            width:calc((353px / 2) - (220px - (353px / 2)));
+        }
+        threshold-line::before{
+            content:'';
+            position: absolute;
+            display: block;
+            height: 1px;
+            width: calc(353px - 220px);
+            left: 220px;
+            background-color:rgb(223, 196, 143);
+            overflow: visible;
+            color:white;
+            margin-bottom:30px;
+            z-index:1;
+          }
+          
+          
+
+        rules-container {
+            background-position: center;
+            background-image: url('${GetImageUrl('resources/Parchment.jpg')}');
+          }
+       rules{
+            background-color: transparent important!;
         }
       </style>
     </head>
@@ -545,7 +583,6 @@ function StartServer() {
             res.end()
             return
         }
-        console.log(req.url)
 
         let pathname = url.parse(req.url).pathname
 
@@ -612,7 +649,6 @@ function StartServer() {
 
                 } else {
 
-                    console.log(pathname?.substr(1))
 
                     let contentType = 'text/html'
                     if (pathname?.endsWith('.js'))
@@ -647,7 +683,6 @@ function StartServer() {
 
                 } else {
 
-                    console.log(pathname?.substr(1))
 
                     let contentType = 'text/html'
                     if (pathname?.endsWith('.js'))
