@@ -416,10 +416,12 @@ async function main() {
         await fs.promises.mkdir('./out/')
 
 
+
     const server = StartServer()
+    try {
 
 
-    const cardTemplate = `<!DOCTYPE html>
+        const cardTemplate = `<!DOCTYPE html>
 
     <head>
         <link href="http://localhost:8080/_global/css/global.css" rel="stylesheet" />
@@ -439,7 +441,7 @@ async function main() {
     </body>
     </html>`
 
-    const frontTemplate = `<!DOCTYPE html>
+        const frontTemplate = `<!DOCTYPE html>
 
     <head>
       <link href="http://localhost:8080/_global/css/global.css" rel="stylesheet" />
@@ -460,7 +462,7 @@ async function main() {
     </html>`
 
 
-    const loreTemplate = `<!DOCTYPE html>
+        const loreTemplate = `<!DOCTYPE html>
 
     <head>
       <link href="http://localhost:8080/_global/css/global.css" rel="stylesheet" />
@@ -481,50 +483,54 @@ async function main() {
     </html>`
 
 
-    for (let i = 0; i < inputs.length; i++) {
-        const spiritInputFile = inputs[i];
+        for (let i = 0; i < inputs.length; i++) {
+            const spiritInputFile = inputs[i];
 
-        const inputbuffer = await fs.promises.readFile(spiritInputFile, 'utf8')
+            const inputbuffer = await fs.promises.readFile(spiritInputFile, 'utf8')
 
-        var json = JSON.parse(inputbuffer) as Sprit
-
-
-        const cardContetn = ReplacePlacehoder(ToCards(json));
-        const loreContetn = ReplacePlacehoder(ToLore(json));
-        const frontContetn = ReplacePlacehoder(ToFront(json));
+            var json = JSON.parse(inputbuffer) as Sprit
 
 
-        await nodeHtmlToImage({
-            output: './out/' + spiritInputFile + '-cards.png',
-            html: cardTemplate,
-            transparent: true,
-
-            content: { content: cardContetn },
-            waitUntil: ['domcontentloaded', 'load', 'networkidle0']
-        })
+            const cardContetn = ReplacePlacehoder(ToCards(json));
+            const loreContetn = ReplacePlacehoder(ToLore(json));
+            const frontContetn = ReplacePlacehoder(ToFront(json));
 
 
-        await nodeHtmlToImage({
-            output: './out/' + spiritInputFile + '-lore.png',
-            html: loreTemplate,
-            transparent: true,
+            await nodeHtmlToImage({
+                output: './out/' + spiritInputFile + '-cards.png',
+                html: cardTemplate,
+                transparent: true,
 
-            content: { content: loreContetn },
-            waitUntil: ['domcontentloaded', 'load', 'networkidle0']
-        })
-        await nodeHtmlToImage({
-            output: './out/' + spiritInputFile + '-front.png',
-            html: frontTemplate,
-            transparent: true,
+                content: { content: cardContetn },
+                waitUntil: ['domcontentloaded', 'load', 'networkidle0']
+            })
 
-            content: { content: frontContetn },
-            waitUntil: ['domcontentloaded', 'load', 'networkidle0']
-        })
 
-        console.log(`finished ${spiritInputFile}`)
+            await nodeHtmlToImage({
+                output: './out/' + spiritInputFile + '-lore.png',
+                html: loreTemplate,
+                transparent: true,
+
+                content: { content: loreContetn },
+                waitUntil: ['domcontentloaded', 'load', 'networkidle0']
+            })
+            await nodeHtmlToImage({
+                output: './out/' + spiritInputFile + '-front.png',
+                html: frontTemplate,
+                transparent: true,
+
+                content: { content: frontContetn },
+                waitUntil: ['domcontentloaded', 'load', 'networkidle0']
+            })
+
+            console.log(`finished ${spiritInputFile}`)
+        }
+    } catch (error) {
+        console.error(error)
+    } finally {
+        server.close()
     }
 
-    server.close()
 
 }
 main().catch(x =>
