@@ -168,39 +168,6 @@
                             },
                             {
                                 "properties": {
-                                    "land": {
-                                        "anyOf": [
-                                            {
-                                                "items": {
-                                                    "enum": [
-                                                        "costal",
-                                                        "inland",
-                                                        "jungle",
-                                                        "land",
-                                                        "mountain",
-                                                        "ocean",
-                                                        "sand",
-                                                        "wetland"
-                                                    ],
-                                                    "type": "string"
-                                                },
-                                                "type": "array"
-                                            },
-                                            {
-                                                "enum": [
-                                                    "costal",
-                                                    "inland",
-                                                    "jungle",
-                                                    "land",
-                                                    "mountain",
-                                                    "ocean",
-                                                    "sand",
-                                                    "wetland"
-                                                ],
-                                                "type": "string"
-                                            }
-                                        ]
-                                    },
                                     "range": {
                                         "type": "number"
                                     },
@@ -337,39 +304,6 @@
                                         },
                                         {
                                             "properties": {
-                                                "land": {
-                                                    "anyOf": [
-                                                        {
-                                                            "items": {
-                                                                "enum": [
-                                                                    "costal",
-                                                                    "inland",
-                                                                    "jungle",
-                                                                    "land",
-                                                                    "mountain",
-                                                                    "ocean",
-                                                                    "sand",
-                                                                    "wetland"
-                                                                ],
-                                                                "type": "string"
-                                                            },
-                                                            "type": "array"
-                                                        },
-                                                        {
-                                                            "enum": [
-                                                                "costal",
-                                                                "inland",
-                                                                "jungle",
-                                                                "land",
-                                                                "mountain",
-                                                                "ocean",
-                                                                "sand",
-                                                                "wetland"
-                                                            ],
-                                                            "type": "string"
-                                                        }
-                                                    ]
-                                                },
                                                 "range": {
                                                     "type": "number"
                                                 },
@@ -692,39 +626,6 @@
                         "anyOf": [
                             {
                                 "properties": {
-                                    "land": {
-                                        "anyOf": [
-                                            {
-                                                "items": {
-                                                    "enum": [
-                                                        "costal",
-                                                        "inland",
-                                                        "jungle",
-                                                        "land",
-                                                        "mountain",
-                                                        "ocean",
-                                                        "sand",
-                                                        "wetland"
-                                                    ],
-                                                    "type": "string"
-                                                },
-                                                "type": "array"
-                                            },
-                                            {
-                                                "enum": [
-                                                    "costal",
-                                                    "inland",
-                                                    "jungle",
-                                                    "land",
-                                                    "mountain",
-                                                    "ocean",
-                                                    "sand",
-                                                    "wetland"
-                                                ],
-                                                "type": "string"
-                                            }
-                                        ]
-                                    },
                                     "range": {
                                         "type": "number"
                                     },
@@ -746,39 +647,6 @@
                                     "anyOf": [
                                         {
                                             "properties": {
-                                                "land": {
-                                                    "anyOf": [
-                                                        {
-                                                            "items": {
-                                                                "enum": [
-                                                                    "costal",
-                                                                    "inland",
-                                                                    "jungle",
-                                                                    "land",
-                                                                    "mountain",
-                                                                    "ocean",
-                                                                    "sand",
-                                                                    "wetland"
-                                                                ],
-                                                                "type": "string"
-                                                            },
-                                                            "type": "array"
-                                                        },
-                                                        {
-                                                            "enum": [
-                                                                "costal",
-                                                                "inland",
-                                                                "jungle",
-                                                                "land",
-                                                                "mountain",
-                                                                "ocean",
-                                                                "sand",
-                                                                "wetland"
-                                                            ],
-                                                            "type": "string"
-                                                        }
-                                                    ]
-                                                },
                                                 "range": {
                                                     "type": "number"
                                                 },

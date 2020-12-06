@@ -2,13 +2,33 @@ import nodeHtmlToImage from 'node-html-to-image'
 import http from 'http'
 import url from 'url'
 import fs from 'fs'
-import Sprit, { ImagePath } from './spiritType'
+import Sprit, { Growth, ImagePath } from './spiritType'
 import { ToCards } from './cards'
 import path from 'path'
 
 
 
 function ToFront(spirit: Sprit, relativeTo: string): string {
+
+    function GrowthTrack(g: Growth): string {
+        if (Array.isArray(g)) {
+            return g.map(GrowthTrack).join(';')
+        } else if (typeof g === 'object') {
+            if (g.type == 'add-presence') {
+                return g.land && g.land !== "land"
+                    ? `add-presence(${g.range}, ${g.land})`
+                    : `add-presence(${g.range})`
+            } else if (g.type == "gain-element") {
+                return `gain-element(${g.element})`
+            } else if (g.type === 'move-presence') {
+                return `move-presence(${g.range})`
+            } else {
+                return `gain-energy(${g.number})`
+            }
+        } else {
+            return g;
+        }
+    }
 
     let spiritXml = `
     <div style='width: 100%; height: 100%; z-index: -1;  background-size: ${spirit.imageFrontPosition?.scale ?? 100}%; background-position-x: ${spirit.imageFrontPosition?.x ?? 0}px; background-position-y: ${spirit.imageFrontPosition?.y ?? 0}px; margin: 15px; position: absolute; background-image: url("${GetImageUrl(spirit.image, relativeTo)}");'  ></div>
@@ -33,10 +53,9 @@ function ToFront(spirit: Sprit, relativeTo: string): string {
       </special-rule>
     </special-rules-container>
 
-    <growth title="Growth (PICK ONE)">
-      <growth-group values="reclaim-one;gain-power-card;gain-energy(3)"></growth-group>
-      <growth-group values="add-presence(2,ocean);gain-element(fire)"></growth-group>
-      <growth-group values="move-presence(4);reclaim-one;add-presence(3,mountain-jungle)"></growth-group>
+    <growth title="${spirit.growth.title}">
+        ${spirit.growth.choise.map(x => `<growth-group values="${GrowthTrack(x)}"></growth-group>`).join('\n')}
+  
     </growth>
 
     <presence-tracks>
@@ -313,6 +332,9 @@ async function main() {
         body {
           width: 1766px;
         }
+        innate-powers-title{
+            width: unset;
+        }
         presence-tracks{
             z-index:1;
         }
@@ -365,6 +387,7 @@ async function main() {
             const loreContetn = ReplacePlacehoder(ToLore(json, root));
             const frontContetn = ReplacePlacehoder(ToFront(json, root));
 
+            console.log(frontContetn)
 
             const cardBackTemplate = `
             <!DOCTYPE html>

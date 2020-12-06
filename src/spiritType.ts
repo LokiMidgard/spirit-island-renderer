@@ -37,8 +37,7 @@ export type GrowthEntry = 'reclaim-one'
 
 export type MovePresents = {
     type: 'move-presence'
-    range: number,
-    land: Land | Land[] | undefined
+    range: number
 }
 
 export type ImagePath = string | {
