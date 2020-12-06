@@ -79,6 +79,17 @@ export type Target = {
 type Sprit = {
     name: string,
     image: ImagePath,
+    imageFrontPosition: {
+        x: number,
+        y: number,
+        scale: number
+    } | undefined,
+    imageCardBackPosition: {
+        x: number,
+        y: number,
+        scale: number
+    } | undefined,
+
     boarder: ImagePath,
     lore: string,
     setup: string,

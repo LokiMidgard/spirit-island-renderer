@@ -443,6 +443,44 @@
                 }
             ]
         },
+        "imageCardBackPosition": {
+            "properties": {
+                "scale": {
+                    "type": "number"
+                },
+                "x": {
+                    "type": "number"
+                },
+                "y": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "scale",
+                "x",
+                "y"
+            ],
+            "type": "object"
+        },
+        "imageFrontPosition": {
+            "properties": {
+                "scale": {
+                    "type": "number"
+                },
+                "x": {
+                    "type": "number"
+                },
+                "y": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "scale",
+                "x",
+                "y"
+            ],
+            "type": "object"
+        },
         "inatePowers": {
             "items": {
                 "properties": {

@@ -8,9 +8,83 @@ import path from 'path'
 
 
 
-function ToFront(spirit: Sprit): string {
+function ToFront(spirit: Sprit, relativeTo: string): string {
 
-    let spiritXml = ''
+    let spiritXml = `
+    <div style='width: 100%; height: 100%; z-index: -1;  background-size: ${spirit.imageFrontPosition?.scale??100}%; background-position-x: ${spirit.imageFrontPosition?.x??0}px; background-position-y: ${spirit.imageFrontPosition?.y??0}px; margin: 15px; position: absolute; background-image: url("${GetImageUrl(spirit.image, relativeTo)}");'  ></div>
+    <board >
+    <img class="spirit-border" src="${GetImageUrl(spirit.boarder, relativeTo)}" />
+    <spirit-name>
+      ${spirit.name}
+    </spirit-name>
+
+    <special-rules-container>
+      <special-rules-subtitle>Mountain Home</special-rules-subtitle>
+      <special-rule>
+        For each {fire} showing on your {presence} tracks, do 1 Damage.
+      </special-rule>
+      <special-rules-subtitle>Collapse in a blast of lava and steam</special-rules-subtitle>
+      <special-rule>
+        Push all {beast} and any number of {dahan}.
+      </special-rule>
+      <special-rules-subtitle>volcanic blah blah blah</special-rules-subtitle>
+      <special-rule>
+        Cards gain <range-plus-1></range-plus-1> if {blight} and {strife} and {disease} and {town} and {city} and {explorer} and {beast} and {wilds} and {badlands} and {fear}
+      </special-rule>
+    </special-rules-container>
+
+    <growth title="Growth (PICK ONE)">
+      <growth-group values="reclaim-one;gain-power-card;gain-energy(3)"></growth-group>
+      <growth-group values="add-presence(2,ocean);gain-element(fire)"></growth-group>
+      <growth-group values="move-presence(4);reclaim-one;add-presence(3,mountain-jungle)"></growth-group>
+    </growth>
+
+    <presence-tracks>
+      <energy-track values="1,2,earth,3,water+earth,fire+plant,reclaim-one"></energy-track>
+      <card-play-track values="1,fire,2+fire,3,move-presence(2),reclaim-one,5+reclaim-one,fire+reclaim-one"></card-play-track>
+    </presence-tracks>
+
+    <innate-powers>
+      <quick-innate-power
+        name="explosion"
+        speed="fast"
+        range="wetland-presence,1"
+        target="blight"
+        target-title="TARGET LAND"
+        note="Destroy X (1 or more) of your {presence} in target land; {destroyed-presence} checks how many you destroyed. This Power does Damage (separately and equally) to both Invaders and {Dahan}. Ranges below can't be increased.">
+        <level threshold="1-plant">
+          1 Damage per 2 {fire} you have.
+        </level>
+        <level threshold="3-plant">
+          Instead, 1 Damage per {fire} you have.
+        </level>
+        <level threshold="4-fire,2-air">
+          You may split this Power's damage among any number of lands with {blight} where you have {presence}.
+        </level>
+      </quick-innate-power>
+      <quick-innate-power
+        name="explosion2"
+        speed="slow"
+        range="jungle-presence,2"
+        target="player-spirit"
+        target-title="TARGET"
+        note="">
+        <level threshold="1-plant">
+          1 Damage per 2 {fire} you have.
+        </level>
+        <level threshold="3-plant">
+          Instead, 1 Damage per {fire} you have.
+        </level>
+        <level threshold="4-fire,2-air">
+          You may split this Power's damage among any number of lands with {blight} where you have {presence}.
+        </level>
+        <level threshold="7-fire">
+          In {blight} where {presence} you {dahan} have {wilds} and {strife} then {badlands} and {disease}.
+        </level>
+      </quick-innate-power>
+    </innate-powers>
+  </board>
+`
 
     return spiritXml
 }
@@ -79,16 +153,6 @@ async function main() {
     const server = StartServer()
     try {
 
-        const cardBackTemplate = `
-<!DOCTYPE html>
-<head>
-</head>
-<body style='width: 488px; height: 682px; padding:0px; margin:0px;'>
-    <div style='width: 488px; height: 682px; position: absolute; left: 0ox; top: 0px; background-image: url("{{{image}}}")' />
-    <img style='width: 488px; height: 682px; position: absolute; left: 0ox; top: 0px;' src="${GetImageUrl('resources/Unique-Power-Back.png', process.cwd())}" />
-</body>
-</html>
-`
 
 
         const cardTemplate = `<!DOCTYPE html>
@@ -159,6 +223,9 @@ async function main() {
         body {
           width: 1766px;
         }
+        presence-tracks{
+            z-index:1;
+        }
       </style>
     </head>
     
@@ -191,28 +258,35 @@ async function main() {
     </body>
     </html>`
 
-        console.log(process.cwd())
 
 
         for (let i = 0; i < inputs.length; i++) {
             const spiritInputFile = inputs[i];
 
             const root = path.resolve(process.cwd(), path.dirname(spiritInputFile));
-            console.log(root)
 
 
             const inputbuffer = await fs.promises.readFile(spiritInputFile, 'utf8')
 
             var json = JSON.parse(inputbuffer) as Sprit
 
-            console.log(path.resolve(root, json.image.toString()))
 
             const cardContetn = ReplacePlacehoder(ToCards(json, root));
             const loreContetn = ReplacePlacehoder(ToLore(json));
-            const frontContetn = ReplacePlacehoder(ToFront(json));
+            const frontContetn = ReplacePlacehoder(ToFront(json,root));
 
 
-
+            const cardBackTemplate = `
+            <!DOCTYPE html>
+            <head>
+            </head>
+            <body style='width: 488px; height: 682px; padding:0px; margin:0px;'>
+                <div style='width: 488px; height: 682px; position: absolute; left: 0ox; top: 0px; background-image: url("${GetImageUrl(json.image, root)}"); background-size: ${json.imageCardBackPosition?.scale??100}%; background-position-x: ${json.imageCardBackPosition?.x??0}px; background-position-y: ${json.imageCardBackPosition?.y??0}px; ' />
+                <img style='width: 488px; height: 682px; position: absolute; left: 0ox; top: 0px;' src="${GetImageUrl('resources/Unique-Power-Back.png', process.cwd())}" />
+            </body>
+            </html>
+            `
+            
 
             await nodeHtmlToImage({
                 output: './out/' + path.basename(spiritInputFile) + '-cards.png',
@@ -228,7 +302,7 @@ async function main() {
                 html: cardBackTemplate,
                 transparent: true,
 
-                content: { image: GetImageUrl(json.image, root) },
+                
                 waitUntil: ['domcontentloaded', 'load', 'networkidle0']
             })
 

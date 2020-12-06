@@ -3,6 +3,16 @@
   "name": "Blue Dragon ",
   "boarder": "example2.png",
   "image": "blue_dragon_by_sandara_d6hvigl-fullview.jpg",
+  "imageFrontPosition": {
+    "x": 0,
+    "y": 0,
+    "scale": 70
+  },
+  "imageCardBackPosition": {
+    "x": -500,
+    "y": 0,
+    "scale": 380
+  },
   "conplexety": 5,
   "lore": "Hakuna Matata",
   "setup": "Put 1 {presence} in highest numberd land.",
