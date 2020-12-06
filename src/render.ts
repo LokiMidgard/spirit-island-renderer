@@ -47,18 +47,7 @@ function ToFront(spirit: Sprit, relativeTo: string): string {
     </spirit-name>
 
     <special-rules-container>
-    <special-rules-subtitle>Mountain Home</special-rules-subtitle>
-    <special-rule>
-    For each {fire} showing on your {presence} tracks, do 1 Damage.
-    </special-rule>
-    <special-rules-subtitle>Collapse in a blast of lava and steam</special-rules-subtitle>
-    <special-rule>
-    Push all {beast} and any number of {dahan}.
-    </special-rule>
-    <special-rules-subtitle>volcanic blah blah blah</special-rules-subtitle>
-    <special-rule>
-    Cards gain <range-plus-1></range-plus-1> if {blight} and {strife} and {disease} and {town} and {city} and {explorer} and {beast} and {wilds} and {badlands} and {fear}
-    </special-rule>${spirit.specialRules.map(SpecialRules).join('\n')}
+${spirit.specialRules.map(SpecialRules).join('\n')}
     </special-rules-container>
 
     <growth title="${spirit.growth.title}">
