@@ -143,19 +143,19 @@ function ToLore(spirit: Sprit, relativeTo: string): string {
                         <div class="summary-of-powers-title">Summary of Powers</summary-of-powers-title>
                     </td>
                     <td valign="bottom">
-                        <div class="offense" value = "1"></div>
+                        <div class="offense" value = "${spirit.summaryPower.offense}"></div>
                     </td>
                     <td valign="bottom">
-                        <div class="control" value = "2"></div>
+                        <div class="control" value = "${spirit.summaryPower.control}"></div>
                     </td>
                     <td valign="bottom">
-                        <div class="fear" value = "2"></div>
+                        <div class="fear" value = "${spirit.summaryPower.fear}"></div>
                     </td>
                     <td valign="bottom">
-                        <div class="defense" value = "5"></div>
+                        <div class="defense" value = "${spirit.summaryPower.defense}"></div>
                     </td>
                     <td valign="bottom">
-                        <div class="utility" value = "10"></div>
+                        <div class="utility" value = "${spirit.summaryPower.utility}"></div>
                     </td>
                 </tr>
                 <tr>

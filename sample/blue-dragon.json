@@ -46,7 +46,7 @@
     "control": 1,
     "defense": 1,
     "fear": 1,
-    "offense": 1,
+    "offense": 10,
     "utility": 1
   },
   "presence": {
