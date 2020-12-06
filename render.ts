@@ -424,6 +424,7 @@ async function main() {
         const cardTemplate = `<!DOCTYPE html>
 
     <head>
+        <link href="http://localhost:8080/font.css" rel="stylesheet" />
         <link href="http://localhost:8080/_global/css/global.css" rel="stylesheet" />
         <link href="http://localhost:8080/_global/css/card.css" rel="stylesheet" />
         <script type="text/javascript" src="http://localhost:8080/_global/js/card.js" defer></script>
@@ -435,15 +436,14 @@ async function main() {
     </head>
     
     <body>
-    
         {{{content}}}
-    
     </body>
     </html>`
 
         const frontTemplate = `<!DOCTYPE html>
 
     <head>
+      <link href="http://localhost:8080/font.css" rel="stylesheet" />
       <link href="http://localhost:8080/_global/css/global.css" rel="stylesheet" />
       <link href="http://localhost:8080/_global/css/board_front.css" rel="stylesheet" />
       <script type="text/javascript" src="http://localhost:8080/_global/js/board_front.js"></script>
@@ -465,6 +465,7 @@ async function main() {
         const loreTemplate = `<!DOCTYPE html>
 
     <head>
+      <link href="http://localhost:8080/font.css" rel="stylesheet" />
       <link href="http://localhost:8080/_global/css/global.css" rel="stylesheet" />
       <link href="http://localhost:8080/_global/css/board_lore.css" rel="stylesheet" />
       <script type="text/javascript" src="http://localhost:8080/_global/js/board_lore.js"></script>
@@ -506,22 +507,22 @@ async function main() {
             })
 
 
-            await nodeHtmlToImage({
-                output: './out/' + spiritInputFile + '-lore.png',
-                html: loreTemplate,
-                transparent: true,
+            // await nodeHtmlToImage({
+            //     output: './out/' + spiritInputFile + '-lore.png',
+            //     html: loreTemplate,
+            //     transparent: true,
 
-                content: { content: loreContetn },
-                waitUntil: ['domcontentloaded', 'load', 'networkidle0']
-            })
-            await nodeHtmlToImage({
-                output: './out/' + spiritInputFile + '-front.png',
-                html: frontTemplate,
-                transparent: true,
+            //     content: { content: loreContetn },
+            //     waitUntil: ['domcontentloaded', 'load', 'networkidle0']
+            // })
+            // await nodeHtmlToImage({
+            //     output: './out/' + spiritInputFile + '-front.png',
+            //     html: frontTemplate,
+            //     transparent: true,
 
-                content: { content: frontContetn },
-                waitUntil: ['domcontentloaded', 'load', 'networkidle0']
-            })
+            //     content: { content: frontContetn },
+            //     waitUntil: ['domcontentloaded', 'load', 'networkidle0']
+            // })
 
             console.log(`finished ${spiritInputFile}`)
         }
@@ -544,6 +545,7 @@ function StartServer() {
             res.end()
             return
         }
+        console.log(req.url)
 
         let pathname = url.parse(req.url).pathname
 
@@ -558,32 +560,115 @@ function StartServer() {
             pathname = '/index.html'
         }
 
-        fs.readFile('dependencys/spirit-island-template/' + pathname.substr(1), (err, data) => {
+        if (pathname == '/font.css') {
+            const fontContent = `
+            @font-face{
+                font-family: 'DK Snemand';
+                src: url(${GetImageUrl('dependencys/fonts/DK Snemand.otf')});
+              }
+              @font-face{
+                font-family: 'Gobold Extra2';
+                src: url(${GetImageUrl('dependencys/fonts/Gobold Extra2.otf')});
+              }
+              @font-face{
+                font-family: JosefinSans-Regular;
+                src: url(${GetImageUrl('dependencys/spirit-island-template/_global/fonts/josefin-sans/JosefinSans-Regular.ttf')});
+              }
+              `
+            // const fontContent = `@font-face{
+            //     font-family: DK Snemand;
+            //     src: url('!DK Snemand.otf');
+            //   }
 
-            if (err) {
+            //   @font-face{
+            //     font-family: Gobold Extra2;
+            //     src: url('!Gobold Extra2.otf');
+            //     font-style: normal;
+            //   }
 
-                console.error(err)
+            //   @font-face{
+            //     font-family: Gobold Extra2;
+            //     src: url('!Gobold Extra2 Italic.otf');
+            //     font-style: italic;
+            //   }
 
-                res.writeHead(404, { 'Content-Type': 'text/plain' })
-                res.write('404 - file not found')
-
-            } else {
-
-                let contentType = 'text/html'
-                if (pathname?.endsWith('.js'))
-                    contentType = 'application/javascript'
-                else if (pathname?.endsWith('.png'))
-                    contentType = 'Image/Png'
-                else if (pathname?.endsWith('.css'))
-                    contentType = 'text/css'
-
-
-                res.writeHead(200, { 'Content-Type': contentType })
-                res.write(data)
-            }
-
+            //   `
+            const contentType = 'text/css'
+            res.writeHead(200, { 'Content-Type': contentType })
+            res.write(fontContent)
             res.end()
-        })
+            return
+        }
+
+        if (pathname[1] == '!') {
+            fs.readFile('dependencys/fonts/' + pathname.substr(2).replace('%20', ' '), (err, data) => {
+
+                if (err) {
+
+                    console.error(err)
+
+                    res.writeHead(404, { 'Content-Type': 'text/plain' })
+                    res.write('404 - file not found')
+
+                } else {
+
+                    console.log(pathname?.substr(1))
+
+                    let contentType = 'text/html'
+                    if (pathname?.endsWith('.js'))
+                        contentType = 'application/javascript'
+                    else if (pathname?.endsWith('.png'))
+                        contentType = 'Image/Png'
+                    else if (pathname?.endsWith('.css'))
+                        contentType = 'text/css'
+                    else if (pathname?.endsWith('.otf'))
+                        contentType = 'application/x-font-opentype'
+                    else if (pathname?.endsWith('.ttf'))
+                        contentType = 'application/x-font-ttf'
+
+
+                    res.writeHead(200, { 'Content-Type': contentType })
+                    res.write(data)
+                }
+
+                res.end()
+            })
+        }
+        else {
+
+            fs.readFile('dependencys/spirit-island-template/' + pathname.substr(1).replace('%20', ' '), (err, data) => {
+
+                if (err) {
+
+                    console.error(err)
+
+                    res.writeHead(404, { 'Content-Type': 'text/plain' })
+                    res.write('404 - file not found')
+
+                } else {
+
+                    console.log(pathname?.substr(1))
+
+                    let contentType = 'text/html'
+                    if (pathname?.endsWith('.js'))
+                        contentType = 'application/javascript'
+                    else if (pathname?.endsWith('.png'))
+                        contentType = 'Image/Png'
+                    else if (pathname?.endsWith('.css'))
+                        contentType = 'text/css'
+                    else if (pathname?.endsWith('.otf'))
+                        contentType = 'application/x-font-opentype'
+                    else if (pathname?.endsWith('.ttf'))
+                        contentType = 'application/x-font-ttf'
+
+
+                    res.writeHead(200, { 'Content-Type': contentType })
+                    res.write(data)
+                }
+
+                res.end()
+            })
+        }
     })
 
     server.listen(8080)

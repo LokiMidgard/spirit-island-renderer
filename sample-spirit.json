@@ -87,9 +87,9 @@
       "energy": 0,
       "image": "example1.png",
       "mana": [
+        "water",
         "air",
-        "fire",
-        "water"
+        "fire"
       ],
       "speed": "fast",
       "target": {
