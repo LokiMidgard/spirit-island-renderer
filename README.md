@@ -4,7 +4,14 @@ this tool renders custom spirits and there unique powers. It uses [spirit-island
 
 ## Early Development
 
-This project just started. It will currently only generate unique power cards for the spirits.
+This project just started. Not everything is rendered yet
+
+* [ ] Spirit Front
+* [ ] Spirit Back (Lore)
+* [x] Unique Power cards
+* [x] Unique Power Cards Back
+
+* [ ] Create automatic import script for Tabletop simulator
 
 ## Getting started
 
