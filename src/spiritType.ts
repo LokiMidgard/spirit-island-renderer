@@ -89,12 +89,17 @@ type Sprit = {
         y: number,
         scale: number
     } | undefined,
+    imageLorePosition: {
+        x: number,
+        y: number,
+        scale: number
+    } | undefined,
 
     boarder: ImagePath,
     lore: string,
     setup: string,
     playStyle: string,
-    conplexety: 1 | 2 | 3 | 4 | 5,
+    complexety: 'low' | 'moderate' | 'high' | 'very high',
     summaryPower: {
         offense: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10,
         control: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10,

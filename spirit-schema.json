@@ -37,15 +37,14 @@
                 }
             ]
         },
-        "conplexety": {
+        "complexety": {
             "enum": [
-                1,
-                2,
-                3,
-                4,
-                5
+                "high",
+                "low",
+                "moderate",
+                "very high"
             ],
-            "type": "number"
+            "type": "string"
         },
         "growth": {
             "properties": {
@@ -463,6 +462,25 @@
             "type": "object"
         },
         "imageFrontPosition": {
+            "properties": {
+                "scale": {
+                    "type": "number"
+                },
+                "x": {
+                    "type": "number"
+                },
+                "y": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "scale",
+                "x",
+                "y"
+            ],
+            "type": "object"
+        },
+        "imageLorePosition": {
             "properties": {
                 "scale": {
                     "type": "number"
@@ -1257,7 +1275,7 @@
     },
     "required": [
         "boarder",
-        "conplexety",
+        "complexety",
         "growth",
         "image",
         "inatePowers",

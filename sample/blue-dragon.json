@@ -13,7 +13,12 @@
     "y": 0,
     "scale": 380
   },
-  "conplexety": 5,
+  "imageLorePosition": {
+    "x": -500,
+    "y": 0,
+    "scale": 130
+  },
+  "complexety": "moderate",
   "lore": "Hakuna Matata",
   "setup": "Put 1 {presence} in highest numberd land.",
   "playStyle": "Play how you want",

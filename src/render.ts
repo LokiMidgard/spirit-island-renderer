@@ -11,7 +11,7 @@ import path from 'path'
 function ToFront(spirit: Sprit, relativeTo: string): string {
 
     let spiritXml = `
-    <div style='width: 100%; height: 100%; z-index: -1;  background-size: ${spirit.imageFrontPosition?.scale??100}%; background-position-x: ${spirit.imageFrontPosition?.x??0}px; background-position-y: ${spirit.imageFrontPosition?.y??0}px; margin: 15px; position: absolute; background-image: url("${GetImageUrl(spirit.image, relativeTo)}");'  ></div>
+    <div style='width: 100%; height: 100%; z-index: -1;  background-size: ${spirit.imageFrontPosition?.scale ?? 100}%; background-position-x: ${spirit.imageFrontPosition?.x ?? 0}px; background-position-y: ${spirit.imageFrontPosition?.y ?? 0}px; margin: 15px; position: absolute; background-image: url("${GetImageUrl(spirit.image, relativeTo)}");'  ></div>
     <board >
     <img class="spirit-border" src="${GetImageUrl(spirit.boarder, relativeTo)}" />
     <spirit-name>
@@ -89,9 +89,99 @@ function ToFront(spirit: Sprit, relativeTo: string): string {
     return spiritXml
 }
 
-function ToLore(spirit: Sprit): string {
+function ToLore(spirit: Sprit, relativeTo: string): string {
 
-    let spiritXml = ''
+    function ComplexetyNumber(i: "low" | "moderate" | "high" | "very high"): number {
+        switch (i) {
+            case 'low':
+                return 3
+            case 'moderate':
+                return 4
+            case 'high':
+                return 5
+            case 'very high':
+                return 6
+            default:
+                return 0;
+        }
+    }
+
+    let spiritXml = `
+    <div style='width: 100%; height: 100%; z-index: -1;  background-size: ${spirit.imageLorePosition?.scale ?? 100}%; background-position-x: ${spirit.imageLorePosition?.x ?? 0}px; background-position-y: ${spirit.imageLorePosition?.y ?? 0}px; border-radius: 15.1px; position: absolute; background-image: url("${GetImageUrl(spirit.image, relativeTo)}");'  ></div>
+    <board>
+    <spirit-name>
+        ${spirit.name}
+    </spirit-name>
+    <lore-description>
+        ${spirit.lore}
+    </lore-description>
+    <second-section-container>
+        <setup>
+            <setup-title>SETUP:</setup-title>
+            <setup-description>
+                ${spirit.setup}
+            </setup-description>
+        </setup>
+        <play-style>
+            <play-style-title>Play Style:</play-style-title>
+            <play-style-description>
+                ${spirit.playStyle}
+            </play-style-description>
+        </play-style>
+
+        <complexity>
+            <complexity-title>COMPLEXITY</complexity-title>
+            <!--The value property will be used to create the red box-->
+            <complexity-value value="${ComplexetyNumber(spirit.complexety)}">${spirit.complexety}</complexity-value>
+            <red-box></red-box>
+        </complexity>
+        <!--The values on each of these properties will be used to create the colored boxes-->
+        <summary-of-powers>
+            <table class="powers-summary">
+                <tr class="power-bar">
+                    <td>
+                        <div class="summary-of-powers-title">Summary of Powers</summary-of-powers-title>
+                    </td>
+                    <td valign="bottom">
+                        <div class="offense" value = "1"></div>
+                    </td>
+                    <td valign="bottom">
+                        <div class="control" value = "2"></div>
+                    </td>
+                    <td valign="bottom">
+                        <div class="fear" value = "2"></div>
+                    </td>
+                    <td valign="bottom">
+                        <div class="defense" value = "5"></div>
+                    </td>
+                    <td valign="bottom">
+                        <div class="utility" value = "10"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <div>OFFENSE</div>
+                    </td>
+                    <td>
+                        <div>CONTROL</div>
+                    </td>
+                    <td>
+                        <div>FEAR</div>
+                    </td>
+                    <td>
+                        <div>DEFENSE</div>
+                    </td>
+                    <td>
+                        <div>UTILITY</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </second-section-container>
+</board>
+
+    `
 
     return spiritXml
 }
@@ -272,8 +362,8 @@ async function main() {
 
 
             const cardContetn = ReplacePlacehoder(ToCards(json, root));
-            const loreContetn = ReplacePlacehoder(ToLore(json));
-            const frontContetn = ReplacePlacehoder(ToFront(json,root));
+            const loreContetn = ReplacePlacehoder(ToLore(json, root));
+            const frontContetn = ReplacePlacehoder(ToFront(json, root));
 
 
             const cardBackTemplate = `
@@ -281,12 +371,12 @@ async function main() {
             <head>
             </head>
             <body style='width: 488px; height: 682px; padding:0px; margin:0px;'>
-                <div style='width: 488px; height: 682px; position: absolute; left: 0ox; top: 0px; background-image: url("${GetImageUrl(json.image, root)}"); background-size: ${json.imageCardBackPosition?.scale??100}%; background-position-x: ${json.imageCardBackPosition?.x??0}px; background-position-y: ${json.imageCardBackPosition?.y??0}px; ' />
+                <div style='width: 488px; height: 682px; position: absolute; left: 0ox; top: 0px; background-image: url("${GetImageUrl(json.image, root)}"); background-size: ${json.imageCardBackPosition?.scale ?? 100}%; background-position-x: ${json.imageCardBackPosition?.x ?? 0}px; background-position-y: ${json.imageCardBackPosition?.y ?? 0}px; ' />
                 <img style='width: 488px; height: 682px; position: absolute; left: 0ox; top: 0px;' src="${GetImageUrl('resources/Unique-Power-Back.png', process.cwd())}" />
             </body>
             </html>
             `
-            
+
 
             await nodeHtmlToImage({
                 output: './out/' + path.basename(spiritInputFile) + '-cards.png',
@@ -302,7 +392,7 @@ async function main() {
                 html: cardBackTemplate,
                 transparent: true,
 
-                
+
                 waitUntil: ['domcontentloaded', 'load', 'networkidle0']
             })
 
