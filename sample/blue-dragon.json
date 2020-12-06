@@ -69,8 +69,8 @@
   },
   "specialRules": [
     {
-      "title": "Mega Pwer",
-      "text": "This is the rule text"
+      "title": "Mountain Home",
+      "text": "For each showing on your {presence} tracks, do 1 Damage."
     }
   ],
   "inatePowers": [

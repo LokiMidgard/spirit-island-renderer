@@ -30,6 +30,14 @@ function ToFront(spirit: Sprit, relativeTo: string): string {
         }
     }
 
+    function SpecialRules(rule: { title: string, text: string }): string {
+        return `
+      <special-rules-subtitle>${rule.title}</special-rules-subtitle>
+      <special-rule>
+      ${rule.text}
+      </special-rule>`
+    }
+
     let spiritXml = `
     <div style='width: 100%; height: 100%; z-index: -1;  background-size: ${spirit.imageFrontPosition?.scale ?? 100}%; background-position-x: ${spirit.imageFrontPosition?.x ?? 0}px; background-position-y: ${spirit.imageFrontPosition?.y ?? 0}px; margin: 15px; position: absolute; background-image: url("${GetImageUrl(spirit.image, relativeTo)}");'  ></div>
     <board >
@@ -39,18 +47,18 @@ function ToFront(spirit: Sprit, relativeTo: string): string {
     </spirit-name>
 
     <special-rules-container>
-      <special-rules-subtitle>Mountain Home</special-rules-subtitle>
-      <special-rule>
-        For each {fire} showing on your {presence} tracks, do 1 Damage.
-      </special-rule>
-      <special-rules-subtitle>Collapse in a blast of lava and steam</special-rules-subtitle>
-      <special-rule>
-        Push all {beast} and any number of {dahan}.
-      </special-rule>
-      <special-rules-subtitle>volcanic blah blah blah</special-rules-subtitle>
-      <special-rule>
-        Cards gain <range-plus-1></range-plus-1> if {blight} and {strife} and {disease} and {town} and {city} and {explorer} and {beast} and {wilds} and {badlands} and {fear}
-      </special-rule>
+    <special-rules-subtitle>Mountain Home</special-rules-subtitle>
+    <special-rule>
+    For each {fire} showing on your {presence} tracks, do 1 Damage.
+    </special-rule>
+    <special-rules-subtitle>Collapse in a blast of lava and steam</special-rules-subtitle>
+    <special-rule>
+    Push all {beast} and any number of {dahan}.
+    </special-rule>
+    <special-rules-subtitle>volcanic blah blah blah</special-rules-subtitle>
+    <special-rule>
+    Cards gain <range-plus-1></range-plus-1> if {blight} and {strife} and {disease} and {town} and {city} and {explorer} and {beast} and {wilds} and {badlands} and {fear}
+    </special-rule>${spirit.specialRules.map(SpecialRules).join('\n')}
     </special-rules-container>
 
     <growth title="${spirit.growth.title}">
