@@ -4,7 +4,7 @@ import url from 'url'
 import fs from 'fs'
 import Sprit, { ImagePath } from './spiritType'
 import { ToCards } from './cards'
-
+import path from 'path'
 
 
 
@@ -83,9 +83,9 @@ async function main() {
 <!DOCTYPE html>
 <head>
 </head>
-<body style='width: 488px; height: 682px;'>
-    <img style='width: 488px; height: 682px; position: absolute; left: 0ox; top: 0px;' src="{{{image}}}" />
-    <img style='width: 488px; height: 682px; position: absolute; left: 0ox; top: 0px;' src="${GetImageUrl('resources/Unique-Power-Back.png')}" />
+<body style='width: 488px; height: 682px; padding:0px; margin:0px;'>
+    <div style='width: 488px; height: 682px; position: absolute; left: 0ox; top: 0px; background-image: url("{{{image}}}")' />
+    <img style='width: 488px; height: 682px; position: absolute; left: 0ox; top: 0px;' src="${GetImageUrl('resources/Unique-Power-Back.png', process.cwd())}" />
 </body>
 </html>
 `
@@ -135,7 +135,7 @@ async function main() {
 
         rules-container {
             background-position: center;
-            background-image: url('${GetImageUrl('resources/Parchment.jpg')}');
+            background-image: url('${GetImageUrl('resources/Parchment.jpg', process.cwd())}');
           }
        rules{
             background-color: transparent important!;
@@ -191,22 +191,31 @@ async function main() {
     </body>
     </html>`
 
+        console.log(process.cwd())
+
 
         for (let i = 0; i < inputs.length; i++) {
             const spiritInputFile = inputs[i];
+
+            const root = path.resolve(process.cwd(), path.dirname(spiritInputFile));
+            console.log(root)
+
 
             const inputbuffer = await fs.promises.readFile(spiritInputFile, 'utf8')
 
             var json = JSON.parse(inputbuffer) as Sprit
 
+            console.log(path.resolve(root, json.image.toString()))
 
-            const cardContetn = ReplacePlacehoder(ToCards(json));
+            const cardContetn = ReplacePlacehoder(ToCards(json, root));
             const loreContetn = ReplacePlacehoder(ToLore(json));
             const frontContetn = ReplacePlacehoder(ToFront(json));
 
 
+
+
             await nodeHtmlToImage({
-                output: './out/' + spiritInputFile + '-cards.png',
+                output: './out/' + path.basename(spiritInputFile) + '-cards.png',
                 html: cardTemplate,
                 transparent: true,
 
@@ -215,17 +224,17 @@ async function main() {
             })
 
             await nodeHtmlToImage({
-                output: './out/' + spiritInputFile + '-cards-back.png',
+                output: './out/' + path.basename(spiritInputFile) + '-cards-back.png',
                 html: cardBackTemplate,
                 transparent: true,
 
-                content: { image: GetImageUrl(json.image) },
+                content: { image: GetImageUrl(json.image, root) },
                 waitUntil: ['domcontentloaded', 'load', 'networkidle0']
             })
 
 
             await nodeHtmlToImage({
-                output: './out/' + spiritInputFile + '-lore.png',
+                output: './out/' + path.basename(spiritInputFile) + '-lore.png',
                 html: loreTemplate,
                 transparent: true,
 
@@ -233,7 +242,7 @@ async function main() {
                 waitUntil: ['domcontentloaded', 'load', 'networkidle0']
             })
             await nodeHtmlToImage({
-                output: './out/' + spiritInputFile + '-front.png',
+                output: './out/' + path.basename(spiritInputFile) + '-front.png',
                 html: frontTemplate,
                 transparent: true,
 
@@ -280,15 +289,15 @@ function StartServer() {
             const fontContent = `
             @font-face{
                 font-family: 'DK Snemand';
-                src: url(${GetImageUrl('dependencys/fonts/DK Snemand.otf')});
+                src: url(${GetImageUrl('dependencys/fonts/DK Snemand.otf', process.cwd())});
               }
               @font-face{
                 font-family: 'Gobold Extra2';
-                src: url(${GetImageUrl('dependencys/fonts/Gobold Extra2.otf')});
+                src: url(${GetImageUrl('dependencys/fonts/Gobold Extra2.otf', process.cwd())});
               }
               @font-face{
                 font-family: JosefinSans-Regular;
-                src: url(${GetImageUrl('dependencys/spirit-island-template/_global/fonts/josefin-sans/JosefinSans-Regular.ttf')});
+                src: url(${GetImageUrl('dependencys/spirit-island-template/_global/fonts/josefin-sans/JosefinSans-Regular.ttf', process.cwd())});
               }
               `
             // const fontContent = `@font-face{
@@ -389,11 +398,12 @@ function StartServer() {
     return server
 }
 
-export function GetImageUrl(image: ImagePath) {
+export function GetImageUrl(image: ImagePath, relativeTo: string) {
     const imagePath = typeof image == 'string'
         ? image
         : image.path
-    const imageSrc = fs.readFileSync(imagePath)
+
+    const imageSrc = fs.readFileSync(path.resolve(relativeTo, imagePath))
     const base64Image = Buffer.from(imageSrc).toString('base64')
     const dataURI = 'data:image/jpeg;base64,' + base64Image
     return dataURI

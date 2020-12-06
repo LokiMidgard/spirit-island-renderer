@@ -1,0 +1,293 @@
+{
+  "$schema": "./../spirit-schema.json",
+  "name": "Blue Dragon ",
+  "boarder": "example2.png",
+  "image": "blue_dragon_by_sandara_d6hvigl-fullview.jpg",
+  "conplexety": 5,
+  "lore": "Hakuna Matata",
+  "setup": "Put 1 {presence} in highest numberd land.",
+  "playStyle": "Play how you want",
+  "growth": {
+    "title": "GROWTH (Pick two)",
+    "choise": [
+      {
+        "type": "add-presence",
+        "range": 1
+      },
+      {
+        "type": "gain-energy",
+        "number": 3
+      },
+      [
+        "reclaim-all",
+        {
+          "type": "move-presence",
+          "range": 2
+        }
+      ]
+    ]
+  },
+  "summaryPower": {
+    "control": 1,
+    "defense": 1,
+    "fear": 1,
+    "offense": 1,
+    "utility": 1
+  },
+  "presence": {
+    "card": [
+      1,
+      2,
+      3,
+      4,
+      "air",
+      "reclaim-one"
+    ],
+    "energy": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      "moon"
+    ]
+  },
+  "specialRules": [
+    {
+      "title": "Mega Pwer",
+      "text": "This is the rule text"
+    }
+  ],
+  "inatePowers": [
+    {
+      "name": "Explode",
+      "note": "This power is coold",
+      "speed": "fast",
+      "target": {
+        "range": 1,
+        "targetType": "land"
+      },
+      "levels": [
+        {
+          "effect": "Dame 1",
+          "requires": [
+            {
+              "mana": "air",
+              "amount": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "uniquePowers": [
+    {
+      "name": "Badabum",
+      "effect": "Mächstiger badaboom",
+      "energy": 0,
+      "image": "example1.png",
+      "mana": [
+        "water",
+        "air",
+        "fire"
+      ],
+      "speed": "fast",
+      "target": {
+        "targetType": "land",
+        "range": 1
+      }
+    },
+    {
+      "name": "Dance",
+      "effect": [
+        "Foxtrot Gather 1 {explorer}/{town}",
+        "Walzer"
+      ],
+      "energy": 0,
+      "image": "example1.png",
+      "mana": [
+        "air",
+        "fire",
+        "water"
+      ],
+      "target": {
+        "targetType": "spirit",
+        "targetSprite": "any"
+      },
+      "speed": "fast",
+      "threshold": {
+        "requirements": [
+          {
+            "mana": "animal",
+            "ammount": 2
+          },
+          {
+            "mana": "moon",
+            "ammount": 3
+          }
+        ],
+        "effect": "Moonwaltz"
+      }
+    },
+    {
+      "name": "Dance",
+      "effect": [
+        "Foxtrot",
+        "Walzer"
+      ],
+      "energy": 0,
+      "image": "example1.png",
+      "mana": [
+        "air",
+        "fire",
+        "water"
+      ],
+      "target": {
+        "targetType": "spirit",
+        "targetSprite": "any"
+      },
+      "speed": "fast",
+      "threshold": {
+        "requirements": [
+          {
+            "mana": "animal",
+            "ammount": 2
+          },
+          {
+            "mana": "moon",
+            "ammount": 3
+          }
+        ],
+        "effect": "Moonwaltz"
+      }
+    },
+    {
+      "name": "Dance",
+      "effect": [
+        "Foxtrot",
+        "Walzer"
+      ],
+      "energy": 0,
+      "image": "example1.png",
+      "mana": [
+        "air",
+        "fire",
+        "water"
+      ],
+      "target": {
+        "targetType": "spirit",
+        "targetSprite": "any"
+      },
+      "speed": "fast",
+      "threshold": {
+        "requirements": [
+          {
+            "mana": "animal",
+            "ammount": 2
+          },
+          {
+            "mana": "moon",
+            "ammount": 3
+          }
+        ],
+        "effect": "Moonwaltz"
+      }
+    },
+    {
+      "name": "Dance",
+      "effect": [
+        "Foxtrot",
+        "Walzer"
+      ],
+      "energy": 0,
+      "image": "example1.png",
+      "mana": [
+        "air",
+        "fire",
+        "water"
+      ],
+      "target": {
+        "targetType": "spirit",
+        "targetSprite": "any"
+      },
+      "speed": "fast",
+      "threshold": {
+        "requirements": [
+          {
+            "mana": "animal",
+            "ammount": 2
+          },
+          {
+            "mana": "moon",
+            "ammount": 3
+          }
+        ],
+        "effect": "Moonwaltz"
+      }
+    },
+    {
+      "name": "Dance",
+      "effect": [
+        "Foxtrot",
+        "Walzer"
+      ],
+      "energy": 0,
+      "image": "example1.png",
+      "mana": [
+        "air",
+        "fire",
+        "water"
+      ],
+      "target": {
+        "targetType": "spirit",
+        "targetSprite": "any"
+      },
+      "speed": "fast",
+      "threshold": {
+        "requirements": [
+          {
+            "mana": "animal",
+            "ammount": 2
+          },
+          {
+            "mana": "moon",
+            "ammount": 3
+          }
+        ],
+        "effect": "Moonwaltz"
+      }
+    },
+    {
+      "name": "Dance",
+      "effect": [
+        "Foxtrot",
+        "Walzer"
+      ],
+      "energy": 0,
+      "image": "example1.png",
+      "mana": [
+        "air",
+        "fire",
+        "water"
+      ],
+      "target": {
+        "targetType": "spirit",
+        "targetSprite": "any"
+      },
+      "speed": "fast",
+      "threshold": {
+        "requirements": [
+          {
+            "mana": "animal",
+            "ammount": 2
+          },
+          {
+            "mana": "moon",
+            "ammount": 3
+          }
+        ],
+        "effect": "Moonwaltz"
+      }
+    }
+  ]
+}

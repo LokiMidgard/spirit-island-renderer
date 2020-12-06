@@ -1,10 +1,10 @@
 import { GetImageUrl } from "./render";
 import Sprit, { Element, Target, TargetLand } from './spiritType'
 
-export function ToCards(spirit: Sprit): string {
+export function ToCards(spirit: Sprit, relativeTo: string): string {
     return spirit.uniquePowers.map(power => {
         let spiritXml = `<card class='${power.speed}'>
-<img class='image' src='${GetImageUrl(power.image)}' />
+<img class='image' src='${GetImageUrl(power.image, relativeTo)}' />
 <cost>${power.energy}</cost>
 <name>${power.name}</name>
 ${power.mana ? (Array.isArray(power.mana) ? power.mana.map(e => `<element class='${e}' ></element>`).join('\n') : `<element class='${power.mana}' ></element>`) : ''}
