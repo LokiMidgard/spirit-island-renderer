@@ -1,0 +1,1237 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "Element": {
+            "enum": [
+                "air",
+                "animal",
+                "fire",
+                "moon",
+                "plant",
+                "sun",
+                "water"
+            ],
+            "type": "string"
+        }
+    },
+    "properties": {
+        "boarder": {
+            "anyOf": [
+                {
+                    "properties": {
+                        "artistName": {
+                            "type": "string"
+                        },
+                        "path": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "artistName",
+                        "path"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "conplexety": {
+            "enum": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "type": "number"
+        },
+        "growth": {
+            "properties": {
+                "choise": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "properties": {
+                                    "number": {
+                                        "type": "number"
+                                    },
+                                    "type": {
+                                        "enum": [
+                                            "gain-energy"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "number",
+                                    "type"
+                                ],
+                                "type": "object"
+                            },
+                            {
+                                "properties": {
+                                    "element": {
+                                        "anyOf": [
+                                            {
+                                                "items": {
+                                                    "enum": [
+                                                        "air",
+                                                        "animal",
+                                                        "fire",
+                                                        "moon",
+                                                        "plant",
+                                                        "sun",
+                                                        "water"
+                                                    ],
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            {
+                                                "enum": [
+                                                    "air",
+                                                    "animal",
+                                                    "fire",
+                                                    "moon",
+                                                    "plant",
+                                                    "sun",
+                                                    "water"
+                                                ],
+                                                "type": "string"
+                                            }
+                                        ]
+                                    },
+                                    "type": {
+                                        "enum": [
+                                            "gain-element"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "element",
+                                    "type"
+                                ],
+                                "type": "object"
+                            },
+                            {
+                                "properties": {
+                                    "land": {
+                                        "anyOf": [
+                                            {
+                                                "items": {
+                                                    "enum": [
+                                                        "costal",
+                                                        "inland",
+                                                        "jungle",
+                                                        "land",
+                                                        "mountain",
+                                                        "ocean",
+                                                        "sand",
+                                                        "wetland"
+                                                    ],
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            {
+                                                "enum": [
+                                                    "costal",
+                                                    "inland",
+                                                    "jungle",
+                                                    "land",
+                                                    "mountain",
+                                                    "ocean",
+                                                    "sand",
+                                                    "wetland"
+                                                ],
+                                                "type": "string"
+                                            }
+                                        ]
+                                    },
+                                    "range": {
+                                        "type": "number"
+                                    },
+                                    "type": {
+                                        "enum": [
+                                            "add-presence"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "range",
+                                    "type"
+                                ],
+                                "type": "object"
+                            },
+                            {
+                                "properties": {
+                                    "land": {
+                                        "anyOf": [
+                                            {
+                                                "items": {
+                                                    "enum": [
+                                                        "costal",
+                                                        "inland",
+                                                        "jungle",
+                                                        "land",
+                                                        "mountain",
+                                                        "ocean",
+                                                        "sand",
+                                                        "wetland"
+                                                    ],
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            {
+                                                "enum": [
+                                                    "costal",
+                                                    "inland",
+                                                    "jungle",
+                                                    "land",
+                                                    "mountain",
+                                                    "ocean",
+                                                    "sand",
+                                                    "wetland"
+                                                ],
+                                                "type": "string"
+                                            }
+                                        ]
+                                    },
+                                    "range": {
+                                        "type": "number"
+                                    },
+                                    "type": {
+                                        "enum": [
+                                            "move-presence"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "range",
+                                    "type"
+                                ],
+                                "type": "object"
+                            },
+                            {
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "properties": {
+                                                "number": {
+                                                    "type": "number"
+                                                },
+                                                "type": {
+                                                    "enum": [
+                                                        "gain-energy"
+                                                    ],
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "number",
+                                                "type"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        {
+                                            "properties": {
+                                                "element": {
+                                                    "anyOf": [
+                                                        {
+                                                            "items": {
+                                                                "enum": [
+                                                                    "air",
+                                                                    "animal",
+                                                                    "fire",
+                                                                    "moon",
+                                                                    "plant",
+                                                                    "sun",
+                                                                    "water"
+                                                                ],
+                                                                "type": "string"
+                                                            },
+                                                            "type": "array"
+                                                        },
+                                                        {
+                                                            "enum": [
+                                                                "air",
+                                                                "animal",
+                                                                "fire",
+                                                                "moon",
+                                                                "plant",
+                                                                "sun",
+                                                                "water"
+                                                            ],
+                                                            "type": "string"
+                                                        }
+                                                    ]
+                                                },
+                                                "type": {
+                                                    "enum": [
+                                                        "gain-element"
+                                                    ],
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "element",
+                                                "type"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        {
+                                            "properties": {
+                                                "land": {
+                                                    "anyOf": [
+                                                        {
+                                                            "items": {
+                                                                "enum": [
+                                                                    "costal",
+                                                                    "inland",
+                                                                    "jungle",
+                                                                    "land",
+                                                                    "mountain",
+                                                                    "ocean",
+                                                                    "sand",
+                                                                    "wetland"
+                                                                ],
+                                                                "type": "string"
+                                                            },
+                                                            "type": "array"
+                                                        },
+                                                        {
+                                                            "enum": [
+                                                                "costal",
+                                                                "inland",
+                                                                "jungle",
+                                                                "land",
+                                                                "mountain",
+                                                                "ocean",
+                                                                "sand",
+                                                                "wetland"
+                                                            ],
+                                                            "type": "string"
+                                                        }
+                                                    ]
+                                                },
+                                                "range": {
+                                                    "type": "number"
+                                                },
+                                                "type": {
+                                                    "enum": [
+                                                        "add-presence"
+                                                    ],
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "range",
+                                                "type"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        {
+                                            "properties": {
+                                                "land": {
+                                                    "anyOf": [
+                                                        {
+                                                            "items": {
+                                                                "enum": [
+                                                                    "costal",
+                                                                    "inland",
+                                                                    "jungle",
+                                                                    "land",
+                                                                    "mountain",
+                                                                    "ocean",
+                                                                    "sand",
+                                                                    "wetland"
+                                                                ],
+                                                                "type": "string"
+                                                            },
+                                                            "type": "array"
+                                                        },
+                                                        {
+                                                            "enum": [
+                                                                "costal",
+                                                                "inland",
+                                                                "jungle",
+                                                                "land",
+                                                                "mountain",
+                                                                "ocean",
+                                                                "sand",
+                                                                "wetland"
+                                                            ],
+                                                            "type": "string"
+                                                        }
+                                                    ]
+                                                },
+                                                "range": {
+                                                    "type": "number"
+                                                },
+                                                "type": {
+                                                    "enum": [
+                                                        "move-presence"
+                                                    ],
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "range",
+                                                "type"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        {
+                                            "enum": [
+                                                "gain-powercard",
+                                                "reclaim-all",
+                                                "reclaim-one"
+                                            ],
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "enum": [
+                                    "gain-powercard",
+                                    "reclaim-all",
+                                    "reclaim-one"
+                                ],
+                                "type": "string"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                },
+                "title": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "choise",
+                "title"
+            ],
+            "type": "object"
+        },
+        "image": {
+            "anyOf": [
+                {
+                    "properties": {
+                        "artistName": {
+                            "type": "string"
+                        },
+                        "path": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "artistName",
+                        "path"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "inatePowers": {
+            "items": {
+                "properties": {
+                    "levels": {
+                        "items": {
+                            "properties": {
+                                "effect": {
+                                    "type": "string"
+                                },
+                                "requires": {
+                                    "items": {
+                                        "properties": {
+                                            "amount": {
+                                                "type": "number"
+                                            },
+                                            "mana": {
+                                                "$ref": "#/definitions/Element"
+                                            }
+                                        },
+                                        "required": [
+                                            "mana"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "type": "array"
+                                }
+                            },
+                            "required": [
+                                "effect",
+                                "requires"
+                            ],
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "note": {
+                        "type": "string"
+                    },
+                    "speed": {
+                        "enum": [
+                            "fast",
+                            "slow"
+                        ],
+                        "type": "string"
+                    },
+                    "target": {
+                        "anyOf": [
+                            {
+                                "properties": {
+                                    "negateTarget": {
+                                        "description": "If target is negated",
+                                        "type": "boolean"
+                                    },
+                                    "range": {
+                                        "type": "number"
+                                    },
+                                    "sourceLand": {
+                                        "enum": [
+                                            "jungle",
+                                            "land",
+                                            "mountain",
+                                            "ocean",
+                                            "sacred",
+                                            "sand",
+                                            "wetland"
+                                        ],
+                                        "type": "string"
+                                    },
+                                    "targetLand": {
+                                        "anyOf": [
+                                            {
+                                                "items": {
+                                                    "enum": [
+                                                        "badlands",
+                                                        "beast",
+                                                        "blight",
+                                                        "city",
+                                                        "costal",
+                                                        "dahan",
+                                                        "desease",
+                                                        "explorer",
+                                                        "inland",
+                                                        "invaders",
+                                                        "jungle",
+                                                        "land",
+                                                        "mountain",
+                                                        "ocean",
+                                                        "sand",
+                                                        "strife",
+                                                        "town",
+                                                        "wetland",
+                                                        "wildness"
+                                                    ],
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            {
+                                                "enum": [
+                                                    "badlands",
+                                                    "beast",
+                                                    "blight",
+                                                    "city",
+                                                    "costal",
+                                                    "dahan",
+                                                    "desease",
+                                                    "explorer",
+                                                    "inland",
+                                                    "invaders",
+                                                    "jungle",
+                                                    "land",
+                                                    "mountain",
+                                                    "ocean",
+                                                    "sand",
+                                                    "strife",
+                                                    "town",
+                                                    "wetland",
+                                                    "wildness"
+                                                ],
+                                                "type": "string"
+                                            }
+                                        ]
+                                    },
+                                    "targetType": {
+                                        "enum": [
+                                            "land"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "range",
+                                    "targetType"
+                                ],
+                                "type": "object"
+                            },
+                            {
+                                "properties": {
+                                    "targetSprite": {
+                                        "enum": [
+                                            "another",
+                                            "any",
+                                            "yourself"
+                                        ],
+                                        "type": "string"
+                                    },
+                                    "targetType": {
+                                        "enum": [
+                                            "spirit"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "targetSprite",
+                                    "targetType"
+                                ],
+                                "type": "object"
+                            }
+                        ],
+                        "description": "Target for powers"
+                    }
+                },
+                "required": [
+                    "levels",
+                    "name",
+                    "note",
+                    "speed",
+                    "target"
+                ],
+                "type": "object"
+            },
+            "type": "array"
+        },
+        "lore": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "playStyle": {
+            "type": "string"
+        },
+        "presence": {
+            "properties": {
+                "card": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "properties": {
+                                    "land": {
+                                        "anyOf": [
+                                            {
+                                                "items": {
+                                                    "enum": [
+                                                        "costal",
+                                                        "inland",
+                                                        "jungle",
+                                                        "land",
+                                                        "mountain",
+                                                        "ocean",
+                                                        "sand",
+                                                        "wetland"
+                                                    ],
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            {
+                                                "enum": [
+                                                    "costal",
+                                                    "inland",
+                                                    "jungle",
+                                                    "land",
+                                                    "mountain",
+                                                    "ocean",
+                                                    "sand",
+                                                    "wetland"
+                                                ],
+                                                "type": "string"
+                                            }
+                                        ]
+                                    },
+                                    "range": {
+                                        "type": "number"
+                                    },
+                                    "type": {
+                                        "enum": [
+                                            "move-presence"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "range",
+                                    "type"
+                                ],
+                                "type": "object"
+                            },
+                            {
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "properties": {
+                                                "land": {
+                                                    "anyOf": [
+                                                        {
+                                                            "items": {
+                                                                "enum": [
+                                                                    "costal",
+                                                                    "inland",
+                                                                    "jungle",
+                                                                    "land",
+                                                                    "mountain",
+                                                                    "ocean",
+                                                                    "sand",
+                                                                    "wetland"
+                                                                ],
+                                                                "type": "string"
+                                                            },
+                                                            "type": "array"
+                                                        },
+                                                        {
+                                                            "enum": [
+                                                                "costal",
+                                                                "inland",
+                                                                "jungle",
+                                                                "land",
+                                                                "mountain",
+                                                                "ocean",
+                                                                "sand",
+                                                                "wetland"
+                                                            ],
+                                                            "type": "string"
+                                                        }
+                                                    ]
+                                                },
+                                                "range": {
+                                                    "type": "number"
+                                                },
+                                                "type": {
+                                                    "enum": [
+                                                        "move-presence"
+                                                    ],
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "range",
+                                                "type"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        {
+                                            "enum": [
+                                                "air",
+                                                "animal",
+                                                "fire",
+                                                "moon",
+                                                "plant",
+                                                "reclaim-one",
+                                                "sun",
+                                                "water"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "number"
+                                        }
+                                    ]
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "enum": [
+                                    "air",
+                                    "animal",
+                                    "fire",
+                                    "moon",
+                                    "plant",
+                                    "reclaim-one",
+                                    "sun",
+                                    "water"
+                                ],
+                                "type": "string"
+                            },
+                            {
+                                "type": "number"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                },
+                "energy": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "anyOf": [
+                                        {
+                                            "enum": [
+                                                "air",
+                                                "animal",
+                                                "fire",
+                                                "moon",
+                                                "plant",
+                                                "sun",
+                                                "water"
+                                            ],
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "number"
+                                        }
+                                    ]
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "enum": [
+                                    "air",
+                                    "animal",
+                                    "fire",
+                                    "moon",
+                                    "plant",
+                                    "sun",
+                                    "water"
+                                ],
+                                "type": "string"
+                            },
+                            {
+                                "type": "number"
+                            }
+                        ]
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "card",
+                "energy"
+            ],
+            "type": "object"
+        },
+        "setup": {
+            "type": "string"
+        },
+        "specialRules": {
+            "items": {
+                "properties": {
+                    "text": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "text",
+                    "title"
+                ],
+                "type": "object"
+            },
+            "type": "array"
+        },
+        "summaryPower": {
+            "properties": {
+                "control": {
+                    "enum": [
+                        1,
+                        10,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8,
+                        9
+                    ],
+                    "type": "number"
+                },
+                "defense": {
+                    "enum": [
+                        1,
+                        10,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8,
+                        9
+                    ],
+                    "type": "number"
+                },
+                "fear": {
+                    "enum": [
+                        1,
+                        10,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8,
+                        9
+                    ],
+                    "type": "number"
+                },
+                "offense": {
+                    "enum": [
+                        1,
+                        10,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8,
+                        9
+                    ],
+                    "type": "number"
+                },
+                "utility": {
+                    "enum": [
+                        1,
+                        10,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8,
+                        9
+                    ],
+                    "type": "number"
+                }
+            },
+            "required": [
+                "control",
+                "defense",
+                "fear",
+                "offense",
+                "utility"
+            ],
+            "type": "object"
+        },
+        "uniquePowers": {
+            "items": {
+                "properties": {
+                    "effect": {
+                        "anyOf": [
+                            {
+                                "additionalItems": {
+                                    "anyOf": [
+                                        {
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "items": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "string"
+                                    }
+                                ],
+                                "minItems": 2,
+                                "type": "array"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    },
+                    "energy": {
+                        "type": "number"
+                    },
+                    "image": {
+                        "anyOf": [
+                            {
+                                "properties": {
+                                    "artistName": {
+                                        "type": "string"
+                                    },
+                                    "path": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "artistName",
+                                    "path"
+                                ],
+                                "type": "object"
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]
+                    },
+                    "mana": {
+                        "anyOf": [
+                            {
+                                "items": {
+                                    "$ref": "#/definitions/Element",
+                                    "enum": [
+                                        "air",
+                                        "animal",
+                                        "fire",
+                                        "moon",
+                                        "plant",
+                                        "sun",
+                                        "water"
+                                    ],
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            {
+                                "enum": [
+                                    "air",
+                                    "animal",
+                                    "fire",
+                                    "moon",
+                                    "plant",
+                                    "sun",
+                                    "water"
+                                ],
+                                "type": "string"
+                            }
+                        ]
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "speed": {
+                        "enum": [
+                            "fast",
+                            "slow"
+                        ],
+                        "type": "string"
+                    },
+                    "target": {
+                        "anyOf": [
+                            {
+                                "properties": {
+                                    "negateTarget": {
+                                        "description": "If target is negated",
+                                        "type": "boolean"
+                                    },
+                                    "range": {
+                                        "type": "number"
+                                    },
+                                    "sourceLand": {
+                                        "enum": [
+                                            "jungle",
+                                            "land",
+                                            "mountain",
+                                            "ocean",
+                                            "sacred",
+                                            "sand",
+                                            "wetland"
+                                        ],
+                                        "type": "string"
+                                    },
+                                    "targetLand": {
+                                        "anyOf": [
+                                            {
+                                                "items": {
+                                                    "enum": [
+                                                        "badlands",
+                                                        "beast",
+                                                        "blight",
+                                                        "city",
+                                                        "costal",
+                                                        "dahan",
+                                                        "desease",
+                                                        "explorer",
+                                                        "inland",
+                                                        "invaders",
+                                                        "jungle",
+                                                        "land",
+                                                        "mountain",
+                                                        "ocean",
+                                                        "sand",
+                                                        "strife",
+                                                        "town",
+                                                        "wetland",
+                                                        "wildness"
+                                                    ],
+                                                    "type": "string"
+                                                },
+                                                "type": "array"
+                                            },
+                                            {
+                                                "enum": [
+                                                    "badlands",
+                                                    "beast",
+                                                    "blight",
+                                                    "city",
+                                                    "costal",
+                                                    "dahan",
+                                                    "desease",
+                                                    "explorer",
+                                                    "inland",
+                                                    "invaders",
+                                                    "jungle",
+                                                    "land",
+                                                    "mountain",
+                                                    "ocean",
+                                                    "sand",
+                                                    "strife",
+                                                    "town",
+                                                    "wetland",
+                                                    "wildness"
+                                                ],
+                                                "type": "string"
+                                            }
+                                        ]
+                                    },
+                                    "targetType": {
+                                        "enum": [
+                                            "land"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "range",
+                                    "targetType"
+                                ],
+                                "type": "object"
+                            },
+                            {
+                                "properties": {
+                                    "targetSprite": {
+                                        "enum": [
+                                            "another",
+                                            "any",
+                                            "yourself"
+                                        ],
+                                        "type": "string"
+                                    },
+                                    "targetType": {
+                                        "enum": [
+                                            "spirit"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "targetSprite",
+                                    "targetType"
+                                ],
+                                "type": "object"
+                            }
+                        ],
+                        "description": "Target for powers"
+                    },
+                    "threshold": {
+                        "properties": {
+                            "effect": {
+                                "type": "string"
+                            },
+                            "requirements": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "properties": {
+                                                "ammount": {
+                                                    "type": "number"
+                                                },
+                                                "mana": {
+                                                    "$ref": "#/definitions/Element"
+                                                }
+                                            },
+                                            "required": [
+                                                "ammount",
+                                                "mana"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "properties": {
+                                            "ammount": {
+                                                "type": "number"
+                                            },
+                                            "mana": {
+                                                "$ref": "#/definitions/Element"
+                                            }
+                                        },
+                                        "required": [
+                                            "ammount",
+                                            "mana"
+                                        ],
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        },
+                        "required": [
+                            "effect",
+                            "requirements"
+                        ],
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "effect",
+                    "energy",
+                    "image",
+                    "name",
+                    "speed",
+                    "target"
+                ],
+                "type": "object"
+            },
+            "type": "array"
+        }
+    },
+    "required": [
+        "boarder",
+        "conplexety",
+        "growth",
+        "image",
+        "inatePowers",
+        "lore",
+        "name",
+        "playStyle",
+        "presence",
+        "setup",
+        "specialRules",
+        "summaryPower",
+        "uniquePowers"
+    ],
+    "type": "object"
+}
+

@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "Renders images of spirits for spirit island",
   "scripts": {
-    "render": "npx ts-node render.ts"
+    "render": "npx ts-node render.ts",
+    "generate-schema": "npx typescript-json-schema tsconfig.json Sprit > spirit-schema.json --required"
   },
   "keywords": [
     "spirit-island"
@@ -11,8 +12,15 @@
   "author": "Patrick Kranz",
   "license": "MIT",
   "dependencies": {
+    "buffer": "^6.0.3",
+    "bufferutil": "^4.0.2",
     "node-html-to-image": "^3.1.0",
+    "stream": "0.0.2",
     "ts-node": "^9.1.0",
-    "typescript": "^4.1.2"
+    "typescript": "^4.1.2",
+    "utf-8-validate": "^5.0.3"
+  },
+  "devDependencies": {
+    "typescript-json-schema": "^0.45.0"
   }
 }
