@@ -2,8 +2,12 @@
   "name": "spirit-island-renderer",
   "version": "0.0.1",
   "description": "Renders images of spirits for spirit island",
+  "repository": {
+    "url": "https://github.com/LokiMidgard/spirit-island-renderer"
+  },
+  "main": "src/render.ts",
   "scripts": {
-    "render": "npx ts-node render.ts",
+    "render": "npx ts-node src/render.ts",
     "generate-schema": "npx typescript-json-schema tsconfig.json Sprit > spirit-schema.json --required"
   },
   "keywords": [
