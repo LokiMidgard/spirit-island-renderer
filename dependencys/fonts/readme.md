@@ -1,0 +1,1 @@
+Add the font `DK Snemand.otf` and `Gobold Extra2.otf` in this folder

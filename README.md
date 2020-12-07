@@ -27,6 +27,10 @@ The json needs to be conform to the shema in this repo. If your code editor supp
 }
 ```
 
+You can also look in the sample folder.
+
+To use the correct fonts copy the fonts to the folder `dependencys/fonts`. You will find a read me there describing what you need. The fonts are needed for [spirit-island-template](https://github.com/Gudradain/spirit-island-template) where you can find a description how to obtain a copy of those files.
+
 ## Development
 
 If you change the spirit type you need to execute
