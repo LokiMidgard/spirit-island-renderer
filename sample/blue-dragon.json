@@ -2,7 +2,10 @@
   "$schema": "./../spirit-schema.json",
   "name": "Blue Dragon ",
   "boarder": "example2.png",
-  "image": "blue_dragon_by_sandara_d6hvigl-fullview.jpg",
+  "image":{
+"path": "blue_dragon_by_sandara_d6hvigl-fullview.jpg",
+"artistName": "sandara"
+  } ,
   "imageFrontPosition": {
     "x": 0,
     "y": 0,
@@ -61,8 +64,8 @@
     "energy": [
       1,
       2,
-      3,
-      4,
+      ["sun", "animal"],
+      [4, "air"],
       5,
       "moon"
     ]
@@ -70,13 +73,13 @@
   "specialRules": [
     {
       "title": "Mountain Home",
-      "text": "For each showing on your {presence} tracks, do 1 Damage."
+      "text": "For each showing on your tracks, do 1 Damage."
     }
   ],
   "inatePowers": [
     {
       "name": "Explode",
-      "note": "This power is coold",
+      "note": "This power is coold {presence}",
       "speed": "fast",
       "target": {
         "range": 1,

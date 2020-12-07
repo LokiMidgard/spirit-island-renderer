@@ -75,6 +75,21 @@ export type Target = {
         targetSprite: 'another' | 'any' | 'yourself'
     }
 
+export type InatePowerLevel = {
+    requires: {
+        mana: Element,
+        amount: number | undefined
+    }[],
+    effect: string,
+}
+export type InatePowers = {
+    speed: 'fast' | 'slow',
+    name: string,
+    target: Target,
+    note: string,
+    levels: InatePowerLevel[]
+}
+
 type Sprit = {
     name: string,
     image: ImagePath,
@@ -118,19 +133,7 @@ type Sprit = {
         energy: (number | Element | (number | Element)[])[]
         card: (number | Element | 'reclaim-one' | MovePresents | (number | Element | 'reclaim-one' | MovePresents)[])[]
     },
-    inatePowers: {
-        speed: 'fast' | 'slow',
-        name: string,
-        target: Target,
-        note: string,
-        levels: {
-            requires: {
-                mana: Element,
-                amount: number | undefined
-            }[],
-            effect: string,
-        }[]
-    }[],
+    inatePowers: InatePowers[],
     uniquePowers: {
         name: string,
         image: ImagePath,

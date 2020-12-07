@@ -2,7 +2,7 @@ import nodeHtmlToImage from 'node-html-to-image'
 import http from 'http'
 import url from 'url'
 import fs from 'fs'
-import Sprit, { Growth, ImagePath } from './spiritType'
+import Sprit, { Element, Growth, ImagePath, InatePowerLevel, InatePowers, MovePresents, Target } from './spiritType'
 import { ToCards } from './cards'
 import path from 'path'
 
@@ -38,6 +38,70 @@ function ToFront(spirit: Sprit, relativeTo: string): string {
       </special-rule>`
     }
 
+    function TrackConvert(energy: number | Element | 'reclaim-one' | MovePresents | (number | Element | 'reclaim-one' | MovePresents)[]): string {
+        if (Array.isArray(energy)) {
+            return energy.map(TrackConvert).join('+')
+        }
+        else if (typeof energy == "object") {
+            if (energy.type == 'move-presence') {
+                return `move-presence(${energy.range})`
+            }
+            else {
+                return 'undefined'
+            }
+        }
+        else {
+            return energy.toString();
+        }
+    }
+    function InatePower(power: InatePowers): string {
+        function Range(target: Target): string {
+            if (target.targetType == 'land') {
+                if (target.sourceLand) {
+                    return `${target.sourceLand},${target.range}`
+                }
+                return `${target.range}`
+            }
+            else {
+                return 'none'
+            }
+        }
+        function Target(target: Target) {
+            if (target.targetType === 'land') {
+                return target.targetLand ?? 'ANY'
+            } else {
+                switch (target.targetSprite) {
+                    case "another":
+                        return 'player-spirit'
+                    case "yourself":
+                        return 'YOURSELF'
+                    case "any":
+                    default:
+                        return 'ANY player-spirit'
+
+                }
+            }
+        }
+        function Level(level: InatePowerLevel) {
+            return `
+<level threshold="${level.requires.map(x => `${x.amount ?? 1}-${x.mana}`).join(',')}">
+    ${level.effect}
+</level>`
+
+        }
+        return `
+<quick-innate-power
+    name="${power.name}"
+    speed="${power.speed}"
+    range="${Range(power.target)}"
+    target="${Target(power.target)}"
+    target-title="${power.target.targetType == 'land' ? 'TARGET LAND' : 'TARGET'}"
+    note="${power.note}">
+    ${power.levels.map(Level).join('\n')}
+  </quick-innate-power>
+`
+    }
+
     let spiritXml = `
     <div style='width: 100%; height: 100%; z-index: -1;  background-size: ${spirit.imageFrontPosition?.scale ?? 100}%; background-position-x: ${spirit.imageFrontPosition?.x ?? 0}px; background-position-y: ${spirit.imageFrontPosition?.y ?? 0}px; margin: 15px; position: absolute; background-image: url("${GetImageUrl(spirit.image, relativeTo)}");'  ></div>
     <board >
@@ -56,49 +120,15 @@ ${spirit.specialRules.map(SpecialRules).join('\n')}
     </growth>
 
     <presence-tracks>
-      <energy-track values="1,2,earth,3,water+earth,fire+plant,reclaim-one"></energy-track>
-      <card-play-track values="1,fire,2+fire,3,move-presence(2),reclaim-one,5+reclaim-one,fire+reclaim-one"></card-play-track>
+      <energy-track values="${spirit.presence.energy.map(TrackConvert).join(',')}"></energy-track>
+      <card-play-track values="${spirit.presence.card.map(TrackConvert).join(',')}"></card-play-track>
     </presence-tracks>
 
     <innate-powers>
-      <quick-innate-power
-        name="explosion"
-        speed="fast"
-        range="wetland-presence,1"
-        target="blight"
-        target-title="TARGET LAND"
-        note="Destroy X (1 or more) of your {presence} in target land; {destroyed-presence} checks how many you destroyed. This Power does Damage (separately and equally) to both Invaders and {Dahan}. Ranges below can't be increased.">
-        <level threshold="1-plant">
-          1 Damage per 2 {fire} you have.
-        </level>
-        <level threshold="3-plant">
-          Instead, 1 Damage per {fire} you have.
-        </level>
-        <level threshold="4-fire,2-air">
-          You may split this Power's damage among any number of lands with {blight} where you have {presence}.
-        </level>
-      </quick-innate-power>
-      <quick-innate-power
-        name="explosion2"
-        speed="slow"
-        range="jungle-presence,2"
-        target="player-spirit"
-        target-title="TARGET"
-        note="">
-        <level threshold="1-plant">
-          1 Damage per 2 {fire} you have.
-        </level>
-        <level threshold="3-plant">
-          Instead, 1 Damage per {fire} you have.
-        </level>
-        <level threshold="4-fire,2-air">
-          You may split this Power's damage among any number of lands with {blight} where you have {presence}.
-        </level>
-        <level threshold="7-fire">
-          In {blight} where {presence} you {dahan} have {wilds} and {strife} then {badlands} and {disease}.
-        </level>
-      </quick-innate-power>
+        ${spirit.inatePowers.map(InatePower)}
+   
     </innate-powers>
+    <artist-name>${typeof spirit.image == 'object' ? spirit.image.artistName : ''}</artist-name>
   </board>
 `
 
@@ -335,6 +365,22 @@ async function main() {
         presence-tracks{
             z-index:1;
         }
+        artist-name {
+            position: absolute;
+            left: 79px;
+            top: 1164px;
+            width: 253px;
+            height: 14px;
+            color: rgba(255, 255, 255, 255);
+            font-family: 'JosefinSans-Regular';
+            font-size: 11px;
+        }
+        artist-name::before {
+            content: 'Artist: ';
+            color: rgba(255, 255, 255, 255);
+            font-family: 'JosefinSans-Regular';
+            font-size: 11px;
+        }
       </style>
     </head>
     
@@ -381,8 +427,8 @@ async function main() {
 
 
             const cardContetn = ReplacePlacehoder(ToCards(json, root));
-            const loreContetn = ReplacePlacehoder(ToLore(json, root));
-            const frontContetn = ReplacePlacehoder(ToFront(json, root));
+            const loreContetn = (ToLore(json, root));
+            const frontContetn = (ToFront(json, root));
 
             console.log(frontContetn)
 
