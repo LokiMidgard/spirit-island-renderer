@@ -2,12 +2,13 @@
 
 this tool renders custom spirits and there unique powers. It uses [spirit-island-template](https://github.com/Gudradain/spirit-island-template) and render thos with [node-html-to-image](https://github.com/frinyvonnick/node-html-to-image)
 
+
 ## Early Development
 
-This project just started. Not everything is rendered yet
+This project just started.
 
-* [ ] Spirit Front
-* [ ] Spirit Back (Lore)
+* [x] Spirit Front
+* [x] Spirit Back (Lore)
 * [x] Unique Power cards
 * [x] Unique Power Cards Back
 
@@ -30,6 +31,13 @@ The json needs to be conform to the shema in this repo. If your code editor supp
 You can also look in the sample folder.
 
 To use the correct fonts copy the fonts to the folder `dependencys/fonts`. You will find a read me there describing what you need. The fonts are needed for [spirit-island-template](https://github.com/Gudradain/spirit-island-template) where you can find a description how to obtain a copy of those files.
+
+### Sample output
+
+![Face of the spirit board](docs/Ashes%20renews%20the%20land.json-front.png)
+![Lore of the spirit board](docs/Ashes%20renews%20the%20land.json-lore.png)
+![Back of the unique power card](docs/Ashes%20renews%20the%20land.json-cards-back.png" )
+![Face of the unique power card](docs/Ashes%20renews%20the%20land.json-cards.png "Face of the unique power card")
 
 ## Development
 
