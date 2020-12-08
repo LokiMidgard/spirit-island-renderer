@@ -431,22 +431,6 @@ async function main() {
             const loreContetn = (ToLore(json, root));
             const frontContetn = (ToFront(json, root));
 
-
-            console.log(`<!DOCTYPE html>
-
-            <head>
-                <link href="../../_global/css/global.css" rel="stylesheet" />
-                <link href="../../_global/css/board_front.css" rel="stylesheet" />
-                <script type="text/javascript" src="../../_global/js/board_front.js"></script>
-            </head>
-            
-            <body>
-            `)
-            console.log(frontContetn)
-            console.log(`</body>
-
-</html>
-`)
             const cardBackTemplate = `
             <!DOCTYPE html>
             <head>
