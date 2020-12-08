@@ -1,10 +1,13 @@
 import nodeHtmlToImage from 'node-html-to-image'
 import http from 'http'
+import https from 'https'
 import url from 'url'
 import fs from 'fs'
 import Sprit, { Element, Growth, ImagePath, InatePowerLevel, InatePowers, MovePresents, PresenceTrackOptions, Target } from './spiritType'
 import { ToCards } from './cards'
 import path from 'path'
+
+import unzip from 'unzipper'
 
 
 
@@ -271,21 +274,102 @@ function ReplacePlacehoder(input: string): string {
     ]
 
     for (const p of placeholder) {
-        input = input.replace(new RegExp(`{${p}}`,"g"), `<icon class="${p}"></icon>`)
+        input = input.replace(new RegExp(`{${p}}`, "g"), `<icon class="${p}"></icon>`)
     }
     return input;
 
 }
 
+async function GetMissingFonts() {
+    await ResolveFonts('https://dl.dafont.com/dl/?f=dk_snemand', '../dependencys/fonts/Snemand/DK Snemand.otf', '../dependencys/fonts/Snemand/License & FAQ.pdf')
+    await ResolveFonts('https://dl.dafont.com/dl/?f=gobold', '../dependencys/fonts/Gobold/Gobold Extra2.otf', '../dependencys/fonts/Gobold/Read Me.txt')
+}
 
 const inputs = process.argv.slice(2)//['sample-spirit.xml']
 
-async function main() {
 
+async function ResolveFonts(url: string, ...filePath: string[]) {
+
+
+    const missingPathes = filePath.map(x => path.resolve(__dirname, x))
+        .filter(x => !fs.existsSync(x))
+
+    if (missingPathes.length > 0) {
+
+
+        const zipPath = path.resolve(__dirname, '../temp.zip')
+        console.log(`Missing ${missingPathes}. Try to download...`)
+        await new Promise<void>((resolve, reject) => {
+
+            const file = fs.createWriteStream(zipPath)
+            https.get(url, (res) => {
+                res.on('error', error => reject(error))
+                res.on('data', data => file.write(data))
+                res.on('end', () => {
+                    file.end()
+                    resolve()
+                })
+            })
+        })
+
+        if (!fs.existsSync(path.dirname(missingPathes[0]))) {
+            fs.promises.mkdir(path.dirname(missingPathes[0]), { recursive: true })
+        }
+
+        // for (let index = 0; index < missingPathes.length; index++) {
+        //     const expectedPath = missingPathes[index];
+
+
+
+        let filenames = missingPathes.map(x => {
+            return {
+                name: path.basename(x),
+                path: x
+            }
+        })
+
+
+
+        console.log('Extracting...')
+
+        await new Promise<void>((resolve, reject) => {
+
+            let fileFound = 0
+            fs.createReadStream(zipPath)
+                .pipe(unzip.Parse())
+                .on('entry', async (entry: unzip.Entry) => {
+                    const potentialFile = filenames.filter(x => x.name == entry.path)
+                    if (potentialFile.length > 0) {
+                        const currentFile = potentialFile[0]
+                        fileFound++
+                        await new Promise<void>(resolve =>
+                            entry.pipe(fs.createWriteStream(currentFile.path))
+                                .on('close', () => resolve()))
+                        console.log(`DId write ${currentFile.name}`)
+                        filenames = filenames.filter(x => x.name != currentFile.name)
+                    } else {
+                        entry.autodrain()
+                    }
+                })
+                .on('close', () => {
+                    if (fileFound)
+                        resolve()
+                    else
+                        reject(new Error(`Did not find ${filenames} in zip.`))
+                })
+
+        })
+        console.log(`${filePath} resolved`)
+        // }
+        await fs.promises.unlink(zipPath)
+    }
+}
+
+async function main() {
     if (!fs.existsSync('./out/'))
         await fs.promises.mkdir('./out/')
 
-
+    await GetMissingFonts()
 
     const server = StartServer()
     try {
@@ -336,7 +420,7 @@ async function main() {
 
         rules-container {
             background-position: center;
-            background-image: url('${GetImageUrl('resources/Parchment.jpg', process.cwd())}');
+            background-image: url('${GetImageUrl('../resources/Parchment.jpg', __dirname)}');
           }
        rules{
             background-color: transparent important!;
@@ -437,7 +521,7 @@ async function main() {
             </head>
             <body style='width: 488px; height: 682px; padding:0px; margin:0px;'>
                 <div style='width: 488px; height: 682px; position: absolute; left: 0ox; top: 0px; background-image: url("${GetImageUrl(json.image, root)}"); background-size: ${json.imageCardBackPosition?.scale ?? 100}%; background-position-x: ${json.imageCardBackPosition?.x ?? 0}px; background-position-y: ${json.imageCardBackPosition?.y ?? 0}px; ' />
-                <img style='width: 488px; height: 682px; position: absolute; left: 0ox; top: 0px;' src="${GetImageUrl('resources/Unique-Power-Back.png', process.cwd())}" />
+                <img style='width: 488px; height: 682px; position: absolute; left: 0ox; top: 0px;' src="${GetImageUrl('../resources/Unique-Power-Back.png', __dirname)}" />
             </body>
             </html>
             `
@@ -520,15 +604,15 @@ function StartServer() {
             const fontContent = `
             @font-face{
                 font-family: 'DK Snemand';
-                src: url(${GetImageUrl('dependencys/fonts/DK Snemand.otf', process.cwd())});
+                src: url(${GetImageUrl('../dependencys/fonts/Snemand/DK Snemand.otf', __dirname)});
               }
               @font-face{
                 font-family: 'Gobold Extra2';
-                src: url(${GetImageUrl('dependencys/fonts/Gobold Extra2.otf', process.cwd())});
+                src: url(${GetImageUrl('../dependencys/fonts/Gobold/Gobold Extra2.otf', __dirname)});
               }
               @font-face{
                 font-family: JosefinSans-Regular;
-                src: url(${GetImageUrl('dependencys/spirit-island-template/_global/fonts/josefin-sans/JosefinSans-Regular.ttf', process.cwd())});
+                src: url(${GetImageUrl('../dependencys/spirit-island-template/_global/fonts/josefin-sans/JosefinSans-Regular.ttf', __dirname)});
               }
               `
             // const fontContent = `@font-face{
@@ -556,73 +640,39 @@ function StartServer() {
             return
         }
 
-        if (pathname[1] == '!') {
-            fs.readFile('dependencys/fonts/' + pathname.substr(2), (err, data) => {
-
-                if (err) {
-
-                    console.error(err)
-
-                    res.writeHead(404, { 'Content-Type': 'text/plain' })
-                    res.write('404 - file not found')
-
-                } else {
 
 
-                    let contentType = 'text/html'
-                    if (pathname?.endsWith('.js'))
-                        contentType = 'application/javascript'
-                    else if (pathname?.endsWith('.png'))
-                        contentType = 'Image/Png'
-                    else if (pathname?.endsWith('.css'))
-                        contentType = 'text/css'
-                    else if (pathname?.endsWith('.otf'))
-                        contentType = 'application/x-font-opentype'
-                    else if (pathname?.endsWith('.ttf'))
-                        contentType = 'application/x-font-ttf'
+        fs.readFile(path.resolve(__dirname, '../dependencys/spirit-island-template/' + pathname.substr(1)), (err, data) => {
+
+            if (err) {
+
+                console.error(err)
+
+                res.writeHead(404, { 'Content-Type': 'text/plain' })
+                res.write('404 - file not found')
+
+            } else {
 
 
-                    res.writeHead(200, { 'Content-Type': contentType })
-                    res.write(data)
-                }
-
-                res.end()
-            })
-        }
-        else {
-
-            fs.readFile('dependencys/spirit-island-template/' + pathname.substr(1), (err, data) => {
-
-                if (err) {
-
-                    console.error(err)
-
-                    res.writeHead(404, { 'Content-Type': 'text/plain' })
-                    res.write('404 - file not found')
-
-                } else {
+                let contentType = 'text/html'
+                if (pathname?.endsWith('.js'))
+                    contentType = 'application/javascript'
+                else if (pathname?.endsWith('.png'))
+                    contentType = 'Image/Png'
+                else if (pathname?.endsWith('.css'))
+                    contentType = 'text/css'
+                else if (pathname?.endsWith('.otf'))
+                    contentType = 'application/x-font-opentype'
+                else if (pathname?.endsWith('.ttf'))
+                    contentType = 'application/x-font-ttf'
 
 
-                    let contentType = 'text/html'
-                    if (pathname?.endsWith('.js'))
-                        contentType = 'application/javascript'
-                    else if (pathname?.endsWith('.png'))
-                        contentType = 'Image/Png'
-                    else if (pathname?.endsWith('.css'))
-                        contentType = 'text/css'
-                    else if (pathname?.endsWith('.otf'))
-                        contentType = 'application/x-font-opentype'
-                    else if (pathname?.endsWith('.ttf'))
-                        contentType = 'application/x-font-ttf'
+                res.writeHead(200, { 'Content-Type': contentType })
+                res.write(data)
+            }
 
-
-                    res.writeHead(200, { 'Content-Type': contentType })
-                    res.write(data)
-                }
-
-                res.end()
-            })
-        }
+            res.end()
+        })
     })
 
     server.listen(8080)
