@@ -78,6 +78,7 @@
                                                     "enum": [
                                                         "air",
                                                         "animal",
+                                                        "any",
                                                         "fire",
                                                         "moon",
                                                         "plant",
@@ -92,6 +93,7 @@
                                                 "enum": [
                                                     "air",
                                                     "animal",
+                                                    "any",
                                                     "fire",
                                                     "moon",
                                                     "plant",
@@ -214,6 +216,7 @@
                                                                 "enum": [
                                                                     "air",
                                                                     "animal",
+                                                                    "any",
                                                                     "fire",
                                                                     "moon",
                                                                     "plant",
@@ -228,6 +231,7 @@
                                                             "enum": [
                                                                 "air",
                                                                 "animal",
+                                                                "any",
                                                                 "fire",
                                                                 "moon",
                                                                 "plant",
@@ -322,7 +326,8 @@
                                         },
                                         {
                                             "enum": [
-                                                "gain-powercard",
+                                                "forget-power-card",
+                                                "gain-power-card",
                                                 "reclaim-all",
                                                 "reclaim-one"
                                             ],
@@ -334,7 +339,8 @@
                             },
                             {
                                 "enum": [
-                                    "gain-powercard",
+                                    "forget-power-card",
+                                    "gain-power-card",
                                     "reclaim-all",
                                     "reclaim-one"
                                 ],
@@ -602,7 +608,6 @@
                 "required": [
                     "levels",
                     "name",
-                    "note",
                     "speed",
                     "target"
                 ],
@@ -667,7 +672,9 @@
                                             "enum": [
                                                 "air",
                                                 "animal",
+                                                "any",
                                                 "fire",
+                                                "forget-power-card",
                                                 "moon",
                                                 "plant",
                                                 "reclaim-one",
@@ -687,7 +694,9 @@
                                 "enum": [
                                     "air",
                                     "animal",
+                                    "any",
                                     "fire",
+                                    "forget-power-card",
                                     "moon",
                                     "plant",
                                     "reclaim-one",
@@ -707,15 +716,54 @@
                     "items": {
                         "anyOf": [
                             {
+                                "properties": {
+                                    "range": {
+                                        "type": "number"
+                                    },
+                                    "type": {
+                                        "enum": [
+                                            "move-presence"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "range",
+                                    "type"
+                                ],
+                                "type": "object"
+                            },
+                            {
                                 "items": {
                                     "anyOf": [
+                                        {
+                                            "properties": {
+                                                "range": {
+                                                    "type": "number"
+                                                },
+                                                "type": {
+                                                    "enum": [
+                                                        "move-presence"
+                                                    ],
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "range",
+                                                "type"
+                                            ],
+                                            "type": "object"
+                                        },
                                         {
                                             "enum": [
                                                 "air",
                                                 "animal",
+                                                "any",
                                                 "fire",
+                                                "forget-power-card",
                                                 "moon",
                                                 "plant",
+                                                "reclaim-one",
                                                 "sun",
                                                 "water"
                                             ],
@@ -732,9 +780,12 @@
                                 "enum": [
                                     "air",
                                     "animal",
+                                    "any",
                                     "fire",
+                                    "forget-power-card",
                                     "moon",
                                     "plant",
+                                    "reclaim-one",
                                     "sun",
                                     "water"
                                 ],

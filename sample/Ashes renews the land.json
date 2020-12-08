@@ -1,0 +1,306 @@
+{
+  "$schema": "./../spirit-schema.json",
+  "name": "Ashes Renews the Land",
+  "boarder": "feather.png",
+  "image": {
+    "path": "553878_miststrara_phoenix-rising.jpg",
+    "artistName": "miststrara"
+  },
+  "imageFrontPosition": {
+    "x": 0,
+    "y": 0,
+    "scale": 70
+  },
+  "imageCardBackPosition": {
+    "x": -200,
+    "y": -150,
+    "scale": 280
+  },
+  "imageLorePosition": {
+    "x": 0,
+    "y": 0,
+    "scale": 100
+  },
+  "complexety": "moderate",
+  "lore": "Hakuna Matata",
+  "setup": "You start with two minor powers in the ashes (see special rule Fuled with Power). Put 1 {presence} in highest numberd mountain and one {presence} in the highest numberd sands.",
+  "playStyle": "Play how you want",
+  "growth": {
+    "title": "GROWTH (Pick the first and one other)",
+    "choise": [
+      "gain-power-card",
+      [
+        "forget-power-card",
+        "reclaim-all"
+      ],
+      [
+        "gain-power-card",
+        {
+          "type": "gain-energy",
+          "number": 2
+        }
+      ],
+      [
+        {
+          "type": "add-presence",
+          "range": 2
+        },
+        {
+          "type": "gain-element",
+          "element": "any"
+        }
+      ]
+    ]
+  },
+  "summaryPower": {
+    "control": 2,
+    "defense": 3,
+    "fear": 3,
+    "offense": 4,
+    "utility": 9
+  },
+  "presence": {
+    "card": [
+      1,
+      2,
+      "forget-power-card",
+      3,
+      "any",
+      4,
+      "fire",
+      5
+    ],
+    "energy": [
+      1,
+      "forget-power-card",
+      2,
+      "fire",
+      [
+        "air",
+        "plant"
+      ]
+    ]
+  },
+  "specialRules": [
+    {
+      "title": "Fuled with Power",
+      "text": "You have a seperate area for power cards called the ashes. Whenever you forget a power, put it in the ashes. You may either gain the energy cost as energy or gain the mana of the forgotten card. Cards in the ashes are not considerd removed from the game unless explicitly referenced."
+    },
+    {
+      "title": "Flames that consume everything",
+      "text": "You may use 2 of {sun}, {plant} and/or {animal} as {fire}. You may also use 2 of {moon} and/or {water} for {air}. You can't use an element for another if it was already used for any effect this turn. You can no longer use an element after it was used as another."
+    }
+  ],
+  "inatePowers": [
+    {
+      "name": "Fire cleans the way",
+      "speed": "fast",
+      "target": {
+        "range": 1,
+        "targetType": "land"
+      },
+      "levels": [
+        {
+          "effect": "Damage 1",
+          "requires": [
+            {
+              "mana": "fire",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "effect": "Damage 2 add a {blight}.",
+          "requires": [
+            {
+              "mana": "fire",
+              "amount": 1
+            },
+            {
+              "mana": "air",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "effect": "Remove a {blight}",
+          "requires": [
+            {
+              "mana": "fire",
+              "amount": 3
+            },
+            {
+              "mana": "plant",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "effect": "{destroyed-presence} 1/3 Damage per ash card.",
+          "requires": [
+            {
+              "mana": "fire",
+              "amount": 3
+            },
+            {
+              "mana": "air",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "effect": "repeat one effect of this power. You may target a different land.",
+          "requires": [
+            {
+              "mana": "air",
+              "amount": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "For a new Beginning",
+      "speed": "slow",
+      "target": {
+        "range": 1,
+        "targetType": "land"
+      },
+      "levels": [
+        {
+          "effect": "remove a {blight}",
+          "requires": [
+            {
+              "mana": "fire",
+              "amount": 2
+            },
+            {
+              "mana": "plant",
+              "amount": 1
+            }
+          ]
+        },
+        {
+          "effect": "If a {dahan}, {explorer}, {town} or {city} was destroyed this turn in target land, put it back.",
+          "requires": [
+            {
+              "mana": "fire",
+              "amount": 3
+            },
+            {
+              "mana": "air",
+              "amount": 2
+            }
+          ]
+        },
+        {
+          "effect": "Add a destroyed {presence}.",
+          "requires": [
+            {
+              "mana": "fire",
+              "amount": 4
+            },
+            {
+              "mana": "air",
+              "amount": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "uniquePowers": [
+    {
+      "name": "Everything repeats",
+      "effect": "Target spirit gains 1 energy.<br>Target Spirit gain on card from the ashes. Target Spirit may pay its cost to play it imidetly",
+      "energy": 1,
+      "image": {
+        "path": "regrowth.png",
+        "artistName": "bush regrowth by freeaussiestock.com"
+      },
+      "mana": [
+        "fire",
+        "air",
+        "plant"
+      ],
+      "speed": "fast",
+      "target": {
+        "targetType": "spirit",
+        "targetSprite": "any"
+      }
+    },
+    {
+      "name": "Firice Dance",
+      "effect": [
+        "2 {fear}",
+        "If you {destroyed-presence} from track then Push 2 {explorer}/{town}"
+      ],
+      "energy": 1,
+      "image": {
+        "path": "fireDance.jpg",
+        "artistName": "Navajo Fire Dance by William Robinson Leigh"
+      },
+      "mana": [
+        "air",
+        "fire"
+      ],
+      "target": {
+        "targetType": "land",
+        "range": 1,
+        "targetLand": "invaders"
+      },
+      "speed": "slow"
+    },
+    {
+      "name": "Signal",
+      "effect": "Geather or push up to 2 {dahan}.",
+      "energy": 0,
+      "image": "signal.png",
+      "mana": [
+        "air",
+        "fire"
+      ],
+      "target": {
+        "targetType": "land",
+        "targetLand": "land",
+        "range": 2
+      },
+      "speed": "fast"
+    },
+    {
+      "name": "Pillar of Fire",
+      "effect": [
+        "Defend 1 per {dahan}.",
+        "Defend 2"
+      ],
+      "energy": 1,
+      "image": {
+        "path": "pillarOfFire.png",
+        "artistName": "U.S. Fish and Wildlife Service"
+      },
+      "mana": [
+        "air",
+        "fire"
+      ],
+      "target": {
+        "targetType": "land",
+        "range": 1,
+        "targetLand": "invaders"
+      },
+      "speed": "fast",
+      "threshold": {
+        "requirements": [
+          {
+            "mana": "fire",
+            "ammount": 2
+          },
+          {
+            "mana": "air",
+            "ammount": 2
+          }
+        ],
+        "effect": "1 {fear}"
+      }
+    }
+  ]
+}

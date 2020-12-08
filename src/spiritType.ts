@@ -15,18 +15,21 @@ export type Element = 'fire'
     | 'animal'
     | 'plant'
 
+export type ElementWithAny = Element | 'any'
+
 export type Growth = GrowthEntry | GrowthEntry[]
 
 export type GrowthEntry = 'reclaim-one'
     | 'reclaim-all'
-    | 'gain-powercard'
+    | 'gain-power-card'
+    | 'forget-power-card'
     | {
         type: 'gain-energy',
         number: number
     }
     | {
         type: 'gain-element'
-        element: Element | Element[]
+        element: ElementWithAny | ElementWithAny[]
     }
     | {
         type: 'add-presence'
@@ -86,9 +89,11 @@ export type InatePowers = {
     speed: 'fast' | 'slow',
     name: string,
     target: Target,
-    note: string,
+    note: string | undefined,
     levels: InatePowerLevel[]
 }
+
+export type PresenceTrackOptions = number | ElementWithAny | 'reclaim-one' | MovePresents | "forget-power-card"
 
 type Sprit = {
     name: string,
@@ -130,8 +135,8 @@ type Sprit = {
         choise: Growth[]
     }
     presence: {
-        energy: (number | Element | (number | Element)[])[]
-        card: (number | Element | 'reclaim-one' | MovePresents | (number | Element | 'reclaim-one' | MovePresents)[])[]
+        energy: (PresenceTrackOptions | PresenceTrackOptions[])[]
+        card: (PresenceTrackOptions | PresenceTrackOptions[])[]
     },
     inatePowers: InatePowers[],
     uniquePowers: {

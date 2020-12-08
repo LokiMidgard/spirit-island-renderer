@@ -2,7 +2,7 @@ import nodeHtmlToImage from 'node-html-to-image'
 import http from 'http'
 import url from 'url'
 import fs from 'fs'
-import Sprit, { Element, Growth, ImagePath, InatePowerLevel, InatePowers, MovePresents, Target } from './spiritType'
+import Sprit, { Element, Growth, ImagePath, InatePowerLevel, InatePowers, MovePresents, PresenceTrackOptions, Target } from './spiritType'
 import { ToCards } from './cards'
 import path from 'path'
 
@@ -38,20 +38,20 @@ function ToFront(spirit: Sprit, relativeTo: string): string {
       </special-rule>`
     }
 
-    function TrackConvert(energy: number | Element | 'reclaim-one' | MovePresents | (number | Element | 'reclaim-one' | MovePresents)[]): string {
-        if (Array.isArray(energy)) {
-            return energy.map(TrackConvert).join('+')
+    function TrackConvert(entry: PresenceTrackOptions | PresenceTrackOptions[]): string {
+        if (Array.isArray(entry)) {
+            return entry.map(TrackConvert).join('+')
         }
-        else if (typeof energy == "object") {
-            if (energy.type == 'move-presence') {
-                return `move-presence(${energy.range})`
+        else if (typeof entry == "object") {
+            if (entry.type == 'move-presence') {
+                return `move-presence(${entry.range})`
             }
             else {
                 return 'undefined'
             }
         }
         else {
-            return energy.toString();
+            return entry.toString();
         }
     }
     function InatePower(power: InatePowers): string {
@@ -96,7 +96,7 @@ function ToFront(spirit: Sprit, relativeTo: string): string {
     range="${Range(power.target)}"
     target="${Target(power.target)}"
     target-title="${power.target.targetType == 'land' ? 'TARGET LAND' : 'TARGET'}"
-    note="${power.note}">
+    note="${power.note ?? ''}">
     ${power.levels.map(Level).join('\n')}
   </quick-innate-power>
 `
@@ -252,6 +252,7 @@ function ReplacePlacehoder(input: string): string {
         'town',
         'city',
         'presence',
+        'destroyed-presence',
         'sacred-site',
         'earth',
         'sun',
@@ -270,7 +271,7 @@ function ReplacePlacehoder(input: string): string {
     ]
 
     for (const p of placeholder) {
-        input = input.replace(`{${p}}`, `<icon class="${p}"></icon>`)
+        input = input.replace(new RegExp(`{${p}}`,"g"), `<icon class="${p}"></icon>`)
     }
     return input;
 
@@ -430,8 +431,22 @@ async function main() {
             const loreContetn = (ToLore(json, root));
             const frontContetn = (ToFront(json, root));
 
-            console.log(frontContetn)
 
+            console.log(`<!DOCTYPE html>
+
+            <head>
+                <link href="../../_global/css/global.css" rel="stylesheet" />
+                <link href="../../_global/css/board_front.css" rel="stylesheet" />
+                <script type="text/javascript" src="../../_global/js/board_front.js"></script>
+            </head>
+            
+            <body>
+            `)
+            console.log(frontContetn)
+            console.log(`</body>
+
+</html>
+`)
             const cardBackTemplate = `
             <!DOCTYPE html>
             <head>
@@ -515,6 +530,8 @@ function StartServer() {
             pathname = '/index.html'
         }
 
+        pathname = pathname.replace(/%20/g, ' ')
+
         if (pathname == '/font.css') {
             const fontContent = `
             @font-face{
@@ -556,7 +573,7 @@ function StartServer() {
         }
 
         if (pathname[1] == '!') {
-            fs.readFile('dependencys/fonts/' + pathname.substr(2).replace('%20', ' '), (err, data) => {
+            fs.readFile('dependencys/fonts/' + pathname.substr(2), (err, data) => {
 
                 if (err) {
 
@@ -590,7 +607,7 @@ function StartServer() {
         }
         else {
 
-            fs.readFile('dependencys/spirit-island-template/' + pathname.substr(1).replace('%20', ' '), (err, data) => {
+            fs.readFile('dependencys/spirit-island-template/' + pathname.substr(1), (err, data) => {
 
                 if (err) {
 
