@@ -1,6 +1,6 @@
 # spirit-island-renderer
 
-this tool renders custom spirits and there unique powers. It uses [spirit-island-template](https://github.com/Gudradain/spirit-island-template) and render thos with [node-html-to-image](https://github.com/frinyvonnick/node-html-to-image)
+this tool renders custom spirits and there unique powers. It uses [spirit-island-template](https://github.com/Gudradain/spirit-island-template) and render those with [node-html-to-image](https://github.com/frinyvonnick/node-html-to-image)
 
 
 ## Early Development
@@ -16,17 +16,54 @@ This project just started.
 
 ## Getting started
 
-To get started run:
-```bash
-npm run render <spirit-file.json>
-```
 
-The json needs to be conform to the shema in this repo. If your code editor supports json schema, you can use it like following:
+Create a JSON file that holds all your spirit data. Look in the sample folder for an example or use it as your first spirit. The JSON file needs to be conform to the json schema in this repo. If your code editor supports JSON-Schema, you can enable auto-completion and warnings adding the following entry at the top:
 ```json
 {
   "$schema": "https://raw.githubusercontent.com/LokiMidgard/spirit-island-renderer/development/spirit-schema.json",
+  // your spirit data like name etc...
 }
 ```
+
+*The sample uses the local schema file in this repo so when you move the JSON it will no longer find the schema. Replace the schema entry in the sample with the one above.*
+
+
+
+### Get the program
+Install the program using npm
+
+```bash
+npm i spirit-island-renderer -g
+```
+
+then execute it using
+
+```bash
+npm exec sir <spirit-file.json>
+
+```
+
+
+**OR**
+
+Download this repository
+
+
+```bash
+# Init the submodules
+git submodule init
+git submodule update
+
+# Install the dependencys
+npm install
+
+# Create your first spirit
+npm run render <spirit-file.json>
+```
+
+------------------------------
+
+
 
 You can also look in the sample folder.
 
@@ -48,5 +85,3 @@ npm run generate-schema
 ```
 
 this will update the schema file.
-
-
