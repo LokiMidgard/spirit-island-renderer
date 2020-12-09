@@ -9,14 +9,21 @@ this tool renders custom spirits and there unique powers. It uses [spirit-island
 
 >You need to have [node](https://nodejs.org/) installed. We assume you have added it to your PATH when you installed it.
 
+Install the Program
+
+```bash
+# this isntalls the tool globally so it will be available in cmd
+npm i spirit-island-renderer@latest -g
+```
+
 The fastest way is to start is with the sample.
 
 ```bash
 # This generates an folder myTestSpirt and put the sample inside
-npx spirit-island-renderer --generate-sample myTestSpirit
+spirit-island-renderer --generate-sample myTestSpirit
 
 # This will generate the sample spirit
-npx spirit-island-renderer myTestSpirit\Ashes-renews-the-land.json
+spirit-island-renderer myTestSpirit\Ashes-renews-the-land.json
 
 # now you'll find the images of the spirit in the out folder
 ```
@@ -27,9 +34,10 @@ If you open the JSON file in an editor that can handle JSON schema like [VSCode]
 
 Execute `-h` to print the help and find out what you can do
 ```bash
-npx spirit-island-renderer -h
+spirit-island-renderer -h
 ```
 
+Instead of using `spirit-island-renderer` you can just type `sir` after you have installed it.
 
 ------------------------------
 
