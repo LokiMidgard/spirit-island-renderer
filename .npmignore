@@ -3,3 +3,6 @@ out/
 dependencys/fonts/
 src/
 spirit-island-renderer*.tgz
+.vscode/
+tsconfig.json
+.gitmodules
