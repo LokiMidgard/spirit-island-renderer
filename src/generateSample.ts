@@ -1,6 +1,7 @@
 import chalk from 'chalk'
 import fs from 'fs'
 import path from 'path'
+import { version } from './const'
 
 
 
@@ -60,7 +61,7 @@ export async function HandleSample(cmd: parsed): Promise<void> {
                     continue;
                 }
                 const spirtJson = JSON.parse(spiritContent);
-                spirtJson['$schema'] = `https://raw.githubusercontent.com/LokiMidgard/spirit-island-renderer/v${process.env.npm_package_version}/spirit-schema.json`
+                spirtJson['$schema'] = `https://raw.githubusercontent.com/LokiMidgard/spirit-island-renderer/v${version}/spirit-schema.json`
                 spiritName = spirtJson.name
 
 

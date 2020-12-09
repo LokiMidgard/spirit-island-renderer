@@ -19,7 +19,7 @@
     "render": "npx ts-node src/main.ts",
     "generate-schema": "npx typescript-json-schema tsconfig.json Sprit > spirit-schema.json --required",
     "build": "tsc",
-    "prepack": "npm run build"
+    "prepack": "npm run build &&  cross-var replace \"process.env.npm_package_version\" `$npm_package_version` lib/const.js"
   },
   "keywords": [
     "spirit-island"
@@ -39,6 +39,8 @@
     "@types/command-line-args": "^5.0.0",
     "@types/command-line-usage": "^5.0.1",
     "@types/unzipper": "^0.10.3",
+    "cross-var": "^1.1.0",
+    "replace": "1.2.0",
     "ts-node": "^9.1.0",
     "typescript": "^4.1.2",
     "typescript-json-schema": "^0.45.0"

@@ -1,4 +1,5 @@
 import chalk from "chalk"
+import { version } from "./const"
 
 const trunk = chalk.keyword('brown')
 const leaf = chalk.keyword('green')
@@ -20,4 +21,4 @@ export const header = `
 | |_) / _ \\ '_ \\ / _\` |/ _ \\ '__/ _ \\ '__| ${sand(`  /                      \\`)}
 |  _ <  __/ | | | (_| |  __/ | |  __/ |${water(`~~~~~~~  ~~~~~ ~~~~~  ~~~ ~~~  ~~~~~`)}
 |_| \\_\\___|_| |_|\\__,_|\\___|_|  \\___|_| ${water(` ~~~   ~~~~~   ~ ~~   ~~ ~  ~ ~ ~~ ~`)}
-Version: ${process.env.npm_package_version}`
+Version: ${version}`
