@@ -371,7 +371,11 @@ async function main() {
 
     await GetMissingFonts()
 
-    const server = StartServer()
+    const server = await StartServer()
+    const serverAddress = server.address()
+    const port = typeof serverAddress === 'object'
+        ? serverAddress?.port
+        : parseInt(serverAddress.split(':')[1])
     try {
 
 
@@ -379,10 +383,10 @@ async function main() {
         const cardTemplate = `<!DOCTYPE html>
 
     <head>
-        <link href="http://localhost:8080/font.css" rel="stylesheet" />
-        <link href="http://localhost:8080/_global/css/global.css" rel="stylesheet" />
-        <link href="http://localhost:8080/_global/css/card.css" rel="stylesheet" />
-        <script type="text/javascript" src="http://localhost:8080/_global/js/card.js" defer></script>
+        <link href="http://localhost:${port}/font.css" rel="stylesheet" />
+        <link href="http://localhost:${port}/_global/css/global.css" rel="stylesheet" />
+        <link href="http://localhost:${port}/_global/css/card.css" rel="stylesheet" />
+        <script type="text/javascript" src="http://localhost:${port}/_global/js/card.js" defer></script>
         <style>
         body {
           width: 976px;
@@ -436,10 +440,10 @@ async function main() {
         const frontTemplate = `<!DOCTYPE html>
 
     <head>
-      <link href="http://localhost:8080/font.css" rel="stylesheet" />
-      <link href="http://localhost:8080/_global/css/global.css" rel="stylesheet" />
-      <link href="http://localhost:8080/_global/css/board_front.css" rel="stylesheet" />
-      <script type="text/javascript" src="http://localhost:8080/_global/js/board_front.js"></script>
+      <link href="http://localhost:${port}/font.css" rel="stylesheet" />
+      <link href="http://localhost:${port}/_global/css/global.css" rel="stylesheet" />
+      <link href="http://localhost:${port}/_global/css/board_front.css" rel="stylesheet" />
+      <script type="text/javascript" src="http://localhost:${port}/_global/js/board_front.js"></script>
         <style>
         body {
           width: 1766px;
@@ -480,10 +484,10 @@ async function main() {
         const loreTemplate = `<!DOCTYPE html>
 
     <head>
-      <link href="http://localhost:8080/font.css" rel="stylesheet" />
-      <link href="http://localhost:8080/_global/css/global.css" rel="stylesheet" />
-      <link href="http://localhost:8080/_global/css/board_lore.css" rel="stylesheet" />
-      <script type="text/javascript" src="http://localhost:8080/_global/js/board_lore.js"></script>
+      <link href="http://localhost:${port}/font.css" rel="stylesheet" />
+      <link href="http://localhost:${port}/_global/css/global.css" rel="stylesheet" />
+      <link href="http://localhost:${port}/_global/css/board_lore.css" rel="stylesheet" />
+      <script type="text/javascript" src="http://localhost:${port}/_global/js/board_lore.js"></script>
         <style>
         body {
           width: 1766px;
@@ -577,7 +581,7 @@ main().catch(x =>
     console.error(x));
 
 
-function StartServer() {
+function StartServer(): Promise<http.Server> {
     const server = http.createServer((req, res) => {
 
         if (!req.url) {
@@ -675,8 +679,9 @@ function StartServer() {
         })
     })
 
-    server.listen(8080)
-    return server
+    return new Promise<http.Server>(resolve => {
+        server.listen(0, () => resolve(server))
+    })
 }
 
 export function GetImageUrl(image: ImagePath, relativeTo: string) {
