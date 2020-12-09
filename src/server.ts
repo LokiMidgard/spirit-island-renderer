@@ -1,14 +1,9 @@
-import nodeHtmlToImage from 'node-html-to-image'
 import http from 'http'
-import https from 'https'
 import url from 'url'
 import fs from 'fs'
-import Sprit, { Element, Growth, ImagePath, InatePowerLevel, InatePowers, MovePresents, PresenceTrackOptions, Target } from './spiritType'
-import { GetCardTemplate, ToCards } from './cards'
 import path from 'path'
 
-import unzip from 'unzipper'
-import { GetImageUrl } from './render'
+import { FileAsDataUrl } from './main'
 
 
 export function StartServer(): Promise<http.Server> {
@@ -38,15 +33,15 @@ export function StartServer(): Promise<http.Server> {
             const fontContent = `
             @font-face{
                 font-family: 'DK Snemand';
-                src: url(${GetImageUrl('../dependencys/fonts/Snemand/DK Snemand.otf', __dirname)});
+                src: url(${FileAsDataUrl('../dependencys/fonts/Snemand/DK Snemand.otf', __dirname)});
               }
               @font-face{
                 font-family: 'Gobold Extra2';
-                src: url(${GetImageUrl('../dependencys/fonts/Gobold/Gobold Extra2.otf', __dirname)});
+                src: url(${FileAsDataUrl('../dependencys/fonts/Gobold/Gobold Extra2.otf', __dirname)});
               }
               @font-face{
                 font-family: JosefinSans-Regular;
-                src: url(${GetImageUrl('../dependencys/spirit-island-template/_global/fonts/josefin-sans/JosefinSans-Regular.ttf', __dirname)});
+                src: url(${FileAsDataUrl('../dependencys/spirit-island-template/_global/fonts/josefin-sans/JosefinSans-Regular.ttf', __dirname)});
               }
               `
             // const fontContent = `@font-face{

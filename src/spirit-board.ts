@@ -1,15 +1,6 @@
-import nodeHtmlToImage from 'node-html-to-image'
-import http from 'http'
-import https from 'https'
-import url from 'url'
-import fs from 'fs'
-import Sprit, { Element, Growth, ImagePath, InatePowerLevel, InatePowers, MovePresents, PresenceTrackOptions, Target } from './spiritType'
-import { GetCardBackTemplate, GetCardTemplate, ToCards } from './cards'
-import path from 'path'
+import Sprit, { Growth, InatePowerLevel, InatePowers, PresenceTrackOptions, Target } from './spiritType'
 
-import unzip from 'unzipper'
-import { StartServer } from './server'
-import { GetImageUrl } from './render'
+import { FileAsDataUrl } from './main'
 
 
 
@@ -108,9 +99,9 @@ export function ToFront(spirit: Sprit, relativeTo: string): string {
     }
 
     let spiritXml = `
-    <div style='width: 100%; height: 100%; z-index: -1;  background-size: ${spirit.imageFrontPosition?.scale ?? 100}%; background-position-x: ${spirit.imageFrontPosition?.x ?? 0}px; background-position-y: ${spirit.imageFrontPosition?.y ?? 0}px; margin: 15px; position: absolute; background-image: url("${GetImageUrl(spirit.image, relativeTo)}");'  ></div>
+    <div style='width: 100%; height: 100%; z-index: -1;  background-size: ${spirit.imageFrontPosition?.scale ?? 100}%; background-position-x: ${spirit.imageFrontPosition?.x ?? 0}px; background-position-y: ${spirit.imageFrontPosition?.y ?? 0}px; margin: 15px; position: absolute; background-image: url("${FileAsDataUrl(spirit.image, relativeTo)}");'  ></div>
     <board >
-    <img class="spirit-border" src="${GetImageUrl(spirit.boarder, relativeTo)}" />
+    <img class="spirit-border" src="${FileAsDataUrl(spirit.boarder, relativeTo)}" />
     <spirit-name>
       ${spirit.name}
     </spirit-name>
@@ -158,7 +149,7 @@ export function ToLore(spirit: Sprit, relativeTo: string): string {
     }
 
     let spiritXml = `
-    <div style='width: 100%; height: 100%; z-index: -1;  background-size: ${spirit.imageLorePosition?.scale ?? 100}%; background-position-x: ${spirit.imageLorePosition?.x ?? 0}px; background-position-y: ${spirit.imageLorePosition?.y ?? 0}px; border-radius: 15.1px; position: absolute; background-image: url("${GetImageUrl(spirit.image, relativeTo)}");'  ></div>
+    <div style='width: 100%; height: 100%; z-index: -1;  background-size: ${spirit.imageLorePosition?.scale ?? 100}%; background-position-x: ${spirit.imageLorePosition?.x ?? 0}px; background-position-y: ${spirit.imageLorePosition?.y ?? 0}px; border-radius: 15.1px; position: absolute; background-image: url("${FileAsDataUrl(spirit.image, relativeTo)}");'  ></div>
     <board>
     <spirit-name>
         ${spirit.name}

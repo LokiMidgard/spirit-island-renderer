@@ -10,13 +10,13 @@
     "url": "https://github.com/LokiMidgard/spirit-island-renderer/issues"
   },
   "homepage": "https://github.com/LokiMidgard/spirit-island-renderer#spirit-island-renderer",
-  "main": "./lib/render.js",
+  "main": "./lib/main.js",
   "bin": {
     "sir": "./bin/sir",
     "spirit-island-rederer": "./bin/sir"
   },
   "scripts": {
-    "render": "npx ts-node src/render.ts",
+    "render": "npx ts-node src/main.ts",
     "generate-schema": "npx typescript-json-schema tsconfig.json Sprit > spirit-schema.json --required",
     "build": "tsc",
     "prepack": "npm run build"

@@ -1,10 +1,10 @@
-import { GetImageUrl } from "./render";
+import { FileAsDataUrl } from "./main";
 import Sprit, { Element, Target, TargetLand } from './spiritType'
 
 export function ToCards(spirit: Sprit, relativeTo: string): string {
     return spirit.uniquePowers.map(power => {
         let spiritXml = `<card class='${power.speed}'>
-<img class='image' src='${GetImageUrl(power.image, relativeTo)}' />
+<img class='image' src='${FileAsDataUrl(power.image, relativeTo)}' />
 <cost>${power.energy}</cost>
 <name>${power.name}</name>
 ${power.mana ? (Array.isArray(power.mana) ? power.mana.map(e => `<element class='${e}' ></element>`).join('\n') : `<element class='${power.mana}' ></element>`) : ''}
@@ -251,7 +251,7 @@ function GetCardTemplate(port: number | undefined) {
 
         rules-container {
             background-position: center;
-            background-image: url('${GetImageUrl('../resources/Parchment.jpg', __dirname)}');
+            background-image: url('${FileAsDataUrl('../resources/Parchment.jpg', __dirname)}');
           }
        rules{
             background-color: transparent important!;
@@ -271,8 +271,8 @@ export function GetCardBackTemplate(spirit: Sprit, relativeTo: string) {
             <head>
             </head>
             <body style='width: 488px; height: 682px; padding:0px; margin:0px;'>
-                <div style='width: 488px; height: 682px; position: absolute; left: 0ox; top: 0px; background-image: url("${GetImageUrl(spirit.image, relativeTo)}"); background-size: ${spirit.imageCardBackPosition?.scale ?? 100}%; background-position-x: ${spirit.imageCardBackPosition?.x ?? 0}px; background-position-y: ${spirit.imageCardBackPosition?.y ?? 0}px; ' />
-                <img style='width: 488px; height: 682px; position: absolute; left: 0ox; top: 0px;' src="${GetImageUrl('../resources/Unique-Power-Back.png', __dirname)}" />
+                <div style='width: 488px; height: 682px; position: absolute; left: 0ox; top: 0px; background-image: url("${FileAsDataUrl(spirit.image, relativeTo)}"); background-size: ${spirit.imageCardBackPosition?.scale ?? 100}%; background-position-x: ${spirit.imageCardBackPosition?.x ?? 0}px; background-position-y: ${spirit.imageCardBackPosition?.y ?? 0}px; ' />
+                <img style='width: 488px; height: 682px; position: absolute; left: 0ox; top: 0px;' src="${FileAsDataUrl('../resources/Unique-Power-Back.png', __dirname)}" />
             </body>
             </html>
             `
