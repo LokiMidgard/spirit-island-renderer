@@ -100,7 +100,7 @@ export async function HandleSample(cmd: parsed): Promise<void> {
             console.error(chalk.red(`\tThe path ${chalk.blue(relativJsonPath)} contains spaces. Unfortunatly npx does not support spaces ${chalk.yellowBright('(¬_¬;)')} `))
         }
         else {
-            console.log(chalk.greenBright(`\tnpx sir ${chalk.blue(relativJsonPath)} `))
+            console.log(chalk.greenBright(`\tnpx spirit-island-renderer ${chalk.blue(relativJsonPath)} `))
         }
     }
 }

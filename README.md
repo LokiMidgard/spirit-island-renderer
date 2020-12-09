@@ -1,82 +1,64 @@
-# spirit-island-renderer
+# Spirit Island Renderer
+
+![console screenshot](docs/console.png)
 
 this tool renders custom spirits and there unique powers. It uses [spirit-island-template](https://github.com/Gudradain/spirit-island-template) and render those with [node-html-to-image](https://github.com/frinyvonnick/node-html-to-image)
 
 
-## Early Development
-
-This project just started.
-
-* [x] Spirit Front
-* [x] Spirit Back (Lore)
-* [x] Unique Power cards
-* [x] Unique Power Cards Back
-
-* [ ] Create automatic import script for Tabletop simulator
-
 ## Getting started
 
+>You need to have [node](https://nodejs.org/) installed. We assume you have added it to your PATH when you installed it.
 
-Create a JSON file that holds all your spirit data. Look in the sample folder for an example or use it as your first spirit. The JSON file needs to be conform to the json schema in this repo. If your code editor supports JSON-Schema, you can enable auto-completion and warnings adding the following entry at the top:
-```json
-{
-  "$schema": "https://raw.githubusercontent.com/LokiMidgard/spirit-island-renderer/development/spirit-schema.json",
-  // your spirit data like name etc...
-}
-```
-
-*The sample uses the local schema file in this repo so when you move the JSON it will no longer find the schema. Replace the schema entry in the sample with the one above.*
-
-
-
-### Get the program
-Install the program using npm
+The fastest way is to start is with the sample.
 
 ```bash
-npm i spirit-island-renderer -g
+# This generates an folder myTestSpirt and put the sample inside
+npx spirit-island-renderer --generate-sample myTestSpirit
+
+# This will generate the sample spirit
+npx spirit-island-renderer myTestSpirit\Ashes-renews-the-land.json
+
+# now you'll find the images of the spirit in the out folder
 ```
 
-then execute it using
+Take a look at `myTestSpirut/Ashes-renews-the-land.json`. Changing some values and executing `npx spirit-island-renderer myTestSpirit\Ashes-renews-the-land.json` from the parent folder again will change the images of the spirit. Try it out.
 
+If you open the JSON file in an editor that can handle JSON schema like [VSCode](https://code.visualstudio.com/Download) you get autocompletion and warnings if you put some values where they do not belong.
+
+Execute `-h` to print the help and find out what you can do
 ```bash
-npm exec sir <spirit-file.json>
-
+npx spirit-island-renderer -h
 ```
 
 
-**OR**
+------------------------------
 
-Download this repository
 
+
+
+### Sample output
+
+![Face of the spirit board](docs/Ashes%20renews%20the%20land.json-front.png)
+![Lore of the spirit board](docs/Ashes%20renews%20the%20land.json-lore.png)
+![Back of the unique power card](docs/Ashes%20renews%20the%20land.json-cards-back.png)
+![Face of the unique power card](docs/Ashes%20renews%20the%20land.json-cards.png "Face of the unique power card")
+
+## Development
+
+When you clone do not forget the sub modules
 
 ```bash
 # Init the submodules
 git submodule init
 git submodule update
 
-# Install the dependencys
-npm install
-
-# Create your first spirit
-npm run render <spirit-file.json>
 ```
+you can test the code with following command
+```bash
+# Create your first spirit
+npm run render -- <spirit-file.json>
 
-------------------------------
-
-
-
-You can also look in the sample folder.
-
-To use the correct fonts copy the fonts to the folder `dependencys/fonts`. You will find a read me there describing what you need. The fonts are needed for [spirit-island-template](https://github.com/Gudradain/spirit-island-template) where you can find a description how to obtain a copy of those files.
-
-### Sample output
-
-![Face of the spirit board](docs/Ashes%20renews%20the%20land.json-front.png)
-![Lore of the spirit board](docs/Ashes%20renews%20the%20land.json-lore.png)
-![Back of the unique power card](docs/Ashes%20renews%20the%20land.json-cards-back.png" )
-![Face of the unique power card](docs/Ashes%20renews%20the%20land.json-cards.png "Face of the unique power card")
-
-## Development
+```
 
 If you change the spirit type you need to execute
 
