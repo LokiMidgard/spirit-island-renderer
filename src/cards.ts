@@ -203,3 +203,77 @@ function GetSourceIcon(target: "land" | "ocean" | "jungle" | "mountain" | "sand"
 function TestTwo<T1, T2, S1 extends T1 | T2, S2 extends T1 | T2>(toCheckFor1: T1, toCheckFor2: T2, input1: S1, input2: S2) {
     return (toCheckFor1 == input1 && toCheckFor2 == input2) || (toCheckFor1 == input2 && toCheckFor2 == input1)
 }
+
+
+export 
+function GetCardTemplate(port: number | undefined) {
+    return `<!DOCTYPE html>
+
+    <head>
+        <link href="http://localhost:${port}/font.css" rel="stylesheet" />
+        <link href="http://localhost:${port}/_global/css/global.css" rel="stylesheet" />
+        <link href="http://localhost:${port}/_global/css/card.css" rel="stylesheet" />
+        <script type="text/javascript" src="http://localhost:${port}/_global/js/card.js" defer></script>
+        <style>
+        body {
+          width: 976px;
+          justify-content: start;
+        }
+        .or, or{
+            mix-blend-mode: multiply;
+        }
+        rules,
+        threshold-title {
+            background-color: transparent;
+        }
+        threshold {
+            background-color: rgb(255 246 84 / 60%);
+        }
+
+        threshold-line {
+            width:calc((353px / 2) - (220px - (353px / 2)));
+        }
+        threshold-line::before{
+            content:'';
+            position: absolute;
+            display: block;
+            height: 1px;
+            width: calc(353px - 220px);
+            left: 220px;
+            background-color:rgb(223, 196, 143);
+            overflow: visible;
+            color:white;
+            margin-bottom:30px;
+            z-index:1;
+          }
+          
+          
+
+        rules-container {
+            background-position: center;
+            background-image: url('${GetImageUrl('../resources/Parchment.jpg', __dirname)}');
+          }
+       rules{
+            background-color: transparent important!;
+        }
+      </style>
+    </head>
+    
+    <body>
+        {{{content}}}
+    </body>
+    </html>`
+}
+
+export function GetCardBackTemplate(spirit: Sprit, relativeTo: string) {
+    return `
+            <!DOCTYPE html>
+            <head>
+            </head>
+            <body style='width: 488px; height: 682px; padding:0px; margin:0px;'>
+                <div style='width: 488px; height: 682px; position: absolute; left: 0ox; top: 0px; background-image: url("${GetImageUrl(spirit.image, relativeTo)}"); background-size: ${spirit.imageCardBackPosition?.scale ?? 100}%; background-position-x: ${spirit.imageCardBackPosition?.x ?? 0}px; background-position-y: ${spirit.imageCardBackPosition?.y ?? 0}px; ' />
+                <img style='width: 488px; height: 682px; position: absolute; left: 0ox; top: 0px;' src="${GetImageUrl('../resources/Unique-Power-Back.png', __dirname)}" />
+            </body>
+            </html>
+            `
+}
