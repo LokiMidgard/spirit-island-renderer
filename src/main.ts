@@ -17,6 +17,7 @@ export interface parsed {
     generateSample: undefined | string | null,
     help: boolean,
     input: string[] | string | undefined,
+    tabletop: string | undefined
     output: string,
     noHeader: boolean
 }
@@ -60,6 +61,13 @@ const optionDefinitions: (commandlineargs.OptionDefinition & commandlineussage.O
         description: 'The location where the rendered spiret will be saved. (defaults to ./out/)',
         typeLabel: '<folder>',
         defaultValue: './out/'
+    },
+    {
+        name: 'tabletop',
+        alias: 't',
+        type: String,
+        description: 'This will generate a json file with all infos to automaticly load the spirit in tabletop simulator.',
+        typeLabel: '<url prefix>',
     }
 ]
 
@@ -67,6 +75,7 @@ async function main() {
     const cmd = commandlineargs(optionDefinitions, {
         camelCase: true
     }) as parsed
+
 
     if (!cmd.noHeader) {
         console.log(header)

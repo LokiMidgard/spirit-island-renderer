@@ -14,6 +14,7 @@ export type Element = 'fire'
     | 'sun'
     | 'animal'
     | 'plant'
+    | 'earth'
 
 export type ElementWithAny = Element | 'any'
 
@@ -139,25 +140,26 @@ type Sprit = {
         card: (PresenceTrackOptions | PresenceTrackOptions[])[]
     },
     inatePowers: InatePowers[],
-    uniquePowers: {
-        name: string,
-        image: ImagePath,
-        speed: 'fast' | 'slow',
-        energy: number,
-        mana: Element[] | Element | undefined,
-        target: Target,
-        effect: [string, string] | string,
-        threshold: {
-            requirements: {
-                mana: Element
-                ammount: number
-            }[] | {
-                mana: Element
-                ammount: number
-            },
-            effect: string,
-        } | undefined
-    }[]
+    uniquePowers: PowerCard[]
 };
 
+export type PowerCard = {
+    name: string,
+    image: ImagePath,
+    speed: 'fast' | 'slow',
+    energy: number,
+    mana: Element[] | Element | undefined,
+    target: Target,
+    effect: [string, string] | string,
+    threshold: {
+        requirements: {
+            mana: Element
+            ammount: number
+        }[] | {
+            mana: Element
+            ammount: number
+        },
+        effect: string,
+    } | undefined
+}
 export default Sprit
