@@ -6,7 +6,6 @@
     "type": "git",
     "url": "https://github.com/LokiMidgard/spirit-island-renderer.git"
   },
-
   "bugs": {
     "url": "https://github.com/LokiMidgard/spirit-island-renderer/issues"
   },
@@ -29,11 +28,16 @@
   "license": "MIT",
   "dependencies": {
     "bufferutil": "^4.0.1",
+    "chalk": "^2.4.2",
+    "command-line-args": "^5.1.1",
+    "command-line-usage": "^6.1.1",
     "node-html-to-image": "^3.1.0",
     "unzipper": "^0.10.11",
     "utf-8-validate": "^5.0.2"
   },
   "devDependencies": {
+    "@types/command-line-args": "^5.0.0",
+    "@types/command-line-usage": "^5.0.1",
     "@types/unzipper": "^0.10.3",
     "ts-node": "^9.1.0",
     "typescript": "^4.1.2",
