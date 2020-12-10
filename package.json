@@ -23,7 +23,7 @@
     "changelog": "npx auto-changelog --template automasation/changelog.hbs -p && git add CHANGELOG.md",
     "tag": "npx auto-changelog -p --template automasation/tag.hbs --output out/tag.md && npx ts-node automasation/tag.ts",
     "preparetest": "npx ts-node automasation/checkTag.ts && npm run changelog && cross-var git commit -m \"Release v$npm_package_version\" && npm run tag",
-    "prepublishOnly": "npm run changelog"
+    "prepublishOnly": "npm run preparetest && git push && git push --tags"
   },
   "auto-changelog": {
     "commitLimit": false,

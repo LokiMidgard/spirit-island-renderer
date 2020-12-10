@@ -2,7 +2,7 @@
 
 ![console screenshot](docs/console.png)
 
-this tool renders custom spirits and there unique powers. It uses [spirit-island-template](https://github.com/Gudradain/spirit-island-template) and render those with [node-html-to-image](https://github.com/frinyvonnick/node-html-to-image)
+This tool renders custom spirits and there unique powers. It uses [spirit-island-template](https://github.com/Gudradain/spirit-island-template) and render those with [node-html-to-image](https://github.com/frinyvonnick/node-html-to-image). Check out [what's new](CHANGELOG.md).
 
 
 ## Getting started
