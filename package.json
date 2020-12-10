@@ -1,6 +1,6 @@
 {
   "name": "spirit-island-renderer",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Renders images of spirits for spirit island",
   "repository": {
     "type": "git",
@@ -12,14 +12,22 @@
   "homepage": "https://github.com/LokiMidgard/spirit-island-renderer#spirit-island-renderer",
   "main": "./lib/main.js",
   "bin": {
-    "sir": "./bin/sir",
-    "spirit-island-rederer": "./bin/sir"
+    "sir": "bin/sir",
+    "spirit-island-rederer": "bin/sir"
   },
   "scripts": {
     "render": "npx ts-node src/main.ts",
     "generate-schema": "npx typescript-json-schema tsconfig.json Sprit > spirit-schema.json --required",
     "build": "tsc",
-    "prepack": "npm run build &&  cross-var replace \"process.env.npm_package_version\" `$npm_package_version` lib/const.js"
+    "prepack": "npm run build &&  cross-var replace \"process.env.npm_package_version\" `$npm_package_version` lib/const.js",
+    "changelog": "npx auto-changelog --template automasation/changelog.hbs -p && git add CHANGELOG.md",
+    "tag": "npx auto-changelog -p --template automasation/tag.hbs --output out/tag.md && npx ts-node automasation/tag.ts",
+    "preparetest": "npx ts-node automasation/checkTag.ts && npm run changelog && cross-var git commit -m \"Release v$npm_package_version\" && npm run tag",
+    "prepublishOnly": "npm run changelog"
+  },
+  "auto-changelog": {
+    "commitLimit": false,
+    "startingVersion" : "v0.0.2"
   },
   "keywords": [
     "spirit-island"
@@ -39,8 +47,10 @@
     "@types/command-line-args": "^5.0.0",
     "@types/command-line-usage": "^5.0.1",
     "@types/unzipper": "^0.10.3",
+    "auto-changelog": "^2.2.1",
     "cross-var": "^1.1.0",
     "replace": "1.2.0",
+    "simple-git": "^2.26.0",
     "ts-node": "^9.1.0",
     "typescript": "^4.1.2",
     "typescript-json-schema": "^0.45.0"
