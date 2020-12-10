@@ -2,7 +2,7 @@
 
 ![console screenshot](docs/console.png)
 
-This tool renders custom spirits and there unique powers. It uses [spirit-island-template](https://github.com/Gudradain/spirit-island-template) and render those with [node-html-to-image](https://github.com/frinyvonnick/node-html-to-image). Check out [what's new](CHANGELOG.md).
+This tool renders custom spirits and their unique powers. It uses [spirit-island-template](https://github.com/Gudradain/spirit-island-template) and render those with [node-html-to-image](https://github.com/frinyvonnick/node-html-to-image). Check out [what's new](CHANGELOG.md).
 
 
 ## Getting started
@@ -16,10 +16,10 @@ Install the Program
 npm i spirit-island-renderer@latest -g
 ```
 
-The fastest way is to start is with the sample.
+The fastest way to start is with the sample.
 
 ```bash
-# This generates an folder myTestSpirt and put the sample inside
+# This generates a folder myTestSpirt and put the sample inside
 spirit-island-renderer --generate-sample myTestSpirit
 
 # This will generate the sample spirit
@@ -32,7 +32,7 @@ Take a look at `myTestSpirut/Ashes-renews-the-land.json`. Changing some values a
 
 If you open the JSON file in an editor that can handle JSON schema like [VSCode](https://code.visualstudio.com/Download) you get autocompletion and warnings if you put some values where they do not belong.
 
-Execute `-h` to print the help and find out what you can do
+Execute `-h` to print the help and find out what you can do.
 ```bash
 spirit-island-renderer -h
 ```
