@@ -23,7 +23,7 @@ All notable changes in this release.
     {{/each}}
   {{/if}}
 
-  {{#commit-list commits heading='### Commits'}}
+  {{#commit-list commits heading='### Commits' exclude='(^[Rr]elease v\d+(.\d+(.\d+)?)?$)|(^\?)'}}
     - {{#if breaking}}**Breaking change:** {{/if}}{{subject}} {{#if href}}[`{{shorthash}}`]({{href}}){{/if}}
   {{/commit-list}}
 
