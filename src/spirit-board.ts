@@ -1,5 +1,5 @@
 import Sprit, { Growth, InatePowerLevel, InatePowers, PresenceTrackOptions, Target } from './spiritType'
-
+import path from 'path'
 import { FileAsDataUrl } from './main'
 
 
@@ -99,7 +99,7 @@ export function ToFront(spirit: Sprit, relativeTo: string): string {
     }
 
     let spiritXml = `
-    <div style='width: 100%; height: 100%; z-index: -1;  background-size: ${spirit.imageFrontPosition?.scale ?? 100}%; background-position-x: ${spirit.imageFrontPosition?.x ?? 0}px; background-position-y: ${spirit.imageFrontPosition?.y ?? 0}px; margin: 15px; position: absolute; background-image: url("${FileAsDataUrl(spirit.image, relativeTo)}");'  ></div>
+    <div class='background-graphic' style='background-size: ${spirit.imageFrontPosition?.scale ?? 100}%; background-position-x: ${spirit.imageFrontPosition?.x ?? 0}px; background-position-y: ${spirit.imageFrontPosition?.y ?? 0}px; background-image: url("${FileAsDataUrl(spirit.image, relativeTo)}");'  ></div>
     <board >
     <img class="spirit-border" src="${FileAsDataUrl(spirit.boarder, relativeTo)}" />
     <spirit-name>
@@ -149,7 +149,7 @@ export function ToLore(spirit: Sprit, relativeTo: string): string {
     }
 
     let spiritXml = `
-    <div style='width: 100%; height: 100%; z-index: -1;  background-size: ${spirit.imageLorePosition?.scale ?? 100}%; background-position-x: ${spirit.imageLorePosition?.x ?? 0}px; background-position-y: ${spirit.imageLorePosition?.y ?? 0}px; border-radius: 15.1px; position: absolute; background-image: url("${FileAsDataUrl(spirit.image, relativeTo)}");'  ></div>
+    <div class='background-graphic' style='background-size: ${spirit.imageLorePosition?.scale ?? 100}%; background-position-x: ${spirit.imageLorePosition?.x ?? 0}px; background-position-y: ${spirit.imageLorePosition?.y ?? 0}px;  background-image: url("${FileAsDataUrl(spirit.image, relativeTo)}");'  ></div>
     <board>
     <spirit-name>
         ${spirit.name}
@@ -230,16 +230,28 @@ export function ToLore(spirit: Sprit, relativeTo: string): string {
 
 
 export function GetLoreTemplate(port: number | undefined) {
+
+    const prefix = port
+        ? `http://localhost:${port}`
+        : path.resolve(__dirname, '../dependencys/spirit-island-template')
+
     return `<!DOCTYPE html>
 
     <head>
-      <link href="http://localhost:${port}/font.css" rel="stylesheet" />
-      <link href="http://localhost:${port}/_global/css/global.css" rel="stylesheet" />
-      <link href="http://localhost:${port}/_global/css/board_lore.css" rel="stylesheet" />
-      <script type="text/javascript" src="http://localhost:${port}/_global/js/board_lore.js"></script>
+      <link href="${prefix}/font.css" rel="stylesheet" />
+      <link href="${prefix}/_global/css/global.css" rel="stylesheet" />
+      <link href="${prefix}/_global/css/board_lore.css" rel="stylesheet" />
+      <script type="text/javascript" src="${prefix}/_global/js/board_lore.js"></script>
         <style>
         body {
           width: 1766px;
+        }
+        .background-graphic{
+            width: 1766px;
+            height: 1177px;
+            z-index: -1;
+            border-radius: 15.1px;
+            position: absolute;
         }
       </style>
     </head>
@@ -253,13 +265,18 @@ export function GetLoreTemplate(port: number | undefined) {
 }
 
 export function GetFrontTemplate(port: number | undefined) {
+
+    const prefix = port
+        ? `http://localhost:${port}`
+        : path.resolve(__dirname, '../dependencys/spirit-island-template')
+
     return `<!DOCTYPE html>
 
     <head>
-      <link href="http://localhost:${port}/font.css" rel="stylesheet" />
-      <link href="http://localhost:${port}/_global/css/global.css" rel="stylesheet" />
-      <link href="http://localhost:${port}/_global/css/board_front.css" rel="stylesheet" />
-      <script type="text/javascript" src="http://localhost:${port}/_global/js/board_front.js"></script>
+      <link href="${prefix}/font.css" rel="stylesheet" />
+      <link href="${prefix}/_global/css/global.css" rel="stylesheet" />
+      <link href="${prefix}/_global/css/board_front.css" rel="stylesheet" />
+      <script type="text/javascript" src="${prefix}/_global/js/board_front.js"></script>
         <style>
         body {
           width: 1766px;
@@ -269,6 +286,16 @@ export function GetFrontTemplate(port: number | undefined) {
         }
         presence-tracks{
             z-index:1;
+        }
+        board {
+            display:block;
+        }
+        .background-graphic{
+            width: 1766px;
+            height: 1177px;
+            z-index: -1;
+            border-radius: 15.1px;
+            position: absolute;
         }
         artist-name {
             position: absolute;
@@ -290,9 +317,9 @@ export function GetFrontTemplate(port: number | undefined) {
     </head>
     
     <body>
-    
+    <div style='width: 1766px; height: 1177px; overflow: hidden;'>
         {{{content}}}
-    
+    </div>
     </body>
     </html>`
 }

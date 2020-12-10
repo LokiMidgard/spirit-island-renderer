@@ -32,9 +32,11 @@ export async function HandleRender(cmd: parsed) {
 
     const server = await StartServer()
     const serverAddress = server.address()
-    const port = typeof serverAddress === 'object'
-        ? serverAddress?.port
-        : parseInt(serverAddress.split(':')[1])
+    const port = cmd.html
+        ? undefined
+        : typeof serverAddress === 'object'
+            ? serverAddress?.port
+            : parseInt(serverAddress.split(':')[1])
     try {
 
 
@@ -77,41 +79,52 @@ export async function HandleRender(cmd: parsed) {
                 tabletopData[spirit.name] = [tabletopSpirit, tabletopDeck]
             }
 
-            await nodeHtmlToImage({
-                output: outdir + GetCardsFrontName(spiritInputFile),
-                html: cardTemplate,
-                transparent: true,
+            if (cmd.html) {
+                const htmlPath = (x: string) => path.join(outdir, path.dirname(x), path.basename(x, '.png') + '.html')
 
-                content: { content: cardContetn },
-                waitUntil: ['domcontentloaded', 'load', 'networkidle0']
-            })
-
-            await nodeHtmlToImage({
-                output: outdir + GetCardsBackName(spiritInputFile),
-                html: cardBackTemplate,
-                transparent: true,
+                await fs.promises.writeFile(htmlPath(GetCardsFrontName(spiritInputFile)), cardTemplate.replace('{{{content}}}', cardContetn))
+                await fs.promises.writeFile(htmlPath(GetCardsBackName(spiritInputFile)), cardBackTemplate)
+                await fs.promises.writeFile(htmlPath(GetSpiritLoreName(spiritInputFile)), loreTemplate.replace('{{{content}}}', loreContetn))
+                await fs.promises.writeFile(htmlPath(GetSpiritFrontName(spiritInputFile)), frontTemplate.replace('{{{content}}}', frontContetn))
 
 
-                waitUntil: ['domcontentloaded', 'load', 'networkidle0']
-            })
+            } else {
+                await nodeHtmlToImage({
+                    output: outdir + GetCardsFrontName(spiritInputFile),
+                    html: cardTemplate,
+                    transparent: true,
+
+                    content: { content: cardContetn },
+                    waitUntil: ['domcontentloaded', 'load', 'networkidle0']
+                })
+
+                await nodeHtmlToImage({
+                    output: outdir + GetCardsBackName(spiritInputFile),
+                    html: cardBackTemplate,
+                    transparent: true,
 
 
-            await nodeHtmlToImage({
-                output: outdir + GetSpiritLoreName(spiritInputFile),
-                html: loreTemplate,
-                transparent: true,
+                    waitUntil: ['domcontentloaded', 'load', 'networkidle0']
+                })
 
-                content: { content: loreContetn },
-                waitUntil: ['domcontentloaded', 'load', 'networkidle0']
-            })
-            await nodeHtmlToImage({
-                output: outdir + GetSpiritFrontName(spiritInputFile),
-                html: frontTemplate,
-                transparent: true,
 
-                content: { content: frontContetn },
-                waitUntil: ['domcontentloaded', 'load', 'networkidle0']
-            })
+                await nodeHtmlToImage({
+                    output: outdir + GetSpiritLoreName(spiritInputFile),
+                    html: loreTemplate,
+                    transparent: true,
+
+                    content: { content: loreContetn },
+                    waitUntil: ['domcontentloaded', 'load', 'networkidle0']
+                })
+                await nodeHtmlToImage({
+                    output: outdir + GetSpiritFrontName(spiritInputFile),
+                    html: frontTemplate,
+                    transparent: true,
+
+                    content: { content: frontContetn },
+                    waitUntil: ['domcontentloaded', 'load', 'networkidle0']
+                })
+            }
 
             console.log(`finished ${spiritInputFile} `)
         }
@@ -182,7 +195,7 @@ function ReplacePlacehoder(input: string): string {
     ]
 
     for (const p of placeholder) {
-        input = input.replace(new RegExp(`{ ${p} } `, "g"), ` < icon class="${p}" > </icon>`)
+        input = input.replace(new RegExp(`{${p}}`, "g"), `<icon class="${p}" ></icon>`)
     }
     return input;
 

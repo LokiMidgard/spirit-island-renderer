@@ -1,3 +1,4 @@
+import path from 'path'
 import { FileAsDataUrl } from "./main";
 import Sprit, { Element, Target, TargetLand } from './spiritType'
 
@@ -207,13 +208,18 @@ function TestTwo<T1, T2, S1 extends T1 | T2, S2 extends T1 | T2>(toCheckFor1: T1
 
 export 
 function GetCardTemplate(port: number | undefined) {
+
+    const prefix = port
+    ? `http://localhost:${port}`
+    : path.resolve(__dirname, '../dependencys/spirit-island-template')
+
     return `<!DOCTYPE html>
 
     <head>
-        <link href="http://localhost:${port}/font.css" rel="stylesheet" />
-        <link href="http://localhost:${port}/_global/css/global.css" rel="stylesheet" />
-        <link href="http://localhost:${port}/_global/css/card.css" rel="stylesheet" />
-        <script type="text/javascript" src="http://localhost:${port}/_global/js/card.js" defer></script>
+        <link href="${prefix}/font.css" rel="stylesheet" />
+        <link href="${prefix}/_global/css/global.css" rel="stylesheet" />
+        <link href="${prefix}/_global/css/card.css" rel="stylesheet" />
+        <script type="text/javascript" src="${prefix}/_global/js/card.js" defer></script>
         <style>
         body {
           width: 976px;

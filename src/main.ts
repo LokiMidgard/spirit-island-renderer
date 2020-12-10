@@ -19,7 +19,8 @@ export interface parsed {
     input: string[] | string | undefined,
     tabletop: string | undefined
     output: string,
-    noHeader: boolean
+    noHeader: boolean,
+    html: boolean
 }
 
 
@@ -68,6 +69,11 @@ const optionDefinitions: (commandlineargs.OptionDefinition & commandlineussage.O
         type: String,
         description: 'This will generate a json file with all infos to automaticly load the spirit in tabletop simulator.',
         typeLabel: '<url prefix>',
+    },
+    {
+        name: 'html',
+        type: Boolean,
+        description: 'Will Output HTML files instead of images',
     }
 ]
 
