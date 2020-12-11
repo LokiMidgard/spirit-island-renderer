@@ -16,6 +16,7 @@ import { HandleSample } from './generateSample'
 export interface parsed {
     generateSample: undefined | string | null,
     help: boolean,
+    license: boolean,
     input: string[] | string | undefined,
     tabletop: string | undefined
     output: string,
@@ -29,6 +30,12 @@ const optionDefinitions: (commandlineargs.OptionDefinition & commandlineussage.O
         name: 'help',
         alias: 'h',
         description: 'Display this usage guide.',
+        type: Boolean,
+        defaultValue: false,
+    },
+    {
+        name: 'license',
+        description: 'Displays license information.',
         type: Boolean,
         defaultValue: false,
     },
@@ -88,6 +95,30 @@ async function main() {
         console.log()
     }
 
+    if (cmd.license) {
+        console.log(chalk.underline('Licenses'))
+        console.log()
+        console.log('The images/icons come from the Spirit Island Wiki which state:')
+        console.log(chalk.gray(`\tContent is available under ${chalk.green('Creative Commons Attribution-NonCommercial-ShareAlike')} unless otherwise noted.`))
+        console.log()
+
+        console.log('The HTML Templates are from spirit-island-template project and under:')
+        console.log(chalk.green('\tMIT'))
+        console.log()
+
+        console.log('The Fonts')
+        console.log(chalk.magenta('JosefinSans-Regular'))
+        console.log(chalk.green('\tOpen Font License') + chalk.grey.italic(' included'))
+        console.log()
+        console.log(chalk.magenta('Gobold Extra2'))
+        console.log(chalk.green('\tFree for private use') + chalk.gray.italic(' downloaded on demand'))
+        console.log(chalk.grey(`\tsee:\n\t${chalk.blue(path.resolve(__dirname, '../dependencys/fonts/Gobold/Read Me.txt'))}`))
+        console.log()
+        console.log(chalk.magenta('DK Snemand (demo)'))
+        console.log(chalk.green('\tFree for private use') + chalk.grey.italic(' downloaded on demand'))
+        console.log(chalk.grey(`\tsee:\n\t${chalk.blue(path.resolve(__dirname, '../dependencys/fonts/Snemand/License & FAQ.pdf'))}`))
+        console.log()
+    }
 
     if (cmd.help) {
         HandleHelp()
