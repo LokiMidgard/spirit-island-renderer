@@ -18,6 +18,8 @@ export function ToFront(spirit: Sprit, relativeTo: string): string {
                 return `gain-element(${g.element})`
             } else if (g.type === 'move-presence') {
                 return `move-presence(${g.range})`
+            } else if (g.type === 'push') {
+                return `push(${g.push})`
             } else {
                 return `gain-energy(${g.number})`
             }
@@ -41,6 +43,9 @@ export function ToFront(spirit: Sprit, relativeTo: string): string {
         else if (typeof entry == "object") {
             if (entry.type == 'move-presence') {
                 return `move-presence(${entry.range})`
+            }
+            if (entry.type == 'push') {
+                return `push(${entry.push})`
             }
             else {
                 return 'undefined'

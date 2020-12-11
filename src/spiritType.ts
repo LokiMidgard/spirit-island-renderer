@@ -24,6 +24,9 @@ export type GrowthEntry = 'reclaim-one'
     | 'reclaim-all'
     | 'gain-power-card'
     | 'forget-power-card'
+    | { 
+        type: 'push',
+        push: Token }
     | {
         type: 'gain-energy',
         number: number
@@ -56,6 +59,7 @@ export type TargetLand = Land
     | InvaderUnit
     | Counter
 
+export type Token = Counter | InvaderUnit | "dahan" | "blight"
 
 export type InvaderUnit = 'explorer' | 'town' | 'city'
 
@@ -94,7 +98,9 @@ export type InatePowers = {
     levels: InatePowerLevel[]
 }
 
-export type PresenceTrackOptions = number | ElementWithAny | 'reclaim-one' | MovePresents | "forget-power-card"
+export type PresenceTrackOptions = number | ElementWithAny | 'reclaim-one' | MovePresents | "forget-power-card" 
+| { "type": "push"
+    "push": Token }
 
 type Sprit = {
     name: string,
