@@ -18,16 +18,16 @@
   "scripts": {
     "render": "npx ts-node src/main.ts",
     "generate-schema": "npx typescript-json-schema tsconfig.json Sprit > spirit-schema.json --required",
-    "build": "tsc",
+    "build": "npx rimraf lib/**/* && npx tsc",
     "prepack": "npm run build &&  cross-var replace \"process.env.npm_package_version\" `$npm_package_version` lib/const.js",
     "changelog": "npx auto-changelog --template automasation/changelog.hbs -p && git add CHANGELOG.md",
     "tag": "npx auto-changelog -p --template automasation/tag.hbs --output out/tag.md && npx ts-node automasation/tag.ts",
-    "preparetest": "npx ts-node automasation/checkTag.ts && npm run changelog && cross-var git commit -m \"Release v$npm_package_version\" && npm run tag",
+    "preparetest": "npx ts-node automasation/checkTag.ts && git add package.json && npm run changelog && cross-var git commit -m \"Release v$npm_package_version\" && npm run tag",
     "prepublishOnly": "npm run preparetest && git push && git push --tags"
   },
   "auto-changelog": {
     "commitLimit": false,
-    "startingVersion" : "v0.0.2"
+    "startingVersion": "v0.0.2"
   },
   "keywords": [
     "spirit-island"
@@ -50,6 +50,7 @@
     "auto-changelog": "^2.2.1",
     "cross-var": "^1.1.0",
     "replace": "1.2.0",
+    "rimraf": "^3.0.2",
     "simple-git": "^2.26.0",
     "ts-node": "^9.1.0",
     "typescript": "^4.1.2",
