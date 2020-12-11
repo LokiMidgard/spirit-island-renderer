@@ -11,6 +11,7 @@ import { GetFrontTemplate, GetLoreTemplate, ToFront, ToLore } from './spirit-boa
 import { GetMissingFonts } from './additionalFontHandling'
 import { parsed } from './main'
 import { spiritScript } from './bigconst'
+import chalk from 'chalk'
 
 
 type tableTopData = {
@@ -76,6 +77,9 @@ export async function HandleRender(cmd: parsed) {
                 const prefix = cmd.tabletop
                 const tabletopSpirit = createTableTopObject(spirit, prefix, spiritInputFile);
                 const tabletopDeck = createTableTopDeck(spirit, prefix, spiritInputFile);
+                if (tabletopData[spirit.name]) {
+                    console.warn(chalk.yellow(`WARNING: Spirit ${spirit.name} defined twice!`))
+                }
                 tabletopData[spirit.name] = [tabletopSpirit, tabletopDeck]
             }
 
