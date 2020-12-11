@@ -85,9 +85,22 @@ const optionDefinitions: (commandlineargs.OptionDefinition & commandlineussage.O
 ]
 
 async function main() {
-    const cmd = commandlineargs(optionDefinitions, {
-        camelCase: true
-    }) as parsed
+
+    let cmd: parsed
+    try {
+        cmd = commandlineargs(optionDefinitions, {
+            camelCase: true
+        }) as parsed
+
+    } catch (error) {
+        if (error?.optionName) {
+            console.error(chalk.red(`Failed to parse option: ${error?.optionName}`))
+        } else {
+            console.error(chalk.red(error))
+        }
+        HandleHelp();
+        return;
+    }
 
 
     if (!cmd.noHeader) {
@@ -126,6 +139,8 @@ async function main() {
         HandleSample(cmd)
     } else if (cmd.input) {
         await HandleRender(cmd)
+    } else if (cmd.license) {
+        // already handled
     } else {
         console.log(chalk.yellow('No arguments suplied.\n'))
         HandleHelp()
