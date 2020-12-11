@@ -5,11 +5,27 @@
             "enum": [
                 "air",
                 "animal",
+                "earth",
                 "fire",
                 "moon",
                 "plant",
                 "sun",
                 "water"
+            ],
+            "type": "string"
+        },
+        "Token": {
+            "enum": [
+                "badlands",
+                "beast",
+                "blight",
+                "city",
+                "dahan",
+                "desease",
+                "explorer",
+                "strife",
+                "town",
+                "wildness"
             ],
             "type": "string"
         }
@@ -53,6 +69,24 @@
                         "anyOf": [
                             {
                                 "properties": {
+                                    "push": {
+                                        "$ref": "#/definitions/Token"
+                                    },
+                                    "type": {
+                                        "enum": [
+                                            "push"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "push",
+                                    "type"
+                                ],
+                                "type": "object"
+                            },
+                            {
+                                "properties": {
                                     "number": {
                                         "type": "number"
                                     },
@@ -79,6 +113,7 @@
                                                         "air",
                                                         "animal",
                                                         "any",
+                                                        "earth",
                                                         "fire",
                                                         "moon",
                                                         "plant",
@@ -94,6 +129,7 @@
                                                     "air",
                                                     "animal",
                                                     "any",
+                                                    "earth",
                                                     "fire",
                                                     "moon",
                                                     "plant",
@@ -191,6 +227,24 @@
                                     "anyOf": [
                                         {
                                             "properties": {
+                                                "push": {
+                                                    "$ref": "#/definitions/Token"
+                                                },
+                                                "type": {
+                                                    "enum": [
+                                                        "push"
+                                                    ],
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "push",
+                                                "type"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        {
+                                            "properties": {
                                                 "number": {
                                                     "type": "number"
                                                 },
@@ -217,6 +271,7 @@
                                                                     "air",
                                                                     "animal",
                                                                     "any",
+                                                                    "earth",
                                                                     "fire",
                                                                     "moon",
                                                                     "plant",
@@ -232,6 +287,7 @@
                                                                 "air",
                                                                 "animal",
                                                                 "any",
+                                                                "earth",
                                                                 "fire",
                                                                 "moon",
                                                                 "plant",
@@ -648,6 +704,24 @@
                                 "type": "object"
                             },
                             {
+                                "properties": {
+                                    "push": {
+                                        "$ref": "#/definitions/Token"
+                                    },
+                                    "type": {
+                                        "enum": [
+                                            "push"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "push",
+                                    "type"
+                                ],
+                                "type": "object"
+                            },
+                            {
                                 "items": {
                                     "anyOf": [
                                         {
@@ -669,10 +743,29 @@
                                             "type": "object"
                                         },
                                         {
+                                            "properties": {
+                                                "push": {
+                                                    "$ref": "#/definitions/Token"
+                                                },
+                                                "type": {
+                                                    "enum": [
+                                                        "push"
+                                                    ],
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "push",
+                                                "type"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        {
                                             "enum": [
                                                 "air",
                                                 "animal",
                                                 "any",
+                                                "earth",
                                                 "fire",
                                                 "forget-power-card",
                                                 "moon",
@@ -695,6 +788,7 @@
                                     "air",
                                     "animal",
                                     "any",
+                                    "earth",
                                     "fire",
                                     "forget-power-card",
                                     "moon",
@@ -734,6 +828,24 @@
                                 "type": "object"
                             },
                             {
+                                "properties": {
+                                    "push": {
+                                        "$ref": "#/definitions/Token"
+                                    },
+                                    "type": {
+                                        "enum": [
+                                            "push"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "push",
+                                    "type"
+                                ],
+                                "type": "object"
+                            },
+                            {
                                 "items": {
                                     "anyOf": [
                                         {
@@ -755,10 +867,29 @@
                                             "type": "object"
                                         },
                                         {
+                                            "properties": {
+                                                "push": {
+                                                    "$ref": "#/definitions/Token"
+                                                },
+                                                "type": {
+                                                    "enum": [
+                                                        "push"
+                                                    ],
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "push",
+                                                "type"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        {
                                             "enum": [
                                                 "air",
                                                 "animal",
                                                 "any",
+                                                "earth",
                                                 "fire",
                                                 "forget-power-card",
                                                 "moon",
@@ -781,6 +912,7 @@
                                     "air",
                                     "animal",
                                     "any",
+                                    "earth",
                                     "fire",
                                     "forget-power-card",
                                     "moon",
@@ -978,6 +1110,7 @@
                                     "enum": [
                                         "air",
                                         "animal",
+                                        "earth",
                                         "fire",
                                         "moon",
                                         "plant",
@@ -992,6 +1125,7 @@
                                 "enum": [
                                     "air",
                                     "animal",
+                                    "earth",
                                     "fire",
                                     "moon",
                                     "plant",

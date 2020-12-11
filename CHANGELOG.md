@@ -3,8 +3,23 @@
 All notable changes to this project will be documented in this file.
 
 
+#### [v0.0.6](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.0.5...v0.0.6)
+
+
+
+
+
+**Changes**  
+
+- Added push option to growth and presence trak [`6bd89d6`](https://github.com/LokiMidgard/spirit-island-renderer/commit/6bd89d6f1727adb02247565e05027517ed66c176)
+- Warning if 2 spirits with the same name generated [`5896fdb`](https://github.com/LokiMidgard/spirit-island-renderer/commit/5896fdbbd030899ed8b63c2fd15dd2a748087f63)
+- Schema will be regenerated on publish [`6307c77`](https://github.com/LokiMidgard/spirit-island-renderer/commit/6307c77ed85272165287f995a895e9e7a886c4a2)
+
+
+
 #### [v0.0.5](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.0.4...v0.0.5)
 
+> 11 December 2020
 
 
 
