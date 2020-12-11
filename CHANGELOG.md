@@ -3,8 +3,23 @@
 All notable changes to this project will be documented in this file.
 
 
+#### [v0.0.4](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.0.3...v0.0.4)
+
+
+
+
+
+**Changes**  
+
+- Removed Lua file from sampes [`0c9a7b9`](https://github.com/LokiMidgard/spirit-island-renderer/commit/0c9a7b9061e7b34b1094101f71a4ca27d56b8435)
+- Added license information in output [`9d2e1f1`](https://github.com/LokiMidgard/spirit-island-renderer/commit/9d2e1f17b29667d9aa181e21ebd9724524b76663)
+- Handle argument errors better [`69481bc`](https://github.com/LokiMidgard/spirit-island-renderer/commit/69481bc96238e16f5be99cae13f5fcb4e784d6f4)
+
+
+
 #### [v0.0.3](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.0.2...v0.0.3)
 
+> 10 December 2020
 
 
 
