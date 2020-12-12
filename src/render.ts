@@ -93,7 +93,7 @@ export async function HandleRender(cmd: parsed) {
                 }
             }
 
-            const outdir = path.resolve(outbasedir, spirit.name)
+            const outdir = path.resolve(outbasedir, spirit.name) + "/"
 
             if (!fs.existsSync(outdir)) {
                 await fs.promises.mkdir(outdir, { recursive: true })
