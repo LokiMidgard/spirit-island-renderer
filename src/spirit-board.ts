@@ -112,6 +112,7 @@ export function ToFront(spirit: Sprit, relativeTo: string): string {
     </spirit-name>
 
     <special-rules-container>
+        <section-title>SPECIAL RULES</section-title>
 ${spirit.specialRules.map(SpecialRules).join('\n')}
     </special-rules-container>
 
