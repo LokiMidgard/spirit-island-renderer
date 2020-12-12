@@ -117,7 +117,7 @@ type Sprit = {
     imageCardBackPosition: ImagePosition | undefined,
     imageLorePosition: ImagePosition | undefined,
 
-    boarder: ImagePath,
+    boarder: (Exclude<ImagePath, string> & Partial<ImagePosition>) | string,
     lore: string,
     setup: string,
     playStyle: string,
@@ -147,7 +147,7 @@ type Sprit = {
 
 export type PowerCard = {
     name: string,
-    image: (Exclude<ImagePath, string> & Partial<ImagePosition> )| string,
+    image: (Exclude<ImagePath, string> & Partial<ImagePosition>) | string,
     speed: 'fast' | 'slow',
     energy: number,
     mana: Element[] | Element | undefined,

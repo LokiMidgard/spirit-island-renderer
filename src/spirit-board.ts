@@ -103,10 +103,14 @@ export function ToFront(spirit: Sprit, relativeTo: string): string {
 `
     }
 
+    const backgroundPositionYValue = (typeof spirit.boarder == 'string' ? undefined : spirit.boarder)?.y
+    const backgroundPositionY = backgroundPositionYValue ? backgroundPositionYValue + 'px' : 'bottom'
+    const backgroundPositionXvalue = (typeof spirit.boarder == 'string' ? undefined : spirit.boarder)?.x
+    const backgroundPositionX = backgroundPositionXvalue ? backgroundPositionXvalue + 'px' : 'left'
     let spiritXml = `
     <div class='background-graphic' style='background-size: ${spirit.imageFrontPosition?.scale ?? 100}%; background-position-x: ${spirit.imageFrontPosition?.x ?? 0}px; background-position-y: ${spirit.imageFrontPosition?.y ?? 0}px; background-image: url("${FileAsDataUrl(spirit.image, relativeTo)}");'  ></div>
     <board >
-    <div class="spirit-border" style="background-image: url(${FileAsDataUrl(spirit.boarder, relativeTo)});" ></div>
+    <div class="spirit-border" style="background-size: ${(typeof spirit.boarder == 'string' ? undefined : spirit.boarder)?.scale ?? 100}%; background-position-x: ${backgroundPositionX}; background-position-y: ${backgroundPositionY}; background-image: url(${FileAsDataUrl(spirit.boarder, relativeTo)});" ></div>
     <spirit-name>
       ${spirit.name}
     </spirit-name>
@@ -305,7 +309,7 @@ export function GetFrontTemplate(port: number | undefined) {
         }
         .spirit-border{
             top: 0px;
-            height: 788.15px;
+            height: 830px;
             background-position: bottom left;
             background-repeat: no-repeat;
         }
