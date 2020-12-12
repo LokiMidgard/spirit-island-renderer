@@ -12,6 +12,7 @@ import { GetMissingFonts } from './additionalFontHandling'
 import { parsed } from './main'
 import { spiritScript } from './bigconst'
 import chalk from 'chalk'
+import { version } from './const'
 
 
 type tableTopData = {
@@ -76,7 +77,19 @@ export async function HandleRender(cmd: parsed) {
 
             const inputbuffer = await fs.promises.readFile(spiritInputFile, 'utf8')
 
-            var spirit = JSON.parse(inputbuffer) as Sprit
+            const spirit = JSON.parse(inputbuffer) as Sprit
+
+            const usedSchema = (spirit as any)['$schema'] as string
+            if (typeof usedSchema === 'string'
+                && usedSchema.startsWith('https://raw.githubusercontent.com/LokiMidgard/spirit-island-renderer/v')
+                && usedSchema.endsWith('/spirit-schema.json')) {
+                const firstPartLength = 'https://raw.githubusercontent.com/LokiMidgard/spirit-island-renderer/v'.length
+                const secondPartLength = '/spirit-schema.json'.length
+                const usedVersion = usedSchema.substr(firstPartLength, usedSchema.length - (secondPartLength + firstPartLength))
+                if (usedVersion != version) {
+                    console.warn(chalk.yellow(`${spirit.name} uses a schema from a different version. This tool is version ${version} but the spirit is written against ${usedVersion}`));
+                }
+            }
 
 
             const cardContetn = ReplacePlacehoder(ToCards(spirit, root))
