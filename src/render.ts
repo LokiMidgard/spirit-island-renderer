@@ -55,6 +55,10 @@ export async function HandleRender(cmd: parsed) {
 
         const tabletopData: tableTopData = {}
 
+        if (cmd.tabletop === null) {
+            cmd.tabletop = `file:///${path.resolve(process.cwd(), outdir).replace(/\\/g,'/')}/`
+        }
+
         if (cmd.tabletop) {
             await fs.promises.writeFile(outdir + 'SpiritImporter.json', await GenerateTableTopObject(cmd.tabletop), 'utf8')
             await fs.promises.copyFile(path.resolve(__dirname, '../resources/SpiritSpawnBoard.png'), outdir+ '/SpiritSpawnBoard.png')

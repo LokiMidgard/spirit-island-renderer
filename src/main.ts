@@ -74,8 +74,8 @@ const optionDefinitions: (commandlineargs.OptionDefinition & commandlineussage.O
         name: 'tabletop',
         alias: 't',
         type: String,
-        description: 'This will generate a json file with all infos to automaticly load the spirit in tabletop simulator.',
-        typeLabel: '<url prefix>',
+        description: 'This will generate a json file with all infos to automaticly load the spirit in tabletop simulator. The url Prefix is the path where the files will be hosted. Defaults to the out folder.',
+        typeLabel: '[<url prefix>]',
     },
     {
         name: 'html',
