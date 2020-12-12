@@ -3,6 +3,7 @@ import fs from 'fs'
 import Sprit, { Element, PowerCard } from './spiritType'
 import { GetCardBackTemplate, GetCardTemplate, ToCards } from './cards'
 import path from 'path'
+import url from 'url'
 
 import { StartServer } from './server'
 import { GetFrontTemplate, GetLoreTemplate, ToFront, ToLore } from './spirit-board'
@@ -23,11 +24,11 @@ export async function HandleRender(cmd: parsed) {
     if (!cmd.input)
         throw new Error('Input was not set.') // this should have been checked bevor this method is calld
 
-    const outdir = cmd.output[cmd.output.length - 1] != '/' || cmd.output[cmd.output.length - 1] != '\\'
+    const outbasedir = cmd.output[cmd.output.length - 1] != '/' || cmd.output[cmd.output.length - 1] != '\\'
         ? cmd.output + '/'
         : cmd.output
-    if (!fs.existsSync(outdir))
-        await fs.promises.mkdir(outdir)
+    if (!fs.existsSync(outbasedir))
+        await fs.promises.mkdir(outbasedir, { recursive: true })
 
 
     await GetMissingFonts()
@@ -57,17 +58,17 @@ export async function HandleRender(cmd: parsed) {
         const tabletopData: tableTopData = {}
 
         if (cmd.tabletop === null) {
-            cmd.tabletop = `file:///${path.resolve(process.cwd(), outdir).replace(/\\/g, '/')}/`
+            cmd.tabletop = `file:///${path.resolve(process.cwd(), outbasedir).replace(/\\/g, '/')}/`
         }
 
         if (cmd.tabletop) {
-            await fs.promises.writeFile(outdir + 'SpiritImporter.json', await GenerateTableTopObject(cmd.tabletop), 'utf8')
-            await fs.promises.copyFile(path.resolve(__dirname, '../resources/spirit-importer/preview.png'), outdir + '/SpiritImporter.png')
-            if (!fs.existsSync(outdir + '/spirit-importer')) {
-                await fs.promises.mkdir(outdir + '/spirit-importer')
+            await fs.promises.writeFile(outbasedir + 'SpiritImporter.json', await GenerateTableTopObject(cmd.tabletop), 'utf8')
+            await fs.promises.copyFile(path.resolve(__dirname, '../resources/spirit-importer/preview.png'), outbasedir + '/SpiritImporter.png')
+            if (!fs.existsSync(outbasedir + '/spirit-importer')) {
+                await fs.promises.mkdir(outbasedir + '/spirit-importer', { recursive: true })
             }
-            await fs.promises.copyFile(path.resolve(__dirname, '../resources/spirit-importer/front.png'), outdir + '/spirit-importer/front.png')
-            await fs.promises.copyFile(path.resolve(__dirname, '../resources/spirit-importer/back.png'), outdir + '/spirit-importer/back.png')
+            await fs.promises.copyFile(path.resolve(__dirname, '../resources/spirit-importer/front.png'), outbasedir + '/spirit-importer/front.png')
+            await fs.promises.copyFile(path.resolve(__dirname, '../resources/spirit-importer/back.png'), outbasedir + '/spirit-importer/back.png')
         }
 
         for (let i = 0; i < inputs.length; i++) {
@@ -92,6 +93,12 @@ export async function HandleRender(cmd: parsed) {
                 }
             }
 
+            const outdir = path.resolve(outbasedir, spirit.name)
+
+            if (!fs.existsSync(outdir)) {
+                await fs.promises.mkdir(outdir, { recursive: true })
+            }
+
 
             const cardContetn = ReplacePlacehoder(ToCards(spirit, root))
             const loreContetn = (ToLore(spirit, root))
@@ -101,7 +108,7 @@ export async function HandleRender(cmd: parsed) {
 
             // const prefix = 'file:///C:\\\\Users\\\\patri\\\\source\\\\repos\\\\spirit-island-renderer\\\\out\\\\';
             if (cmd.tabletop) {
-                const prefix = cmd.tabletop
+                const prefix = cmd.tabletop + encodeURIComponent(spirit.name) + "/"
                 const tabletopSpirit = createTableTopObject(spirit, prefix, spiritInputFile);
                 const tabletopDeck = createTableTopDeck(spirit, prefix, spiritInputFile);
                 if (tabletopData[spirit.name]) {
@@ -161,7 +168,7 @@ export async function HandleRender(cmd: parsed) {
         }
 
         if (Object.keys(tabletopData).length > 0)
-            await fs.promises.writeFile(outdir + 'tabletop.json', JSON.stringify(tabletopData))
+            await fs.promises.writeFile(outbasedir + 'tabletop.json', JSON.stringify(tabletopData))
 
     } catch (error) {
         console.error(error)
