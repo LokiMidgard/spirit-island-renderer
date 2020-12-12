@@ -89,5 +89,6 @@ async function ResolveFonts(url: string, ...filePath: string[]) {
         console.log(`${filePath} resolved`)
         // }
         await fs.promises.unlink(zipPath)
+        console.log()
     }
 }

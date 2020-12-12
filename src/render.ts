@@ -81,6 +81,8 @@ export async function HandleRender(cmd: parsed) {
 
             const spirit = JSON.parse(inputbuffer) as Sprit
 
+            console.log(`Render ${spirit.name}`)
+
             const usedSchema = (spirit as any)['$schema'] as string
             if (typeof usedSchema === 'string'
                 && usedSchema.startsWith('https://raw.githubusercontent.com/LokiMidgard/spirit-island-renderer/v')
@@ -164,9 +166,8 @@ export async function HandleRender(cmd: parsed) {
                 })
             }
 
-            console.log(`finished ${spiritInputFile} `)
         }
-
+        
         if (Object.keys(tabletopData).length > 0)
             await fs.promises.writeFile(outbasedir + 'tabletop.json', JSON.stringify(tabletopData))
 
