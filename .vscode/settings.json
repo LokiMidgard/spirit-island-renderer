@@ -16,6 +16,7 @@
         "UI",
         "JSON",
         "spawnObjectJSON",
-        "startLuaCoroutine"
+        "startLuaCoroutine",
+        "broadcastToAll"
     ]
 }
