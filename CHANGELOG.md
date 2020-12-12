@@ -3,8 +3,22 @@
 All notable changes to this project will be documented in this file.
 
 
+#### [v0.1.0](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.0.7...v0.1.0)
+
+
+
+
+
+**Changes**  
+
+- Fix errors in lua script [`11f9d2b`](https://github.com/LokiMidgard/spirit-island-renderer/commit/11f9d2bf49f15027c53c168299e967d461db03c6)
+- Added version check for schema [`2a6c07d`](https://github.com/LokiMidgard/spirit-island-renderer/commit/2a6c07d441b2d60cd4006f727ef1b732832268fd)
+
+
+
 #### [v0.0.7](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.0.6...v0.0.7)
 
+> 12 December 2020
 
 
 
