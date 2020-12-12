@@ -5,7 +5,8 @@ import Sprit, { Element, Target, TargetLand } from './spiritType'
 export function ToCards(spirit: Sprit, relativeTo: string): string {
     return spirit.uniquePowers.map(power => {
         let spiritXml = `<card class='${power.speed}'>
-<img class='image' src='${FileAsDataUrl(power.image, relativeTo)}' />
+<div class='image' style='background-image: url(${FileAsDataUrl(power.image, relativeTo)}); background-size: ${typeof power.image == 'string' ? undefined : power.image?.scale ?? 100}%; background-position-x: ${typeof power.image == 'string' ? undefined : power.image?.x ?? 0}px; background-position-y: ${typeof power.image == 'string' ? undefined : power.image?.y ?? 0}px; ' ></div>
+
 <cost>${power.energy}</cost>
 <name>${power.name}</name>
 ${power.mana ? (Array.isArray(power.mana) ? power.mana.map(e => `<element class='${e}' ></element>`).join('\n') : `<element class='${power.mana}' ></element>`) : ''}
@@ -206,12 +207,12 @@ function TestTwo<T1, T2, S1 extends T1 | T2, S2 extends T1 | T2>(toCheckFor1: T1
 }
 
 
-export 
-function GetCardTemplate(port: number | undefined) {
+export
+    function GetCardTemplate(port: number | undefined) {
 
     const prefix = port
-    ? `http://localhost:${port}`
-    : path.resolve(__dirname, '../dependencys/spirit-island-template')
+        ? `http://localhost:${port}`
+        : path.resolve(__dirname, '../dependencys/spirit-island-template')
 
     return `<!DOCTYPE html>
 

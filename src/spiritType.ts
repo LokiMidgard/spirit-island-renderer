@@ -24,9 +24,10 @@ export type GrowthEntry = 'reclaim-one'
     | 'reclaim-all'
     | 'gain-power-card'
     | 'forget-power-card'
-    | { 
+    | {
         type: 'push',
-        push: Token }
+        push: Token
+    }
     | {
         type: 'gain-energy',
         number: number
@@ -98,28 +99,23 @@ export type InatePowers = {
     levels: InatePowerLevel[]
 }
 
-export type PresenceTrackOptions = number | ElementWithAny | 'reclaim-one' | MovePresents | "forget-power-card" 
-| { "type": "push"
-    "push": Token }
+export type ImagePosition = {
+    x: number,
+    y: number,
+    scale: number
+}
+export type PresenceTrackOptions = number | ElementWithAny | 'reclaim-one' | MovePresents | "forget-power-card"
+    | {
+        "type": "push"
+        "push": Token
+    }
 
 type Sprit = {
     name: string,
     image: ImagePath,
-    imageFrontPosition: {
-        x: number,
-        y: number,
-        scale: number
-    } | undefined,
-    imageCardBackPosition: {
-        x: number,
-        y: number,
-        scale: number
-    } | undefined,
-    imageLorePosition: {
-        x: number,
-        y: number,
-        scale: number
-    } | undefined,
+    imageFrontPosition: ImagePosition | undefined,
+    imageCardBackPosition: ImagePosition | undefined,
+    imageLorePosition: ImagePosition | undefined,
 
     boarder: ImagePath,
     lore: string,
@@ -151,7 +147,7 @@ type Sprit = {
 
 export type PowerCard = {
     name: string,
-    image: ImagePath,
+    image: (Exclude<ImagePath, string> & Partial<ImagePosition> )| string,
     speed: 'fast' | 'slow',
     energy: number,
     mana: Element[] | Element | undefined,
