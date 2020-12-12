@@ -3,8 +3,21 @@
 All notable changes to this project will be documented in this file.
 
 
+#### [v0.1.1](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.1.0...v0.1.1)
+
+
+
+
+
+**Changes**  
+
+- Added preview for spirit importer [`c3100b2`](https://github.com/LokiMidgard/spirit-island-renderer/commit/c3100b235a4bb655d91c75136c1ff60723b91d0b)
+
+
+
 #### [v0.1.0](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.0.7...v0.1.0)
 
+> 12 December 2020
 
 
 
