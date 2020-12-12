@@ -3,8 +3,23 @@
 All notable changes to this project will be documented in this file.
 
 
+#### [v0.1.5](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.1.4...v0.1.5)
+
+
+
+
+
+**Changes**  
+
+- border does now overlaps with special rules [`d91bb07`](https://github.com/LokiMidgard/spirit-island-renderer/commit/d91bb07c0d2e9651c86ea03e921632b6e18f0ff5)
+- process should now end with error if one occures [`cd6c5a2`](https://github.com/LokiMidgard/spirit-island-renderer/commit/cd6c5a2dc09eaa60e4f5c08d107eaf75574139f9)
+- fix wrong default value for card [`23fdec6`](https://github.com/LokiMidgard/spirit-island-renderer/commit/23fdec64c08c84c118ac378b91c276bd9f0fdd2b)
+
+
+
 #### [v0.1.4](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.1.3...v0.1.4)
 
+> 12 December 2020
 
 
 

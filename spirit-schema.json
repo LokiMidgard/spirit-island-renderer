@@ -48,19 +48,26 @@
         "boarder": {
             "anyOf": [
                 {
-                    "properties": {
-                        "artistName": {
-                            "type": "string"
+                    "allOf": [
+                        {
+                            "properties": {
+                                "artistName": {
+                                    "type": "string"
+                                },
+                                "path": {
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "artistName",
+                                "path"
+                            ],
+                            "type": "object"
                         },
-                        "path": {
-                            "type": "string"
+                        {
+                            "$ref": "#/definitions/Partial<ImagePosition>"
                         }
-                    },
-                    "required": [
-                        "artistName",
-                        "path"
-                    ],
-                    "type": "object"
+                    ]
                 },
                 {
                     "type": "string"
