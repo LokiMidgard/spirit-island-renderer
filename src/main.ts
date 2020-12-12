@@ -21,7 +21,7 @@ export interface parsed {
     tabletop: string | undefined
     output: string,
     noHeader: boolean,
-    html: boolean
+    html: boolean,
 }
 
 

@@ -55,6 +55,11 @@ export async function HandleRender(cmd: parsed) {
 
         const tabletopData: tableTopData = {}
 
+        if (cmd.tabletop) {
+            await fs.promises.writeFile(outdir + 'SpiritImporter.json', await GenerateTableTopObject(cmd.tabletop), 'utf8')
+            await fs.promises.copyFile(path.resolve(__dirname, '../resources/SpiritSpawnBoard.png'), outdir+ '/SpiritSpawnBoard.png')
+        }
+
         for (let i = 0; i < inputs.length; i++) {
             const spiritInputFile = inputs[i]
 
@@ -457,4 +462,86 @@ ${snapPoints.map(snappointTemplate).join(',\n')}
     ]
   }
 `)
+}
+
+
+async function GenerateTableTopObject(prefix: string) {
+    const script = (await fs.promises.readFile(path.resolve(__dirname, '../resources/TableTopSpawner.lua'), 'utf8'))
+        .replace(/\n/g, '\\n')
+        .replace(/\r/g,'')
+        .replace(/"/g,'\\"')
+        
+        
+
+    return `{
+        "SaveName": "",
+        "GameMode": "",
+        "Date": "",
+        "Gravity": 0.5,
+        "PlayArea": 0.5,
+        "GameType": "",
+        "GameComplexity": "",
+        "Tags": [],
+        "Table": "",
+        "Sky": "",
+        "Note": "",
+        "Rules": "",
+        "TabStates": {},
+        "ObjectStates": [
+          {
+            "Name": "Custom_Token",
+            "Transform": {
+              "posX": -6.676171,
+              "posY": 1.06,
+              "posZ": 8.140596,
+              "rotX": -1.07035142E-07,
+              "rotY": -5.59145E-08,
+              "rotZ": 3.29649978E-08,
+              "scaleX": 5.46,
+              "scaleY": 1.0,
+              "scaleZ": 5.46
+            },
+            "Nickname": "Spirit Importer",
+            "Description": "Select a spirit by clicking on its name. The Spirit board and Unique Powers will be created.",
+            "GMNotes": "",
+            "ColorDiffuse": {
+              "r": 1.0,
+              "g": 1.0,
+              "b": 1.0
+            },
+            "Locked": false,
+            "Grid": true,
+            "Snap": true,
+            "IgnoreFoW": false,
+            "MeasureMovement": false,
+            "DragSelectable": true,
+            "Autoraise": true,
+            "Sticky": true,
+            "Tooltip": true,
+            "GridProjection": false,
+            "HideWhenFaceDown": false,
+            "Hands": false,
+            "CustomImage": {
+              "ImageURL": "${prefix}SpiritSpawnBoard.png",
+              "ImageSecondaryURL": "",
+              "ImageScalar": 1.0,
+              "WidthScale": 0.0,
+              "CustomToken": {
+                "Thickness": 0.2,
+                "MergeDistancePixels": 15.0,
+                "StandUp": false,
+                "Stackable": false
+              }
+            },
+            "LuaScript": "${script}",
+            "LuaScriptState": "",
+            "XmlUI": "\\\\n<Panel position=\\"0 0 -21\\">\\\\n    <InputField id=\\"urlFiled\\" width=\\"500\\" offsetXY=\\"-60 114\\" scale=\\"0.7 0.7 1\\">${prefix}tabletop.json</InputField>\\\\n    <Button onClick=\\"LoadData\\" width=\\"100\\" height=\\"30\\" offsetXY=\\"203 113\\" scale=\\"0.7 0.7 1\\">Reload</Button>\\\\n    <VerticalScrollView id=\\"masters\\" offsetXY=\\"-173 -23\\" height=\\"215\\" width=\\"130\\">\\\\n        <VerticalLayout height=\\"50\\">\\\\n\\\\n          \\\\n\\\\n        </VerticalLayout>\\\\n    </VerticalScrollView>\\\\n</Panel>",
+            "GUID": "4b032b"
+          }
+        ],
+        "LuaScript": "",
+        "LuaScriptState": "",
+        "XmlUI": "",
+        "VersionNumber": ""
+      }`
 }
