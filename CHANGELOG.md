@@ -3,8 +3,21 @@
 All notable changes to this project will be documented in this file.
 
 
+#### [v0.1.4](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.1.3...v0.1.4)
+
+
+
+
+
+**Changes**  
+
+- Better console output while rendering [`56e8114`](https://github.com/LokiMidgard/spirit-island-renderer/commit/56e81148424a45d4563dba0ccc92d94db6cf90f1)
+
+
+
 #### [v0.1.3](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.1.2...v0.1.3)
 
+> 12 December 2020
 
 
 

@@ -1,6 +1,6 @@
 {
   "name": "spirit-island-renderer",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Renders images of spirits for spirit island",
   "repository": {
     "type": "git",
