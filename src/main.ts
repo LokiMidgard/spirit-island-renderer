@@ -148,8 +148,10 @@ async function main() {
 
 
 }
-main().catch(x =>
-    console.error(x));
+main().catch(x => {
+    console.error(x)
+    process.exit(-1)
+})
 
 
 
