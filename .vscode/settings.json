@@ -6,5 +6,16 @@
         "markdown",
         "latex",
         "plaintext"
+    ],
+    "Lua.diagnostics.globals": [
+        "spawnObject",
+        "onUpdate",
+        "WebRequest",
+        "onLoad",
+        "self",
+        "UI",
+        "JSON",
+        "spawnObjectJSON",
+        "startLuaCoroutine"
     ]
 }
