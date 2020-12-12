@@ -7,10 +7,14 @@ function LoadData() startLuaCoroutine(self, "LoadDataCo") end
 
 function LoadDataCo()
     if (json_url == nil) then
-        while self.UI.getXmlTable() == nil do Wt(0.5) end
+        local table = self.UI.getXmlTable()
+        while table == nil or table[1] == nil or table[1].children == nil or table[1].children[1] == nil do
+            Wt(0.5)
+            table = self.UI.getXmlTable()
+        end
         json_url = self.UI.getXmlTable()[1].children[1].value
     end
-    
+
     local url = json_url
     if url == nil then return end
     local function starts_with(str, start) return str:sub(1, #start) == start end
@@ -23,8 +27,9 @@ function LoadDataCo()
 
         WebRequest.get(url, function(a) webRequestCallback(a) end)
     else
-        broadcastToAll('Only URLs starting with "http://" or "https://" ares supported',
-                       {r = 1, g = 0, b = 0})
+        broadcastToAll(
+            'Only URLs starting with "http://" or "https://" ares supported',
+            {r = 1, g = 0, b = 0})
 
         -- havn't found out a way to open a local file. Propably securety resons...
         -- local function read_file(path)
