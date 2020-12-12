@@ -4,7 +4,7 @@
 
 This tool renders custom spirits and their unique powers. It uses [spirit-island-template](https://github.com/Gudradain/spirit-island-template) and render those with [node-html-to-image](https://github.com/frinyvonnick/node-html-to-image). Check out [what's new](CHANGELOG.md).
 
-It also generate output to easaly load the spirits in Tabletop Simulator. Check it out in the [Spirit Island Custom Spirits](https://github.com/LokiMidgard/spirit-island-custom-spirits) project.
+It also generate output to easily load the spirits in Tabletop Simulator. To see how this work check out the [Spirit Island Custom Spirits](https://github.com/LokiMidgard/spirit-island-custom-spirits) project. There you find a description to import the spirits in Tabletop Simulator.
 
 
 ## Getting started
