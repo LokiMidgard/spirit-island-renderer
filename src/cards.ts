@@ -5,7 +5,7 @@ import Sprit, { Element, Target, TargetLand } from './spiritType'
 export function ToCards(spirit: Sprit, relativeTo: string): string {
     return spirit.uniquePowers.map(power => {
         let spiritXml = `<card class='${power.speed}'>
-<div class='image' style='background-image: url(${FileAsDataUrl(power.image, relativeTo)}); background-size: ${typeof power.image == 'string' ? undefined : power.image?.scale ?? 100}%; background-position-x: ${typeof power.image == 'string' ? undefined : power.image?.x ?? 0}px; background-position-y: ${typeof power.image == 'string' ? undefined : power.image?.y ?? 0}px; ' ></div>
+<div class='image' style='background-image: url(${FileAsDataUrl(power.image, relativeTo)}); background-size: ${(typeof power.image == 'string' ? undefined : power.image)?.scale ?? 100}%; background-position-x: ${(typeof power.image == 'string' ? undefined : power.image)?.x ?? 0}px; background-position-y: ${(typeof power.image == 'string' ? undefined : power.image)?.y ?? 0}px; ' ></div>
 
 <cost>${power.energy}</cost>
 <name>${power.name}</name>
