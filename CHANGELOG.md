@@ -3,8 +3,22 @@
 All notable changes to this project will be documented in this file.
 
 
+#### [v0.1.3](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.1.2...v0.1.3)
+
+
+
+
+
+**Changes**  
+
+- boarder size no longer restricted [`e4b437b`](https://github.com/LokiMidgard/spirit-island-renderer/commit/e4b437b50552b6ce679f33b71001538356df98bd)
+- Fix wrong output path [`a60ae2d`](https://github.com/LokiMidgard/spirit-island-renderer/commit/a60ae2d840476cf30289b7cee1831d9e6bc59746)
+
+
+
 #### [v0.1.2](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.1.1...v0.1.2)
 
+> 12 December 2020
 
 
 
