@@ -3,8 +3,23 @@
 All notable changes to this project will be documented in this file.
 
 
+#### [v0.1.2](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.1.1...v0.1.2)
+
+
+
+
+
+**Changes**  
+
+- Images for cards are now scalable [`50b52b1`](https://github.com/LokiMidgard/spirit-island-renderer/commit/50b52b1fd5910d286ce1016657799e4020153f8a)
+- Spirits now generate in spereate folders each [`4419e78`](https://github.com/LokiMidgard/spirit-island-renderer/commit/4419e7884aca851d2ef4d225d24ffe353f10cd19)
+- Special Rules now have a title [`e6cd04c`](https://github.com/LokiMidgard/spirit-island-renderer/commit/e6cd04c379247092f94560593c9f814720cd4726)
+
+
+
 #### [v0.1.1](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.1.0...v0.1.1)
 
+> 12 December 2020
 
 
 
