@@ -86,3 +86,10 @@ jobs:
           asset_path: ./spirit-island-renderer-${{ env.GIT_Verion2 }}.tgz
           asset_name: spirit-island-renderer-${{ env.GIT_Verion2 }}.tgz
           asset_content_type: application/x-compressed
+
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          repository: LokiMidgard/spirit-island-renderer
+          event-type: rebuild
