@@ -1,0 +1,10 @@
+
+<Panel position="0 0 -21">
+    <InputField id="urlFiled" width="500" offsetXY="-60 114" scale="0.7 0.7 1">{{{prefix}}}tabletop.json</InputField>
+    <Button onClick="LoadData" width="100" height="30" offsetXY="203 113" scale="0.7 0.7 1">Reload</Button>
+    <VerticalScrollView id="masters" offsetXY="-173 -23" height="215" width="130">
+        <VerticalLayout height="0">
+            <!-- Will be filed by the script -->
+        </VerticalLayout>
+    </VerticalScrollView>
+</Panel>
