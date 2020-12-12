@@ -62,6 +62,7 @@ export async function HandleRender(cmd: parsed) {
 
         if (cmd.tabletop) {
             await fs.promises.writeFile(outdir + 'SpiritImporter.json', await GenerateTableTopObject(cmd.tabletop), 'utf8')
+            await fs.promises.copyFile(path.resolve(__dirname, '../resources/spirit-importer/preview.png'), outdir + '/SpiritImporter.png')
             if (!fs.existsSync(outdir + '/spirit-importer')) {
                 await fs.promises.mkdir(outdir + '/spirit-importer')
             }
