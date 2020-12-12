@@ -3,8 +3,22 @@
 All notable changes to this project will be documented in this file.
 
 
+#### [v0.0.7](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.0.6...v0.0.7)
+
+
+
+
+
+**Changes**  
+
+- Added SpiritImporter [`6d472f1`](https://github.com/LokiMidgard/spirit-island-renderer/commit/6d472f19a5a0510cd33a90e1d772151983f71797)
+- `--tabletop` argument now optional [`e4297bf`](https://github.com/LokiMidgard/spirit-island-renderer/commit/e4297bfd97124dd6d74268d2281ee010a9818ac3)
+
+
+
 #### [v0.0.6](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.0.5...v0.0.6)
 
+> 11 December 2020
 
 
 
