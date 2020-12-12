@@ -106,7 +106,7 @@ export function ToFront(spirit: Sprit, relativeTo: string): string {
     let spiritXml = `
     <div class='background-graphic' style='background-size: ${spirit.imageFrontPosition?.scale ?? 100}%; background-position-x: ${spirit.imageFrontPosition?.x ?? 0}px; background-position-y: ${spirit.imageFrontPosition?.y ?? 0}px; background-image: url("${FileAsDataUrl(spirit.image, relativeTo)}");'  ></div>
     <board >
-    <img class="spirit-border" src="${FileAsDataUrl(spirit.boarder, relativeTo)}" />
+    <div class="spirit-border" style="background-image: url(${FileAsDataUrl(spirit.boarder, relativeTo)});" ></div>
     <spirit-name>
       ${spirit.name}
     </spirit-name>
@@ -302,6 +302,12 @@ export function GetFrontTemplate(port: number | undefined) {
             z-index: -1;
             border-radius: 15.1px;
             position: absolute;
+        }
+        .spirit-border{
+            top: 0px;
+            height: 788.15px;
+            background-position: bottom left;
+            background-repeat: no-repeat;
         }
         artist-name {
             position: absolute;
