@@ -279,7 +279,7 @@ export function GetCardBackTemplate(spirit: Sprit, relativeTo: string) {
             </head>
             <body style='width: 488px; height: 682px; padding:0px; margin:0px;'>
                 <div style='width: 488px; height: 682px; position: absolute; left: 0px; top: 0px; background-image: url("${FileAsDataUrl(spirit.image, relativeTo)}"); background-size: ${spirit.imageCardBackPosition?.scale ?? 100}%; background-position-x: ${spirit.imageCardBackPosition?.x ?? 0}px; background-position-y: ${spirit.imageCardBackPosition?.y ?? 0}px; ' />
-                <img style='width: 488px; height: 682px; position: absolute; left: 0px; top: 0px;' src="${FileAsDataUrl('../resources/Unique-Power-Back.png', __dirname)}" />
+                <img style='width: 488px; height: 682px; position: absolute; left: 0px; top: 0px;' src="${FileAsDataUrl('../dependencys/spirit-island-template/_global/images/Unique-Power-Back.png', __dirname)}" />
             </body>
             </html>
             `
