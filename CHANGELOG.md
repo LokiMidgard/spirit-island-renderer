@@ -3,8 +3,22 @@
 All notable changes to this project will be documented in this file.
 
 
+#### [v0.1.6](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.1.5...v0.1.6)
+
+
+
+
+
+**Changes**  
+
+- Added cost option to growth [`1a55e77`](https://github.com/LokiMidgard/spirit-island-renderer/commit/1a55e77ca2ed2f5d4c6b57081ca706c742b41513)
+- Better lua check to handle initial loading [`5ed81de`](https://github.com/LokiMidgard/spirit-island-renderer/commit/5ed81deb294def89e1b9d7ee822c889395833abe)
+
+
+
 #### [v0.1.5](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.1.4...v0.1.5)
 
+> 12 December 2020
 
 
 
