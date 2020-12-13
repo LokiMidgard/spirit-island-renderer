@@ -135,7 +135,7 @@ type Sprit = {
     }[],
     growth: {
         title: string,
-        choise: Growth[]
+        choise: ({ "cost": number, "growth": Growth } | Growth)[]
     }
     presence: {
         energy: (PresenceTrackOptions | PresenceTrackOptions[])[]
@@ -144,6 +144,10 @@ type Sprit = {
     inatePowers: InatePowers[],
     uniquePowers: PowerCard[]
 };
+
+export function IsGrowth(tocheck:{ "cost": number, "growth": Growth } | Growth) : tocheck is Growth{
+    return !((tocheck as any).cost)
+}
 
 export type PowerCard = {
     name: string,

@@ -1,4 +1,4 @@
-import Sprit, { Growth, InatePowerLevel, InatePowers, PresenceTrackOptions, Target } from './spiritType'
+import Sprit, { Growth, InatePowerLevel, InatePowers, IsGrowth, PresenceTrackOptions, Target } from './spiritType'
 import path from 'path'
 import { FileAsDataUrl } from './main'
 
@@ -121,7 +121,13 @@ ${spirit.specialRules.map(SpecialRules).join('\n')}
     </special-rules-container>
 
     <growth title="${spirit.growth.title}">
-        ${spirit.growth.choise.map(x => `<growth-group values="${GrowthTrack(x)}"></growth-group>`).join('\n')}
+        ${spirit.growth.choise.map(x => {
+        if (IsGrowth(x)) {
+            return `<growth-group values="${GrowthTrack(x)}"></growth-group>`
+        } else {
+            return `<growth-group cost="${x.cost}" values="${GrowthTrack(x.growth)}"></growth-group>`
+        }
+    }).join('\n')}
   
     </growth>
 
