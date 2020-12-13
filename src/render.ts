@@ -42,6 +42,7 @@ export async function HandleRender(cmd: parsed) {
             : parseInt(serverAddress.split(':')[1])
     try {
 
+        const timeStamp = new Date(Date.now()).toISOString()
 
 
         const cardTemplate = GetCardTemplate(port)
@@ -111,8 +112,8 @@ export async function HandleRender(cmd: parsed) {
             // const prefix = 'file:///C:\\\\Users\\\\patri\\\\source\\\\repos\\\\spirit-island-renderer\\\\out\\\\';
             if (cmd.tabletop) {
                 const prefix = cmd.tabletop + encodeURIComponent(spirit.name) + "/"
-                const tabletopSpirit = createTableTopObject(spirit, prefix, spiritInputFile);
-                const tabletopDeck = createTableTopDeck(spirit, prefix, spiritInputFile);
+                const tabletopSpirit = createTableTopObject(spirit, prefix, spiritInputFile, timeStamp);
+                const tabletopDeck = createTableTopDeck(spirit, prefix, spiritInputFile, timeStamp);
                 if (tabletopData[spirit.name]) {
                     console.warn(chalk.yellow(`WARNING: Spirit ${spirit.name} defined twice!`))
                 }
@@ -167,7 +168,7 @@ export async function HandleRender(cmd: parsed) {
             }
 
         }
-        
+
         if (Object.keys(tabletopData).length > 0)
             await fs.promises.writeFile(outbasedir + 'tabletop.json', JSON.stringify(tabletopData))
 
@@ -243,7 +244,7 @@ function ReplacePlacehoder(input: string): string {
 type tableTopSpirit = {}
 type tableTopDeck = {}
 
-function createTableTopDeck(spirit: Sprit, prefix: string, inputFile: string): tableTopDeck {
+function createTableTopDeck(spirit: Sprit, prefix: string, inputFile: string,timestamp:string): tableTopDeck {
 
     const deckBaseId = '456'
 
@@ -390,8 +391,8 @@ function createTableTopDeck(spirit: Sprit, prefix: string, inputFile: string): t
         ],
         "CustomDeck": {
           "${deckBaseId}": {
-            "FaceURL": "${prefix}${GetCardsFrontName(inputFile)}",
-            "BackURL": "${prefix}${GetCardsBackName(inputFile)}",
+            "FaceURL": "${prefix}${GetCardsFrontName(inputFile)}?${timestamp}",
+            "BackURL": "${prefix}${GetCardsBackName(inputFile)}?${timestamp}",
             "NumWidth": ${cardMatrixWidth},
             "NumHeight": ${cardMatrixHeight},
             "BackIsHidden": true,
@@ -411,7 +412,7 @@ function createTableTopDeck(spirit: Sprit, prefix: string, inputFile: string): t
 }
 
 
-function createTableTopObject(spirit: Sprit, prefix: string, inputFile: string): tableTopSpirit {
+function createTableTopObject(spirit: Sprit, prefix: string, inputFile: string, timestamp: string): tableTopSpirit {
 
     const snapPoints: { x: number, y: number }[] = []
 
@@ -472,8 +473,8 @@ function createTableTopObject(spirit: Sprit, prefix: string, inputFile: string):
     "HideWhenFaceDown": false,
     "Hands": false,
     "CustomImage": {
-      "ImageURL": "${prefix}${GetSpiritFrontName(inputFile)}",
-      "ImageSecondaryURL": "${prefix}${GetSpiritLoreName(inputFile)}",
+      "ImageURL": "${prefix}${GetSpiritFrontName(inputFile)}?${timestamp}",
+      "ImageSecondaryURL": "${prefix}${GetSpiritLoreName(inputFile)}?${timestamp}",
       "ImageScalar": 1.0,
       "WidthScale": 0.0,
       "CustomTile": {

@@ -8,7 +8,8 @@ function LoadData() startLuaCoroutine(self, "LoadDataCo") end
 function LoadDataCo()
     if (json_url == nil) then
         local table = self.UI.getXmlTable()
-        while table == nil or table[1] == nil or table[1].children == nil or table[1].children[1] == nil do
+        while table == nil or table[1] == nil or table[1].children == nil or
+            table[1].children[1] == nil do
             Wt(0.5)
             table = self.UI.getXmlTable()
         end
@@ -69,7 +70,10 @@ function HandleSpiritsCo()
         -- backFace = Next(pairs(value[2].CustomDeck))--.value.BackURL
         local found = false
         for key2, value2 in pairs(customAssets) do
-            if value2.name == key then found = true end
+            if value2.name == key then
+                found = true
+                value2.url = backFace
+            end
         end
         if found == false then
             customAssets[#customAssets + 1] = {name = key, url = backFace}
