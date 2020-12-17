@@ -3,8 +3,21 @@
 All notable changes to this project will be documented in this file.
 
 
+#### [v0.2.4](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.2.3...v0.2.4)
+
+
+
+
+
+**Changes**  
+
+- Fix imbgiuty in Growth [`ef60b74`](https://github.com/LokiMidgard/spirit-island-renderer/commit/ef60b74a785254e542f501f080d8c080322b1b4b)
+
+
+
 #### [v0.2.3](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.2.2...v0.2.3)
 
+> 17 December 2020
 
 
 
