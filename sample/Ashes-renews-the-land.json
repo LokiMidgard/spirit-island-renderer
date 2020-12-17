@@ -44,7 +44,6 @@
             "reclaim-all"
           ],
           [
-            "gain-power-card",
             {
               "type": "gain-energy",
               "number": 2
@@ -59,11 +58,18 @@
               "type": "gain-element",
               "element": "any"
             }
-          ]
+          ],
+          {
+            "cost": 2,
+            "growth": [
+              "gain-power-card",
+              "gain-power-card"
+            ]
+          }
         ]
       }
     ]
-  },
+ },
   "summaryPower": {
     "control": 2,
     "defense": 3,
