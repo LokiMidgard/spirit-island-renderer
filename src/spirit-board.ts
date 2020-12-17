@@ -28,7 +28,13 @@ export function ToFront(spirit: Sprit, relativeTo: string): string {
 
         if (Array.isArray(g)) {
 
-            return (g as (GrowthEntry | GrowthOption)[]).map(x => GrowthTracks(x)).join('\n')
+            if (g.length > 0 && HasCost(g[0]) || Array.isArray(g[0]) ) { 
+                return (g as GrowthOption[]).map(x => GrowthTracks(x)).join('\n')
+            } else {
+                return `<growth-group values="${GrowthValues((g as GrowthEntry[]))}"></growth-group>`
+
+            }
+
         } else {
 
             if (HasCost(g)) {
