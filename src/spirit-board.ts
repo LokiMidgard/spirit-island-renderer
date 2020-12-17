@@ -1,4 +1,4 @@
-import Sprit, { Growth, InatePowerLevel, InatePowers, IsGrowth, PresenceTrackOptions, Target } from './spiritType'
+import Sprit, { Growth, GrowthEntry, GrowthOption, HasCost, HasSubGrowth, InatePowerLevel, InatePowers, IsGrowth, PresenceTrackOptions, SubGrowth, Target } from './spiritType'
 import path from 'path'
 import { FileAsDataUrl } from './main'
 
@@ -6,9 +6,42 @@ import { FileAsDataUrl } from './main'
 
 export function ToFront(spirit: Sprit, relativeTo: string): string {
 
-    function GrowthTrack(g: Growth): string {
+    function Growth(growth: Growth): string {
+
+        if (HasSubGrowth(growth)) {
+
+            return `<growth title="${growth.title}">${growth.subGrowth.map(x => `<sub-growth title='${x.title}' >
+    ${GrowthTracks(x.choice)}
+</sub-growth>'`).join('\n')}
+</growth>`
+
+        } else {
+
+            return `<growth title="${growth.title}">
+            ${GrowthTracks(growth.choice)}
+  
+    </growth>`
+        }
+    }
+
+    function GrowthTracks(g: GrowthOption | GrowthOption[]): string {
+
         if (Array.isArray(g)) {
-            return g.map(GrowthTrack).join(';')
+
+            return (g as (GrowthEntry | GrowthOption)[]).map(x => GrowthTracks(x)).join('\n')
+        } else {
+
+            if (HasCost(g)) {
+                return `<growth-group cost="${g.cost}" values="${GrowthValues(g.growth)}"></growth-group>`
+            } else {
+                return `<growth-group values="${GrowthValues(g)}"></growth-group>`
+            }
+        }
+    }
+
+    function GrowthValues(g: GrowthEntry | GrowthEntry[]): string {
+        if (Array.isArray(g)) {
+            return g.map(GrowthValues).join(';')
         } else if (typeof g === 'object') {
             if (g.type == 'add-presence') {
                 return g.land && g.land !== "land"
@@ -119,17 +152,8 @@ export function ToFront(spirit: Sprit, relativeTo: string): string {
         <section-title>SPECIAL RULES</section-title>
 ${spirit.specialRules.map(SpecialRules).join('\n')}
     </special-rules-container>
-
-    <growth title="${spirit.growth.title}">
-        ${spirit.growth.choise.map(x => {
-        if (IsGrowth(x)) {
-            return `<growth-group values="${GrowthTrack(x)}"></growth-group>`
-        } else {
-            return `<growth-group cost="${x.cost}" values="${GrowthTrack(x.growth)}"></growth-group>`
-        }
-    }).join('\n')}
-  
-    </growth>
+<right>
+    ${Growth(spirit.growth)}
 
     <presence-tracks>
       <energy-track values="${spirit.presence.energy.map(TrackConvert).join(',')}"></energy-track>
@@ -140,6 +164,7 @@ ${spirit.specialRules.map(SpecialRules).join('\n')}
         ${spirit.inatePowers.map(InatePower)}
    
     </innate-powers>
+    </right>
     <artist-name>${typeof spirit.image == 'object' ? spirit.image.artistName : ''}</artist-name>
   </board>
 `

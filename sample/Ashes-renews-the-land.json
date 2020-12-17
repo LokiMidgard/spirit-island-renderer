@@ -1,7 +1,11 @@
 {
   "$schema": "./../spirit-schema.json",
   "name": "Ashes Renews the Land",
-  "boarder": "feather.png",
+  "boarder": {
+    "path": "feather.png",
+    "artistName": "PNG ALL",
+    "y": 712
+  },
   "image": {
     "path": "553878_miststrara_phoenix-rising.jpg",
     "artistName": "miststrara"
@@ -26,30 +30,38 @@
   "setup": "You start with two minor powers in the ashes (see special rule Fuled with Power). Put 1 {presence} in highest numberd mountain and one {presence} in the highest numberd sands.",
   "playStyle": "Play how you want",
   "growth": {
-    "title": "GROWTH (Pick the first and one other)",
-    "choise": [
-      "gain-power-card",
-      [
-        "forget-power-card",
-        "reclaim-all"
-      ],
-      [
-        "gain-power-card",
-        {
-          "type": "gain-energy",
-          "number": 2
-        }
-      ],
-      [
-        {
-          "type": "add-presence",
-          "range": 2
-        },
-        {
-          "type": "gain-element",
-          "element": "any"
-        }
-      ]
+    "title": "GROWTH",
+    "subGrowth": [
+      {
+        "title": "always:",
+        "choice": "gain-power-card"
+      },
+      {
+        "title": "pick one of:",
+        "choice": [
+          [
+            "forget-power-card",
+            "reclaim-all"
+          ],
+          [
+            "gain-power-card",
+            {
+              "type": "gain-energy",
+              "number": 2
+            }
+          ],
+          [
+            {
+              "type": "add-presence",
+              "range": 2
+            },
+            {
+              "type": "gain-element",
+              "element": "any"
+            }
+          ]
+        ]
+      }
     ]
   },
   "summaryPower": {

@@ -18,7 +18,28 @@ export type Element = 'fire'
 
 export type ElementWithAny = Element | 'any'
 
-export type Growth = GrowthEntry | GrowthEntry[]
+export type Growth = SubGrowth
+    | { title: string, subGrowth: SubGrowth[] }
+
+export function HasSubGrowth(growth: Growth): growth is { title: string, subGrowth: SubGrowth[] } {
+    return (growth as any).subGrowth !== undefined
+}
+export type SubGrowth = {
+    title: string,
+    choice: GrowthOption | GrowthOption[]
+}
+
+export type GrowthOption = {
+    cost: number
+    growth: GrowthEntry | GrowthEntry[]
+} | GrowthEntry | GrowthEntry[]
+
+export function HasCost(g : GrowthOption) : g is {
+    cost: number
+    growth: GrowthEntry | GrowthEntry[]
+}{
+return (g as any).cost !== undefined
+}
 
 export type GrowthEntry = 'reclaim-one'
     | 'reclaim-all'
@@ -133,10 +154,7 @@ type Sprit = {
         title: string,
         text: string
     }[],
-    growth: {
-        title: string,
-        choise: ({ "cost": number, "growth": Growth } | Growth)[]
-    }
+    growth: Growth,
     presence: {
         energy: (PresenceTrackOptions | PresenceTrackOptions[])[]
         card: (PresenceTrackOptions | PresenceTrackOptions[])[]
@@ -145,7 +163,7 @@ type Sprit = {
     uniquePowers: PowerCard[]
 };
 
-export function IsGrowth(tocheck:{ "cost": number, "growth": Growth } | Growth) : tocheck is Growth{
+export function IsGrowth(tocheck: { "cost": number, "growth": Growth } | Growth): tocheck is Growth {
     return !((tocheck as any).cost)
 }
 
