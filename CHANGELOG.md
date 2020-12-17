@@ -3,8 +3,21 @@
 All notable changes to this project will be documented in this file.
 
 
+#### [v0.2.3](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.2.2...v0.2.3)
+
+
+
+
+
+**Changes**  
+
+- Removed custom card background texture. Template project now has its own. [`80c8b14`](https://github.com/LokiMidgard/spirit-island-renderer/commit/80c8b14f07eff5b2cd183cae918c219e7b165e99)
+
+
+
 #### [v0.2.2](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.2.1...v0.2.2)
 
+> 17 December 2020
 
 
 
