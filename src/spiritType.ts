@@ -26,7 +26,7 @@ export function HasSubGrowth(growth: Growth): growth is { title: string, subGrow
 }
 export type SubGrowth = {
     title: string,
-    choice: GrowthOption | GrowthOption[]
+    choice: GrowthOption[]
 }
 
 export type GrowthOption = {

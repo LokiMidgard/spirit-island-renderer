@@ -11,38 +11,37 @@ export function ToFront(spirit: Sprit, relativeTo: string): string {
         if (HasSubGrowth(growth)) {
 
             return `<growth title="${growth.title}">${growth.subGrowth.map(x => `<sub-growth title='${x.title}' >
-    ${GrowthTracks(x.choice)}
+    ${x.choice.map(GrowthTracks).join('\n')}
 </sub-growth>'`).join('\n')}
 </growth>`
 
         } else {
 
             return `<growth title="${growth.title}">
-            ${GrowthTracks(growth.choice)}
+            ${growth.choice.map(GrowthTracks).join('\n')}
   
     </growth>`
         }
     }
 
-    function GrowthTracks(g: GrowthOption | GrowthOption[]): string {
+    function GrowthTracks(g: GrowthOption): string {
 
         if (Array.isArray(g)) {
-
-            if (g.length > 0 && HasCost(g[0]) || Array.isArray(g[0]) ) { 
-                return (g as GrowthOption[]).map(x => GrowthTracks(x)).join('\n')
-            } else {
-                return `<growth-group values="${GrowthValues((g as GrowthEntry[]))}"></growth-group>`
-
-            }
-
+            return `<growth-group values="${GrowthValues(g)}"></growth-group>`
+        } else if (HasCost(g)) {
+            return `<growth-group cost="${g.cost}" values="${GrowthValues(g.growth)}"></growth-group>`
         } else {
 
-            if (HasCost(g)) {
-                return `<growth-group cost="${g.cost}" values="${GrowthValues(g.growth)}"></growth-group>`
-            } else {
-                return `<growth-group values="${GrowthValues(g)}"></growth-group>`
-            }
+            return `<growth-group values="${GrowthValues(g)}"></growth-group>`
         }
+    }
+    type Fish = { swim: () => void }
+    type Bird = { fly: () => void }
+    function move(pet: Fish | Bird) {
+        if ("swim" in pet) {
+            return pet.swim();
+        }
+        return pet.fly();
     }
 
     function GrowthValues(g: GrowthEntry | GrowthEntry[]): string {
