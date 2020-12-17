@@ -60,8 +60,6 @@ ${typeof power.image == 'string' ? '' : `<artist-name>${power.image.artistName}<
     } | undefined): string {
         if (threshold)
             return `<threshold>
-        <threshold-line></threshold-line>
-        <threshold-title>IF YOU HAVE</threshold-title>
         <threshold-condition> ${Array.isArray(threshold.requirements) ? threshold.requirements.map(x => `${x.ammount ?? ''}<icon class="${x.mana}"></icon>`) : `${threshold.requirements.ammount ?? ''}<icon class="${threshold.requirements.mana}"></icon>`}:
         </threshold-condition>
         <div>
