@@ -17,7 +17,7 @@
   },
   "scripts": {
     "render": "npx ts-node src/main.ts",
-    "generate-schema": "npx typescript-json-schema tsconfig.json Sprit > spirit-schema.json --required",
+    "generate-schema": "npx typescript-json-schema tsconfig.json Sprit --required --noExtraProps -o spirit-schema.json",
     "build": "npx rimraf lib/**/* && npx tsc",
     "prepack": "npm run build &&  cross-var replace \"process.env.npm_package_version\" `$npm_package_version` lib/const.js",
     "changelog": "npx auto-changelog --template automasation/changelog.hbs -p && git add CHANGELOG.md",

@@ -132,6 +132,7 @@ export type PresenceTrackOptions = number | ElementWithAny | 'reclaim-one' | Mov
     }
 
 type Sprit = {
+    $schema:string | undefined,
     name: string,
     image: ImagePath,
     imageFrontPosition: ImagePosition | undefined,
