@@ -3,8 +3,22 @@
 All notable changes to this project will be documented in this file.
 
 
+#### [v0.2.2](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.2.1...v0.2.2)
+
+
+
+
+
+**Changes**  
+
+- Schema no longer allows not defined values [`1973a99`](https://github.com/LokiMidgard/spirit-island-renderer/commit/1973a9984e7e9d66ff9004137ee4b4c108fe6e5f)
+- Fix duplication of threshold text [`89169d4`](https://github.com/LokiMidgard/spirit-island-renderer/commit/89169d4a42e75ba7b1a7844f3b77396222374aa9)
+
+
+
 #### [v0.2.1](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.2.0...v0.2.1)
 
+> 17 December 2020
 
 
 

@@ -1,5 +1,6 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
+    "additionalProperties": false,
     "definitions": {
         "Element": {
             "enum": [
@@ -13,20 +14,6 @@
                 "water"
             ],
             "type": "string"
-        },
-        "Partial<ImagePosition>": {
-            "properties": {
-                "scale": {
-                    "type": "number"
-                },
-                "x": {
-                    "type": "number"
-                },
-                "y": {
-                    "type": "number"
-                }
-            },
-            "type": "object"
         },
         "Token": {
             "enum": [
@@ -45,29 +32,35 @@
         }
     },
     "properties": {
+        "$schema": {
+            "type": "string"
+        },
         "boarder": {
             "anyOf": [
                 {
-                    "allOf": [
-                        {
-                            "properties": {
-                                "artistName": {
-                                    "type": "string"
-                                },
-                                "path": {
-                                    "type": "string"
-                                }
-                            },
-                            "required": [
-                                "artistName",
-                                "path"
-                            ],
-                            "type": "object"
+                    "additionalProperties": false,
+                    "properties": {
+                        "artistName": {
+                            "type": "string"
                         },
-                        {
-                            "$ref": "#/definitions/Partial<ImagePosition>"
+                        "path": {
+                            "type": "string"
+                        },
+                        "scale": {
+                            "type": "number"
+                        },
+                        "x": {
+                            "type": "number"
+                        },
+                        "y": {
+                            "type": "number"
                         }
-                    ]
+                    },
+                    "required": [
+                        "artistName",
+                        "path"
+                    ],
+                    "type": "object"
                 },
                 {
                     "type": "string"
@@ -86,10 +79,12 @@
         "growth": {
             "anyOf": [
                 {
+                    "additionalProperties": false,
                     "properties": {
                         "choice": {
                             "anyOf": [
                                 {
+                                    "additionalProperties": false,
                                     "properties": {
                                         "cost": {
                                             "type": "number"
@@ -97,6 +92,7 @@
                                         "growth": {
                                             "anyOf": [
                                                 {
+                                                    "additionalProperties": false,
                                                     "properties": {
                                                         "push": {
                                                             "$ref": "#/definitions/Token"
@@ -115,6 +111,7 @@
                                                     "type": "object"
                                                 },
                                                 {
+                                                    "additionalProperties": false,
                                                     "properties": {
                                                         "number": {
                                                             "type": "number"
@@ -133,6 +130,7 @@
                                                     "type": "object"
                                                 },
                                                 {
+                                                    "additionalProperties": false,
                                                     "properties": {
                                                         "element": {
                                                             "anyOf": [
@@ -183,6 +181,7 @@
                                                     "type": "object"
                                                 },
                                                 {
+                                                    "additionalProperties": false,
                                                     "properties": {
                                                         "land": {
                                                             "anyOf": [
@@ -234,6 +233,7 @@
                                                     "type": "object"
                                                 },
                                                 {
+                                                    "additionalProperties": false,
                                                     "properties": {
                                                         "range": {
                                                             "type": "number"
@@ -255,6 +255,7 @@
                                                     "items": {
                                                         "anyOf": [
                                                             {
+                                                                "additionalProperties": false,
                                                                 "properties": {
                                                                     "push": {
                                                                         "$ref": "#/definitions/Token"
@@ -273,6 +274,7 @@
                                                                 "type": "object"
                                                             },
                                                             {
+                                                                "additionalProperties": false,
                                                                 "properties": {
                                                                     "number": {
                                                                         "type": "number"
@@ -291,6 +293,7 @@
                                                                 "type": "object"
                                                             },
                                                             {
+                                                                "additionalProperties": false,
                                                                 "properties": {
                                                                     "element": {
                                                                         "anyOf": [
@@ -341,6 +344,7 @@
                                                                 "type": "object"
                                                             },
                                                             {
+                                                                "additionalProperties": false,
                                                                 "properties": {
                                                                     "land": {
                                                                         "anyOf": [
@@ -392,6 +396,7 @@
                                                                 "type": "object"
                                                             },
                                                             {
+                                                                "additionalProperties": false,
                                                                 "properties": {
                                                                     "range": {
                                                                         "type": "number"
@@ -441,6 +446,7 @@
                                     "type": "object"
                                 },
                                 {
+                                    "additionalProperties": false,
                                     "properties": {
                                         "push": {
                                             "$ref": "#/definitions/Token"
@@ -459,6 +465,7 @@
                                     "type": "object"
                                 },
                                 {
+                                    "additionalProperties": false,
                                     "properties": {
                                         "number": {
                                             "type": "number"
@@ -477,6 +484,7 @@
                                     "type": "object"
                                 },
                                 {
+                                    "additionalProperties": false,
                                     "properties": {
                                         "element": {
                                             "anyOf": [
@@ -527,6 +535,7 @@
                                     "type": "object"
                                 },
                                 {
+                                    "additionalProperties": false,
                                     "properties": {
                                         "land": {
                                             "anyOf": [
@@ -578,6 +587,7 @@
                                     "type": "object"
                                 },
                                 {
+                                    "additionalProperties": false,
                                     "properties": {
                                         "range": {
                                             "type": "number"
@@ -599,6 +609,7 @@
                                     "items": {
                                         "anyOf": [
                                             {
+                                                "additionalProperties": false,
                                                 "properties": {
                                                     "push": {
                                                         "$ref": "#/definitions/Token"
@@ -617,6 +628,7 @@
                                                 "type": "object"
                                             },
                                             {
+                                                "additionalProperties": false,
                                                 "properties": {
                                                     "number": {
                                                         "type": "number"
@@ -635,6 +647,7 @@
                                                 "type": "object"
                                             },
                                             {
+                                                "additionalProperties": false,
                                                 "properties": {
                                                     "element": {
                                                         "anyOf": [
@@ -685,6 +698,7 @@
                                                 "type": "object"
                                             },
                                             {
+                                                "additionalProperties": false,
                                                 "properties": {
                                                     "land": {
                                                         "anyOf": [
@@ -736,6 +750,7 @@
                                                 "type": "object"
                                             },
                                             {
+                                                "additionalProperties": false,
                                                 "properties": {
                                                     "range": {
                                                         "type": "number"
@@ -770,6 +785,7 @@
                                     "items": {
                                         "anyOf": [
                                             {
+                                                "additionalProperties": false,
                                                 "properties": {
                                                     "cost": {
                                                         "type": "number"
@@ -777,6 +793,7 @@
                                                     "growth": {
                                                         "anyOf": [
                                                             {
+                                                                "additionalProperties": false,
                                                                 "properties": {
                                                                     "push": {
                                                                         "$ref": "#/definitions/Token"
@@ -795,6 +812,7 @@
                                                                 "type": "object"
                                                             },
                                                             {
+                                                                "additionalProperties": false,
                                                                 "properties": {
                                                                     "number": {
                                                                         "type": "number"
@@ -813,6 +831,7 @@
                                                                 "type": "object"
                                                             },
                                                             {
+                                                                "additionalProperties": false,
                                                                 "properties": {
                                                                     "element": {
                                                                         "anyOf": [
@@ -863,6 +882,7 @@
                                                                 "type": "object"
                                                             },
                                                             {
+                                                                "additionalProperties": false,
                                                                 "properties": {
                                                                     "land": {
                                                                         "anyOf": [
@@ -914,6 +934,7 @@
                                                                 "type": "object"
                                                             },
                                                             {
+                                                                "additionalProperties": false,
                                                                 "properties": {
                                                                     "range": {
                                                                         "type": "number"
@@ -935,6 +956,7 @@
                                                                 "items": {
                                                                     "anyOf": [
                                                                         {
+                                                                            "additionalProperties": false,
                                                                             "properties": {
                                                                                 "push": {
                                                                                     "$ref": "#/definitions/Token"
@@ -953,6 +975,7 @@
                                                                             "type": "object"
                                                                         },
                                                                         {
+                                                                            "additionalProperties": false,
                                                                             "properties": {
                                                                                 "number": {
                                                                                     "type": "number"
@@ -971,6 +994,7 @@
                                                                             "type": "object"
                                                                         },
                                                                         {
+                                                                            "additionalProperties": false,
                                                                             "properties": {
                                                                                 "element": {
                                                                                     "anyOf": [
@@ -1021,6 +1045,7 @@
                                                                             "type": "object"
                                                                         },
                                                                         {
+                                                                            "additionalProperties": false,
                                                                             "properties": {
                                                                                 "land": {
                                                                                     "anyOf": [
@@ -1072,6 +1097,7 @@
                                                                             "type": "object"
                                                                         },
                                                                         {
+                                                                            "additionalProperties": false,
                                                                             "properties": {
                                                                                 "range": {
                                                                                     "type": "number"
@@ -1121,6 +1147,7 @@
                                                 "type": "object"
                                             },
                                             {
+                                                "additionalProperties": false,
                                                 "properties": {
                                                     "push": {
                                                         "$ref": "#/definitions/Token"
@@ -1139,6 +1166,7 @@
                                                 "type": "object"
                                             },
                                             {
+                                                "additionalProperties": false,
                                                 "properties": {
                                                     "number": {
                                                         "type": "number"
@@ -1157,6 +1185,7 @@
                                                 "type": "object"
                                             },
                                             {
+                                                "additionalProperties": false,
                                                 "properties": {
                                                     "element": {
                                                         "anyOf": [
@@ -1207,6 +1236,7 @@
                                                 "type": "object"
                                             },
                                             {
+                                                "additionalProperties": false,
                                                 "properties": {
                                                     "land": {
                                                         "anyOf": [
@@ -1258,6 +1288,7 @@
                                                 "type": "object"
                                             },
                                             {
+                                                "additionalProperties": false,
                                                 "properties": {
                                                     "range": {
                                                         "type": "number"
@@ -1279,6 +1310,7 @@
                                                 "items": {
                                                     "anyOf": [
                                                         {
+                                                            "additionalProperties": false,
                                                             "properties": {
                                                                 "push": {
                                                                     "$ref": "#/definitions/Token"
@@ -1297,6 +1329,7 @@
                                                             "type": "object"
                                                         },
                                                         {
+                                                            "additionalProperties": false,
                                                             "properties": {
                                                                 "number": {
                                                                     "type": "number"
@@ -1315,6 +1348,7 @@
                                                             "type": "object"
                                                         },
                                                         {
+                                                            "additionalProperties": false,
                                                             "properties": {
                                                                 "element": {
                                                                     "anyOf": [
@@ -1365,6 +1399,7 @@
                                                             "type": "object"
                                                         },
                                                         {
+                                                            "additionalProperties": false,
                                                             "properties": {
                                                                 "land": {
                                                                     "anyOf": [
@@ -1416,6 +1451,7 @@
                                                             "type": "object"
                                                         },
                                                         {
+                                                            "additionalProperties": false,
                                                             "properties": {
                                                                 "range": {
                                                                     "type": "number"
@@ -1481,13 +1517,16 @@
                     "type": "object"
                 },
                 {
+                    "additionalProperties": false,
                     "properties": {
                         "subGrowth": {
                             "items": {
+                                "additionalProperties": false,
                                 "properties": {
                                     "choice": {
                                         "anyOf": [
                                             {
+                                                "additionalProperties": false,
                                                 "properties": {
                                                     "cost": {
                                                         "type": "number"
@@ -1495,6 +1534,7 @@
                                                     "growth": {
                                                         "anyOf": [
                                                             {
+                                                                "additionalProperties": false,
                                                                 "properties": {
                                                                     "push": {
                                                                         "$ref": "#/definitions/Token"
@@ -1513,6 +1553,7 @@
                                                                 "type": "object"
                                                             },
                                                             {
+                                                                "additionalProperties": false,
                                                                 "properties": {
                                                                     "number": {
                                                                         "type": "number"
@@ -1531,6 +1572,7 @@
                                                                 "type": "object"
                                                             },
                                                             {
+                                                                "additionalProperties": false,
                                                                 "properties": {
                                                                     "element": {
                                                                         "anyOf": [
@@ -1581,6 +1623,7 @@
                                                                 "type": "object"
                                                             },
                                                             {
+                                                                "additionalProperties": false,
                                                                 "properties": {
                                                                     "land": {
                                                                         "anyOf": [
@@ -1632,6 +1675,7 @@
                                                                 "type": "object"
                                                             },
                                                             {
+                                                                "additionalProperties": false,
                                                                 "properties": {
                                                                     "range": {
                                                                         "type": "number"
@@ -1653,6 +1697,7 @@
                                                                 "items": {
                                                                     "anyOf": [
                                                                         {
+                                                                            "additionalProperties": false,
                                                                             "properties": {
                                                                                 "push": {
                                                                                     "$ref": "#/definitions/Token"
@@ -1671,6 +1716,7 @@
                                                                             "type": "object"
                                                                         },
                                                                         {
+                                                                            "additionalProperties": false,
                                                                             "properties": {
                                                                                 "number": {
                                                                                     "type": "number"
@@ -1689,6 +1735,7 @@
                                                                             "type": "object"
                                                                         },
                                                                         {
+                                                                            "additionalProperties": false,
                                                                             "properties": {
                                                                                 "element": {
                                                                                     "anyOf": [
@@ -1739,6 +1786,7 @@
                                                                             "type": "object"
                                                                         },
                                                                         {
+                                                                            "additionalProperties": false,
                                                                             "properties": {
                                                                                 "land": {
                                                                                     "anyOf": [
@@ -1790,6 +1838,7 @@
                                                                             "type": "object"
                                                                         },
                                                                         {
+                                                                            "additionalProperties": false,
                                                                             "properties": {
                                                                                 "range": {
                                                                                     "type": "number"
@@ -1839,6 +1888,7 @@
                                                 "type": "object"
                                             },
                                             {
+                                                "additionalProperties": false,
                                                 "properties": {
                                                     "push": {
                                                         "$ref": "#/definitions/Token"
@@ -1857,6 +1907,7 @@
                                                 "type": "object"
                                             },
                                             {
+                                                "additionalProperties": false,
                                                 "properties": {
                                                     "number": {
                                                         "type": "number"
@@ -1875,6 +1926,7 @@
                                                 "type": "object"
                                             },
                                             {
+                                                "additionalProperties": false,
                                                 "properties": {
                                                     "element": {
                                                         "anyOf": [
@@ -1925,6 +1977,7 @@
                                                 "type": "object"
                                             },
                                             {
+                                                "additionalProperties": false,
                                                 "properties": {
                                                     "land": {
                                                         "anyOf": [
@@ -1976,6 +2029,7 @@
                                                 "type": "object"
                                             },
                                             {
+                                                "additionalProperties": false,
                                                 "properties": {
                                                     "range": {
                                                         "type": "number"
@@ -1997,6 +2051,7 @@
                                                 "items": {
                                                     "anyOf": [
                                                         {
+                                                            "additionalProperties": false,
                                                             "properties": {
                                                                 "push": {
                                                                     "$ref": "#/definitions/Token"
@@ -2015,6 +2070,7 @@
                                                             "type": "object"
                                                         },
                                                         {
+                                                            "additionalProperties": false,
                                                             "properties": {
                                                                 "number": {
                                                                     "type": "number"
@@ -2033,6 +2089,7 @@
                                                             "type": "object"
                                                         },
                                                         {
+                                                            "additionalProperties": false,
                                                             "properties": {
                                                                 "element": {
                                                                     "anyOf": [
@@ -2083,6 +2140,7 @@
                                                             "type": "object"
                                                         },
                                                         {
+                                                            "additionalProperties": false,
                                                             "properties": {
                                                                 "land": {
                                                                     "anyOf": [
@@ -2134,6 +2192,7 @@
                                                             "type": "object"
                                                         },
                                                         {
+                                                            "additionalProperties": false,
                                                             "properties": {
                                                                 "range": {
                                                                     "type": "number"
@@ -2168,6 +2227,7 @@
                                                 "items": {
                                                     "anyOf": [
                                                         {
+                                                            "additionalProperties": false,
                                                             "properties": {
                                                                 "cost": {
                                                                     "type": "number"
@@ -2175,6 +2235,7 @@
                                                                 "growth": {
                                                                     "anyOf": [
                                                                         {
+                                                                            "additionalProperties": false,
                                                                             "properties": {
                                                                                 "push": {
                                                                                     "$ref": "#/definitions/Token"
@@ -2193,6 +2254,7 @@
                                                                             "type": "object"
                                                                         },
                                                                         {
+                                                                            "additionalProperties": false,
                                                                             "properties": {
                                                                                 "number": {
                                                                                     "type": "number"
@@ -2211,6 +2273,7 @@
                                                                             "type": "object"
                                                                         },
                                                                         {
+                                                                            "additionalProperties": false,
                                                                             "properties": {
                                                                                 "element": {
                                                                                     "anyOf": [
@@ -2261,6 +2324,7 @@
                                                                             "type": "object"
                                                                         },
                                                                         {
+                                                                            "additionalProperties": false,
                                                                             "properties": {
                                                                                 "land": {
                                                                                     "anyOf": [
@@ -2312,6 +2376,7 @@
                                                                             "type": "object"
                                                                         },
                                                                         {
+                                                                            "additionalProperties": false,
                                                                             "properties": {
                                                                                 "range": {
                                                                                     "type": "number"
@@ -2333,6 +2398,7 @@
                                                                             "items": {
                                                                                 "anyOf": [
                                                                                     {
+                                                                                        "additionalProperties": false,
                                                                                         "properties": {
                                                                                             "push": {
                                                                                                 "$ref": "#/definitions/Token"
@@ -2351,6 +2417,7 @@
                                                                                         "type": "object"
                                                                                     },
                                                                                     {
+                                                                                        "additionalProperties": false,
                                                                                         "properties": {
                                                                                             "number": {
                                                                                                 "type": "number"
@@ -2369,6 +2436,7 @@
                                                                                         "type": "object"
                                                                                     },
                                                                                     {
+                                                                                        "additionalProperties": false,
                                                                                         "properties": {
                                                                                             "element": {
                                                                                                 "anyOf": [
@@ -2419,6 +2487,7 @@
                                                                                         "type": "object"
                                                                                     },
                                                                                     {
+                                                                                        "additionalProperties": false,
                                                                                         "properties": {
                                                                                             "land": {
                                                                                                 "anyOf": [
@@ -2470,6 +2539,7 @@
                                                                                         "type": "object"
                                                                                     },
                                                                                     {
+                                                                                        "additionalProperties": false,
                                                                                         "properties": {
                                                                                             "range": {
                                                                                                 "type": "number"
@@ -2519,6 +2589,7 @@
                                                             "type": "object"
                                                         },
                                                         {
+                                                            "additionalProperties": false,
                                                             "properties": {
                                                                 "push": {
                                                                     "$ref": "#/definitions/Token"
@@ -2537,6 +2608,7 @@
                                                             "type": "object"
                                                         },
                                                         {
+                                                            "additionalProperties": false,
                                                             "properties": {
                                                                 "number": {
                                                                     "type": "number"
@@ -2555,6 +2627,7 @@
                                                             "type": "object"
                                                         },
                                                         {
+                                                            "additionalProperties": false,
                                                             "properties": {
                                                                 "element": {
                                                                     "anyOf": [
@@ -2605,6 +2678,7 @@
                                                             "type": "object"
                                                         },
                                                         {
+                                                            "additionalProperties": false,
                                                             "properties": {
                                                                 "land": {
                                                                     "anyOf": [
@@ -2656,6 +2730,7 @@
                                                             "type": "object"
                                                         },
                                                         {
+                                                            "additionalProperties": false,
                                                             "properties": {
                                                                 "range": {
                                                                     "type": "number"
@@ -2677,6 +2752,7 @@
                                                             "items": {
                                                                 "anyOf": [
                                                                     {
+                                                                        "additionalProperties": false,
                                                                         "properties": {
                                                                             "push": {
                                                                                 "$ref": "#/definitions/Token"
@@ -2695,6 +2771,7 @@
                                                                         "type": "object"
                                                                     },
                                                                     {
+                                                                        "additionalProperties": false,
                                                                         "properties": {
                                                                             "number": {
                                                                                 "type": "number"
@@ -2713,6 +2790,7 @@
                                                                         "type": "object"
                                                                     },
                                                                     {
+                                                                        "additionalProperties": false,
                                                                         "properties": {
                                                                             "element": {
                                                                                 "anyOf": [
@@ -2763,6 +2841,7 @@
                                                                         "type": "object"
                                                                     },
                                                                     {
+                                                                        "additionalProperties": false,
                                                                         "properties": {
                                                                             "land": {
                                                                                 "anyOf": [
@@ -2814,6 +2893,7 @@
                                                                         "type": "object"
                                                                     },
                                                                     {
+                                                                        "additionalProperties": false,
                                                                         "properties": {
                                                                             "range": {
                                                                                 "type": "number"
@@ -2895,6 +2975,7 @@
         "image": {
             "anyOf": [
                 {
+                    "additionalProperties": false,
                     "properties": {
                         "artistName": {
                             "type": "string"
@@ -2915,6 +2996,7 @@
             ]
         },
         "imageCardBackPosition": {
+            "additionalProperties": false,
             "properties": {
                 "scale": {
                     "type": "number"
@@ -2934,6 +3016,7 @@
             "type": "object"
         },
         "imageFrontPosition": {
+            "additionalProperties": false,
             "properties": {
                 "scale": {
                     "type": "number"
@@ -2953,6 +3036,7 @@
             "type": "object"
         },
         "imageLorePosition": {
+            "additionalProperties": false,
             "properties": {
                 "scale": {
                     "type": "number"
@@ -2973,15 +3057,18 @@
         },
         "inatePowers": {
             "items": {
+                "additionalProperties": false,
                 "properties": {
                     "levels": {
                         "items": {
+                            "additionalProperties": false,
                             "properties": {
                                 "effect": {
                                     "type": "string"
                                 },
                                 "requires": {
                                     "items": {
+                                        "additionalProperties": false,
                                         "properties": {
                                             "amount": {
                                                 "type": "number"
@@ -3022,6 +3109,7 @@
                     "target": {
                         "anyOf": [
                             {
+                                "additionalProperties": false,
                                 "properties": {
                                     "negateTarget": {
                                         "description": "If target is negated",
@@ -3111,6 +3199,7 @@
                                 "type": "object"
                             },
                             {
+                                "additionalProperties": false,
                                 "properties": {
                                     "targetSprite": {
                                         "enum": [
@@ -3157,11 +3246,13 @@
             "type": "string"
         },
         "presence": {
+            "additionalProperties": false,
             "properties": {
                 "card": {
                     "items": {
                         "anyOf": [
                             {
+                                "additionalProperties": false,
                                 "properties": {
                                     "range": {
                                         "type": "number"
@@ -3180,6 +3271,7 @@
                                 "type": "object"
                             },
                             {
+                                "additionalProperties": false,
                                 "properties": {
                                     "push": {
                                         "$ref": "#/definitions/Token"
@@ -3201,6 +3293,7 @@
                                 "items": {
                                     "anyOf": [
                                         {
+                                            "additionalProperties": false,
                                             "properties": {
                                                 "range": {
                                                     "type": "number"
@@ -3219,6 +3312,7 @@
                                             "type": "object"
                                         },
                                         {
+                                            "additionalProperties": false,
                                             "properties": {
                                                 "push": {
                                                     "$ref": "#/definitions/Token"
@@ -3286,6 +3380,7 @@
                     "items": {
                         "anyOf": [
                             {
+                                "additionalProperties": false,
                                 "properties": {
                                     "range": {
                                         "type": "number"
@@ -3304,6 +3399,7 @@
                                 "type": "object"
                             },
                             {
+                                "additionalProperties": false,
                                 "properties": {
                                     "push": {
                                         "$ref": "#/definitions/Token"
@@ -3325,6 +3421,7 @@
                                 "items": {
                                     "anyOf": [
                                         {
+                                            "additionalProperties": false,
                                             "properties": {
                                                 "range": {
                                                     "type": "number"
@@ -3343,6 +3440,7 @@
                                             "type": "object"
                                         },
                                         {
+                                            "additionalProperties": false,
                                             "properties": {
                                                 "push": {
                                                     "$ref": "#/definitions/Token"
@@ -3418,6 +3516,7 @@
         },
         "specialRules": {
             "items": {
+                "additionalProperties": false,
                 "properties": {
                     "text": {
                         "type": "string"
@@ -3435,6 +3534,7 @@
             "type": "array"
         },
         "summaryPower": {
+            "additionalProperties": false,
             "properties": {
                 "control": {
                     "enum": [
@@ -3523,6 +3623,7 @@
         },
         "uniquePowers": {
             "items": {
+                "additionalProperties": false,
                 "properties": {
                     "effect": {
                         "anyOf": [
@@ -3559,26 +3660,29 @@
                     "image": {
                         "anyOf": [
                             {
-                                "allOf": [
-                                    {
-                                        "properties": {
-                                            "artistName": {
-                                                "type": "string"
-                                            },
-                                            "path": {
-                                                "type": "string"
-                                            }
-                                        },
-                                        "required": [
-                                            "artistName",
-                                            "path"
-                                        ],
-                                        "type": "object"
+                                "additionalProperties": false,
+                                "properties": {
+                                    "artistName": {
+                                        "type": "string"
                                     },
-                                    {
-                                        "$ref": "#/definitions/Partial<ImagePosition>"
+                                    "path": {
+                                        "type": "string"
+                                    },
+                                    "scale": {
+                                        "type": "number"
+                                    },
+                                    "x": {
+                                        "type": "number"
+                                    },
+                                    "y": {
+                                        "type": "number"
                                     }
-                                ]
+                                },
+                                "required": [
+                                    "artistName",
+                                    "path"
+                                ],
+                                "type": "object"
                             },
                             {
                                 "type": "string"
@@ -3632,6 +3736,7 @@
                     "target": {
                         "anyOf": [
                             {
+                                "additionalProperties": false,
                                 "properties": {
                                     "negateTarget": {
                                         "description": "If target is negated",
@@ -3721,6 +3826,7 @@
                                 "type": "object"
                             },
                             {
+                                "additionalProperties": false,
                                 "properties": {
                                     "targetSprite": {
                                         "enum": [
@@ -3747,6 +3853,7 @@
                         "description": "Target for powers"
                     },
                     "threshold": {
+                        "additionalProperties": false,
                         "properties": {
                             "effect": {
                                 "type": "string"
@@ -3755,6 +3862,7 @@
                                 "anyOf": [
                                     {
                                         "items": {
+                                            "additionalProperties": false,
                                             "properties": {
                                                 "ammount": {
                                                     "type": "number"
@@ -3772,6 +3880,7 @@
                                         "type": "array"
                                     },
                                     {
+                                        "additionalProperties": false,
                                         "properties": {
                                             "ammount": {
                                                 "type": "number"
