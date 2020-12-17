@@ -3,8 +3,23 @@
 All notable changes to this project will be documented in this file.
 
 
+#### [v0.2.0](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.1.6...v0.2.0)
+
+
+
+
+
+**Changes**  
+
+- Added support for multiple Growth sets [`1132f2b`](https://github.com/LokiMidgard/spirit-island-renderer/commit/1132f2b140c6147f4a7cf1eb2bee1f07c732ccec)
+- Added timestamp for images in tabletop to prevent cacheing on assetchange [`8ec6f5b`](https://github.com/LokiMidgard/spirit-island-renderer/commit/8ec6f5b345e88ff787f5263687b5dc9d5ca2381b)
+- Added Lato font to license header [`f96b973`](https://github.com/LokiMidgard/spirit-island-renderer/commit/f96b97344232a3d6c20c21e20d74a08f41c4de77)
+
+
+
 #### [v0.1.6](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.1.5...v0.1.6)
 
+> 13 December 2020
 
 
 
