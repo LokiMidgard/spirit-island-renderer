@@ -107,7 +107,18 @@ export function ToFront(spirit: Sprit, relativeTo: string): string {
         }
         function Target(target: Target) {
             if (target.targetType === 'land') {
-                return target.targetLand ?? 'ANY'
+                switch (target.targetLand) {
+                    case 'costal':
+                    case 'inland':
+                    case 'invaders':
+                    case undefined:
+                        return target.targetLand ?? 'ANY'
+                    case 'land':
+                        return 'ANY'
+                    default:
+                        return `{${target.targetLand}}`
+                }
+
             } else {
                 switch (target.targetSprite) {
                     case "another":
