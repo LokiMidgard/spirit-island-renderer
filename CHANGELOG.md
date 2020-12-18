@@ -3,8 +3,21 @@
 All notable changes to this project will be documented in this file.
 
 
+#### [v0.2.5](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.2.4...v0.2.5)
+
+
+
+
+
+**Changes**  
+
+- Fix innate powers render icon for target land [`ef7dfde`](https://github.com/LokiMidgard/spirit-island-renderer/commit/ef7dfde1226a15053bc14c3f6666979086a27144)
+
+
+
 #### [v0.2.4](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.2.3...v0.2.4)
 
+> 17 December 2020
 
 
 
