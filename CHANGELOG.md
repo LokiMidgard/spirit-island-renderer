@@ -3,8 +3,21 @@
 All notable changes to this project will be documented in this file.
 
 
+#### [v0.2.7](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.2.6...v0.2.7)
+
+
+
+
+
+**Changes**  
+
+- Added ackground for presence tracks [`ca9a61f`](https://github.com/LokiMidgard/spirit-island-renderer/commit/ca9a61f7cfe65b7ed4c54db67ec5ccc604ff9c1a)
+
+
+
 #### [v0.2.6](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.2.5...v0.2.6)
 
+> 9 January 2021
 
 
 

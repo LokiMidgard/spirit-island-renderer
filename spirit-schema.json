@@ -2190,6 +2190,131 @@
             ],
             "type": "object"
         },
+        "trackBackground": {
+            "anyOf": [
+                {
+                    "additionalProperties": false,
+                    "properties": {
+                        "artistName": {
+                            "type": "string"
+                        },
+                        "path": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "artistName",
+                        "path"
+                    ],
+                    "type": "object"
+                },
+                {
+                    "additionalItems": {
+                        "anyOf": [
+                            {
+                                "anyOf": [
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "artistName": {
+                                                "type": "string"
+                                            },
+                                            "path": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "artistName",
+                                            "path"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "type": "string"
+                                    }
+                                ]
+                            },
+                            {
+                                "anyOf": [
+                                    {
+                                        "additionalProperties": false,
+                                        "properties": {
+                                            "artistName": {
+                                                "type": "string"
+                                            },
+                                            "path": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "artistName",
+                                            "path"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    {
+                                        "type": "string"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "items": [
+                        {
+                            "anyOf": [
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "artistName": {
+                                            "type": "string"
+                                        },
+                                        "path": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "artistName",
+                                        "path"
+                                    ],
+                                    "type": "object"
+                                },
+                                {
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        {
+                            "anyOf": [
+                                {
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "artistName": {
+                                            "type": "string"
+                                        },
+                                        "path": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "artistName",
+                                        "path"
+                                    ],
+                                    "type": "object"
+                                },
+                                {
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    ],
+                    "minItems": 2,
+                    "type": "array"
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
         "uniquePowers": {
             "items": {
                 "additionalProperties": false,
