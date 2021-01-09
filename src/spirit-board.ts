@@ -144,7 +144,33 @@ export function ToFront(spirit: Sprit, relativeTo: string): string {
 `
     }
 
+    const trackBackground = Array.isArray(spirit.trackBackground)
+        ? `<style>
+        energy-track-table
+        {
+            background-image:url(${FileAsDataUrl(spirit.trackBackground[0], relativeTo)});
+        }
+        card-play-track-table 
+        {
+            background-image:url(${FileAsDataUrl(spirit.trackBackground[1], relativeTo)});
+        }
+    
+      </style>`
+        : spirit.trackBackground
+            ? `<style>
+      energy-track-table,
+      card-play-track-table 
+      {
+          background-image:url(${FileAsDataUrl(spirit.trackBackground, relativeTo)});
+      }
+  
+    </style>`
+            : ''
+
     let spiritXml = `
+
+    ${trackBackground}
+
     <board spirit-border='${FileAsDataUrl(spirit.boarder, relativeTo)}'>
     <div class='background-graphic' style='background-size: ${spirit.imageFrontPosition?.scale ?? 100}%; background-position-x: ${spirit.imageFrontPosition?.x ?? 0}px; background-position-y: ${spirit.imageFrontPosition?.y ?? 0}px; background-image: url("${FileAsDataUrl(spirit.image, relativeTo)}");'  ></div>
     <spirit-name>
@@ -341,6 +367,27 @@ export function GetFrontTemplate(port: number | undefined) {
             z-index: -1;
             border-radius: 15.1px;
             position: absolute;
+        }
+
+        energy-track-table,
+        card-play-track-table 
+        {
+            background-size: 100;
+            background-position-x:  right;
+            background-repeat: no-repeat;
+            background-position-y: center;
+            height:130px;
+        }
+
+        card-play-track-table {
+            margin-top: 45px;
+            margin-left: -50px;
+            padding-left: 14px;
+        }
+        energy-track-table {
+            display: inline-flex;
+            margin-top: -10px;
+            margin-left: -50px;
         }
 
         artist-name {

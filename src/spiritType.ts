@@ -34,11 +34,11 @@ export type GrowthOption = {
     growth: GrowthEntry | GrowthEntry[]
 } | GrowthEntry | GrowthEntry[]
 
-export function HasCost(g : GrowthOption) : g is {
+export function HasCost(g: GrowthOption): g is {
     cost: number
     growth: GrowthEntry | GrowthEntry[]
-}{
-return (g as any).cost !== undefined
+} {
+    return (g as any).cost !== undefined
 }
 
 export type GrowthEntry = 'reclaim-one'
@@ -132,13 +132,14 @@ export type PresenceTrackOptions = number | ElementWithAny | 'reclaim-one' | Mov
     }
 
 type Sprit = {
-    $schema:string | undefined,
+    $schema: string | undefined,
     name: string,
     image: ImagePath,
     imageFrontPosition: ImagePosition | undefined,
     imageCardBackPosition: ImagePosition | undefined,
     imageLorePosition: ImagePosition | undefined,
 
+    trackBackground: ImagePath | [ImagePath, ImagePath] | undefined,
     boarder: ImagePath,
     lore: string,
     setup: string,
