@@ -35,14 +35,6 @@ export function ToFront(spirit: Sprit, relativeTo: string): string {
             return `<growth-group values="${GrowthValues(g)}"></growth-group>`
         }
     }
-    type Fish = { swim: () => void }
-    type Bird = { fly: () => void }
-    function move(pet: Fish | Bird) {
-        if ("swim" in pet) {
-            return pet.swim();
-        }
-        return pet.fly();
-    }
 
     function GrowthValues(g: GrowthEntry | GrowthEntry[]): string {
         if (Array.isArray(g)) {
@@ -152,14 +144,9 @@ export function ToFront(spirit: Sprit, relativeTo: string): string {
 `
     }
 
-    const backgroundPositionYValue = (typeof spirit.boarder == 'string' ? undefined : spirit.boarder)?.y
-    const backgroundPositionY = backgroundPositionYValue ? backgroundPositionYValue + 'px' : 'bottom'
-    const backgroundPositionXvalue = (typeof spirit.boarder == 'string' ? undefined : spirit.boarder)?.x
-    const backgroundPositionX = backgroundPositionXvalue ? backgroundPositionXvalue + 'px' : 'left'
     let spiritXml = `
+    <board spirit-border='${FileAsDataUrl(spirit.boarder, relativeTo)}'>
     <div class='background-graphic' style='background-size: ${spirit.imageFrontPosition?.scale ?? 100}%; background-position-x: ${spirit.imageFrontPosition?.x ?? 0}px; background-position-y: ${spirit.imageFrontPosition?.y ?? 0}px; background-image: url("${FileAsDataUrl(spirit.image, relativeTo)}");'  ></div>
-    <board >
-    <div class="spirit-border" style="background-size: ${(typeof spirit.boarder == 'string' ? undefined : spirit.boarder)?.scale ?? 100}%; background-position-x: ${backgroundPositionX}; background-position-y: ${backgroundPositionY}; background-image: url(${FileAsDataUrl(spirit.boarder, relativeTo)});" ></div>
     <spirit-name>
       ${spirit.name}
     </spirit-name>
@@ -333,6 +320,7 @@ export function GetFrontTemplate(port: number | undefined) {
       <link href="${prefix}/font.css" rel="stylesheet" />
       <link href="${prefix}/_global/css/global.css" rel="stylesheet" />
       <link href="${prefix}/_global/css/board_front.css" rel="stylesheet" />
+      <script type="text/javascript" src="${prefix}/_global/js/general.js"></script>
       <script type="text/javascript" src="${prefix}/_global/js/board_front.js"></script>
         <style>
         body {
@@ -354,15 +342,10 @@ export function GetFrontTemplate(port: number | undefined) {
             border-radius: 15.1px;
             position: absolute;
         }
-        .spirit-border{
-            top: 0px;
-            height: 830px;
-            background-position: bottom left;
-            background-repeat: no-repeat;
-        }
+
         artist-name {
             position: absolute;
-            left: 79px;
+            left: 15px;
             top: 1164px;
             width: 253px;
             height: 14px;

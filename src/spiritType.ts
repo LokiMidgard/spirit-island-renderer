@@ -139,7 +139,7 @@ type Sprit = {
     imageCardBackPosition: ImagePosition | undefined,
     imageLorePosition: ImagePosition | undefined,
 
-    boarder: (Exclude<ImagePath, string> & Partial<ImagePosition>) | string,
+    boarder: ImagePath,
     lore: string,
     setup: string,
     playStyle: string,
