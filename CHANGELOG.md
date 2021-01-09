@@ -3,8 +3,22 @@
 All notable changes to this project will be documented in this file.
 
 
+#### [v0.2.6](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.2.5...v0.2.6)
+
+
+
+
+
+**Changes**  
+
+- fix problems after updating templates [`2de905a`](https://github.com/LokiMidgard/spirit-island-renderer/commit/2de905a2d88afc26cbd5924571aaa70b9c62384e)
+- update spirit-island-template [`bf4cd7b`](https://github.com/LokiMidgard/spirit-island-renderer/commit/bf4cd7b00d0ee887d66a331fbdde445621ed843a)
+
+
+
 #### [v0.2.5](https://github.com/LokiMidgard/spirit-island-renderer/compare/v0.2.4...v0.2.5)
 
+> 18 December 2020
 
 
 

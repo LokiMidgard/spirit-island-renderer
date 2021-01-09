@@ -45,15 +45,6 @@
                         },
                         "path": {
                             "type": "string"
-                        },
-                        "scale": {
-                            "type": "number"
-                        },
-                        "x": {
-                            "type": "number"
-                        },
-                        "y": {
-                            "type": "number"
                         }
                     },
                     "required": [
